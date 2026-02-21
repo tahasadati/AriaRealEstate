@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="AriaRealState.Data/AriaRealState.Data.csproj" />
+  <Project Path="AriaRealState.Web/AriaRealState.Web.csproj" />
+</Solution>

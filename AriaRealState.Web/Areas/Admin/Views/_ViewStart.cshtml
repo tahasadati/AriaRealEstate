@@ -1,0 +1,11 @@
+﻿@{
+    var path = Context.Request.Path.ToString().ToLower();
+    if (!path.Contains("/admin/auth"))
+    {
+        Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    }
+    else
+    {
+        Layout = null; // لاگین بدون layout
+    }
+}
