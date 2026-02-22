@@ -1,4 +1,5 @@
 ﻿using AriaRealState.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,9 +38,16 @@ public class AuthController : Controller
 		var result = await _signInManager.PasswordSignInAsync(user, password, false, false);
 		if (result.Succeeded)
 		{
-			return RedirectToAction("Index", "Home");
+			return RedirectToAction("Index", "Dashboard");
 		}
 		ModelState.AddModelError("", "Invalid email or password.");
 		return View();
+    }
+
+    [Authorize]
+    public async Task<IActionResult> Logout()
+    {
+        await _signInManager.SignOutAsync();
+        return RedirectToAction("Login");
     }
 }

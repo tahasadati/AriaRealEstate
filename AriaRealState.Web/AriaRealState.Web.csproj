@@ -113,8 +113,4 @@
     <ProjectReference Include="..\AriaRealState.Data\AriaRealState.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Models\" />
-  </ItemGroup>
-
 </Project>
