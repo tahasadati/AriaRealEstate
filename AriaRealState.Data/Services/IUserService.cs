@@ -33,7 +33,6 @@ public class UserService : IUserService
                 (u.UserName != null && u.UserName.Contains(q)) ||
                 (u.PhoneNumber != null && u.PhoneNumber.Contains(q)) ||
                 (u.FullName != null && u.FullName.Contains(q)));
-            );
         }
 
         return await PaginatedList<iUser>.CreateAsync(query, page, pageSize);
