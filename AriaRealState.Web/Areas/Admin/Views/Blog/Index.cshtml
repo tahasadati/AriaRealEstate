@@ -1,0 +1,28 @@
+@model List<AriaRealState.Data.Entities.Blog>
+
+<table>
+    <thead>
+        <th>نام</th>
+        <th>توضیح</th>
+        <th>کلمات کلیدی</th>
+    </thead>
+    <tbody>
+        @if (Model == null)
+        {
+            <span>دیتا وجود ندارد</span>
+        }
+        else
+        {
+            @foreach (var i in Model)
+            {
+                <td>{@i.BlogTitle}</td>
+                <td>{@i.BlogDescription}</td>
+                <td>
+                    <a asp-route-id="@i.Id" asp-area="Admin" asp-action="Delete" asp-controller="Blog">
+                        حذف
+                    </a>
+                </td>
+            }
+        }
+    </tbody>
+</table>
