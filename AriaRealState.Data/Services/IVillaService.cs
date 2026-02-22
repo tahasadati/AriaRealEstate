@@ -75,7 +75,4 @@ public class VillaService : IVillaService
             .AsNoTracking()
             .ToListAsync(ct);
     }
-
-
-
 }

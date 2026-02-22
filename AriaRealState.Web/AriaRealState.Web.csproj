@@ -113,4 +113,8 @@
     <ProjectReference Include="..\AriaRealState.Data\AriaRealState.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
 </Project>

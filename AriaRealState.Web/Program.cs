@@ -2,6 +2,7 @@ using AriaRealState.Data.Context;
 using AriaRealState.Data.Entities;
 using AriaRealState.Data.Persistence.Seeds;
 using AriaRealState.Data.Services;
+using AriaRealState.Web.Assistance.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DevelopConnection")));
 builder.Services.AddScoped<IBlogService, BlogService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ILandService, LandService>();
+builder.Services.AddScoped<IVillaService, VillaService>();
+
+builder.Services.AddScoped<IStaticFileService, StaticFileService>();
 builder.Services.AddIdentity<iUser, IdentityRole>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
@@ -44,7 +50,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
-
+app.UseStaticFiles();
 app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
