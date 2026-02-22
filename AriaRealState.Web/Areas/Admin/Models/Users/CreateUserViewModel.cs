@@ -5,9 +5,11 @@ namespace AriaRealState.Web.Areas.Admin.Models.Users;
 public class CreateUserViewModel
 {
     [Display(Name = "نام و نام خانوادگی")]
+    [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
     public string FullName { get; set; }
 
-    [Required, Display(Name = "نام کاربری")]
+    [Display(Name = "نام کاربری")]
+    [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
     public string UserName { get; set; } = null!;
 
     [Display(Name = "ایمیل")]
