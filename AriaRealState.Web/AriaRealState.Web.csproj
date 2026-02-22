@@ -114,6 +114,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Models\Customer\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
