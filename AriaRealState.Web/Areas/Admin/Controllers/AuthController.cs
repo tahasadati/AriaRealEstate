@@ -17,11 +17,13 @@ public class AuthController : Controller
 		_signInManager = signInManager;
 	}
 
+	[HttpGet]
 	public IActionResult Login()
 	{
 		return View();
 	}
 
+	[HttpPost]
 	public async Task<IActionResult> Login(string username, string password)
 	{
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
