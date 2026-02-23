@@ -1,5 +1,18 @@
 ﻿@model AriaRealState.Data.Helps.Dtos.PaginatedList<AriaRealState.Data.Entities.Villa>
+@{
+    // هر چیزی که توی QueryString داری (مثل search یا pageSize) رو نگه می‌داریم
+    var pageSize = Context.Request.Query["pageSize"].ToString();
+    if (string.IsNullOrWhiteSpace(pageSize)) pageSize = "10";
 
+    var search = Context.Request.Query["search"].ToString();
+
+    int current = Model.PageIndex;
+    int total = Model.TotalPages;
+
+    int window = 2; // چند صفحه اطراف صفحه جاری نمایش داده شود
+    int start = Math.Max(1, current - window);
+    int end = Math.Min(total, current + window);
+}
 <!-- Properties -->
 <div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
     <div class="trezo-card-header mb-[20px] md:mb-[25px] sm:flex items-center justify-between">
@@ -12,19 +25,6 @@
                 <input type="text" placeholder="جستجو....."
                        class="bg-gray-50 border border-gray-50 h-[36px] text-xs rounded-md w-full block text-black pt-[11px] pb-[12px] ltr:pl-[38px] rtl:pr-[38px] ltr:pr-[13px] ltr:md:pr-[16px] rtl:pl-[13px] rtl:md:pl-[16px] placeholder:text-gray-500 outline-0 dark:bg-[#15203c] dark:text-white dark:border-[#15203c] dark:placeholder:text-gray-400" />
             </form>
-        </div>
-        <div class="trezo-card-subtitle mt-[15px] sm:mt-0">
-            <button type="button"
-                    class="inline-block transition-all rounded-md font-medium px-[13px] py-[6px] text-primary-500 border border-primary-500 hover:bg-primary-500 hover:text-white"
-                    id="add-new-popup-toggle">
-                <span class="inline-block relative ltr:pl-[22px] rtl:pr-[22px]">
-                    <i
-                        class="material-symbols-outlined !text-[22px] absolute ltr:-left-[4px] rtl:-right-[4px] top-1/2 -translate-y-1/2">
-                        add
-                    </i>
-                    افزودن ملک
-                </span>
-            </button>
         </div>
     </div>
     <div class="trezo-card-content">
@@ -68,15 +68,15 @@
                                 class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
                                 <div class="flex items-center gap-[13px]">
                                     <div class="rounded-md w-[60px]">
-                                        <img src="@i.CoverImage" class="inline-block rounded-md" alt="@i." />
+                                        <img src="@i.CoverImage" class="inline-block rounded-md" alt="@i.Title" />
                                     </div>
                                     <div>
-                                        
+
                                         <a href="rea-property-details.html"
                                                class="font-medium inline-block text-[14px] md:text-[15px] transition-all hover:text-primary-500 mt-[3px]">
                                             @i.Title
                                         </a>
-                    <span class="block text-sm text-gray-500 dark:text-gray-400">
+                                        <span class="block text-sm text-gray-500 dark:text-gray-400">
                                             @i.ArchitectureType
                                         </span>
                                     </div>
@@ -100,10 +100,22 @@
                             </td>
                             <td
                                 class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                <span
-                                    class="inline-block text-xs font-medium px-[8px] text-success-600 border border-success-600 bg-success-100 text-sm rounded-[100px] dark:bg-[#15203c] dark:border-[#15203c]">
-                                    فعال
-                                </span>
+
+                                @if (i.IsShow)
+                                {
+                                    <span
+                                        class="inline-block text-xs font-medium px-[8px] text-success-600 border border-success-600 bg-success-100 text-sm rounded-[100px] dark:bg-[#15203c] dark:border-[#15203c]">
+                                        نمایش در سایت
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span
+                                        class="inline-block text-xs font-medium px-[8px] text-danger-600 border border-danger-600 bg-danger-100 text-sm rounded-[100px] dark:bg-[#15203c] dark:border-[#15203c]">
+                                        غیر فعال در سایت
+                                    </span>
+                                }
+
                             </td>
                             <td
                                 class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
@@ -112,12 +124,17 @@
                                            id="customTooltip" data-text="نمایش">
                                         <i class="material-symbols-outlined !text-md"> visibility </i>
                                         <span class="tooltip-text">مشاهده</span></a>
-                                        <button type="button"
+                                        <a
+                                        asp-area="Admin"
+                                        asp-action="Edit"
+                                        asp-controller="Villa"
+                                        asp-route-id="@i.Id"
+                                         type="button"
                                                 class="text-gray-500 dark:text-gray-400 leading-none custom-tooltip"
                                                 id="customTooltip" data-text="ویرایش">
                                             <i class="material-symbols-outlined !text-md"> edit </i>
                                             <span class="tooltip-text">ویرایش</span>
-                                        </button>
+                                        </a>
                                         <button type="button" class="text-danger-500 leading-none custom-tooltip"
                                                 id="customTooltip" data-text="حذف">
                                             <i class="material-symbols-outlined !text-md"> delete </i>
@@ -132,53 +149,108 @@
                     </tbody>
                 </table>
             </div>
-            <div
-                class="px-[20px] py-[12px] md:py-[15px] rounded-b-md border-l border-r border-b border-gray-100 dark:border-[#172036] sm:flex sm:items-center justify-between">
-                <p class="!mb-0 text-sm">نمایش ۱۰ از ۳۶ نتیجه</p>
-                <ol class="mt-[10px] sm:mt-0" dir="ltr">
-                    <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
-                        <a href="javascript:void(0);"
-                               class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
-                            <span class="opacity-0"> 0 </span>
-                            <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
-                                chevron_left
-                            </i>
-                        </a>
-                    </li>
-                    <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
-                        <a href="javascript:void(0);"
-                               class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-primary-500 bg-primary-500 text-white">
-                            ۱
-                        </a>
-                    </li>
-                    <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
-                        <a href="javascript:void(0);"
-                               class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
-                            ۲
-                        </a>
-                    </li>
-                    <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
-                        <a href="javascript:void(0);"
-                               class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
-                            ۳
-                        </a>
-                    </li>
-                    <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
-                        <a href="javascript:void(0);"
-                               class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
-                            ۴
-                        </a>
-                    </li>
-                    <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
-                        <a href="javascript:void(0);"
-                               class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
-                            <span class="opacity-0"> 0 </span>
-                            <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
-                                chevron_right
-                            </i>
-                        </a>
-                    </li>
-                </ol>
-            </div>
+            <div class="px-[20px] py-[12px] md:py-[15px] rounded-b-md border-l border-r border-b border-gray-100 dark:border-[#172036] sm:flex sm:items-center justify-between">
+                <p>نمایش @Model.Count از @Model.TotalCount</p>
+    <ol class="mt-[10px] sm:mt-0" dir="ltr">
+
+        <!-- Prev -->
+        <li class="inline-block mx-[1px]">
+            @if (Model.HasPreviousPage)
+            {
+                <a asp-area="Admin" asp-controller="Villa" asp-action="Index"
+                   asp-route-page="@(current - 1)"
+                   asp-route-pageSize="@pageSize"
+                   asp-route-search="@search"
+                   class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                    <span class="opacity-0">0</span>
+                    <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">chevron_left</i>
+                </a>
+            }
+            else
+            {
+                <span class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] opacity-50 cursor-not-allowed">
+                    <span class="opacity-0">0</span>
+                    <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">chevron_left</i>
+                </span>
+            }
+        </li>
+
+        <!-- First + Ellipsis -->
+        @if (start > 1)
+        {
+            <li class="inline-block mx-[1px]">
+                <a asp-area="Admin" asp-controller="Villa" asp-action="Index"
+                   asp-route-page="1"
+                   asp-route-pageSize="@pageSize"
+                   asp-route-search="@search"
+                   class="w-[31px] h-[31px] block leading-[29px] text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                    1
+                </a>
+            </li>
+
+            @if (start > 2)
+            {
+                <li class="inline-block mx-[4px] text-gray-400">…</li>
+            }
+        }
+
+        <!-- Pages -->
+        @for (int p = start; p <= end; p++)
+        {
+            <li class="inline-block mx-[1px]">
+                <a asp-area="Admin" asp-controller="Villa" asp-action="Index"
+                   asp-route-page="@p"
+                   asp-route-pageSize="@pageSize"
+                   asp-route-search="@search"
+                   class="w-[31px] h-[31px] block leading-[29px] text-center rounded-md border dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500
+                          @(p == current ? "border-primary-500 bg-primary-500 text-white" : "border-gray-100")">
+                    @p
+                </a>
+            </li>
+        }
+
+        <!-- Ellipsis + Last -->
+        @if (end < total)
+        {
+            @if (end < total - 1)
+            {
+                <li class="inline-block mx-[4px] text-gray-400">…</li>
+            }
+
+            <li class="inline-block mx-[1px]">
+                <a asp-area="Admin" asp-controller="Villa" asp-action="Index"
+                   asp-route-page="@total"
+                   asp-route-pageSize="@pageSize"
+                   asp-route-search="@search"
+                   class="w-[31px] h-[31px] block leading-[29px] text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                    @total
+                </a>
+            </li>
+        }
+
+        <!-- Next -->
+        <li class="inline-block mx-[1px]">
+            @if (Model.HasNextPage)
+            {
+                <a asp-area="Admin" asp-controller="Villa" asp-action="Index"
+                   asp-route-page="@(current + 1)"
+                   asp-route-pageSize="@pageSize"
+                   asp-route-search="@search"
+                   class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                    <span class="opacity-0">0</span>
+                    <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">chevron_right</i>
+                </a>
+            }
+            else
+            {
+                <span class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] opacity-50 cursor-not-allowed">
+                    <span class="opacity-0">0</span>
+                    <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">chevron_right</i>
+                </span>
+            }
+        </li>
+
+    </ol>
+</div>
         </div>
     </div>
