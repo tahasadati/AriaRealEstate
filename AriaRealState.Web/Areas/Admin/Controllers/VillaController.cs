@@ -163,7 +163,7 @@ public class VillaController : Controller
     }
 
 
-    [HttpPost]
+
     public async Task<IActionResult> Delete(long id, CancellationToken ct)
     {
         var villa = await _villaService.GetByIdAsync(id, ct);
