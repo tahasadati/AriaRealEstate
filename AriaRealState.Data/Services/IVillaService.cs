@@ -59,7 +59,10 @@ public class VillaService : IVillaService
 
     public async Task<Villa?> GetByIdAsync(long id, CancellationToken ct = default)
     {
-        return await _db.Villas.FirstOrDefaultAsync(o => o.Id == id, ct);
+        return await _db.Villas
+            .Include(o => o.VillaAdvanceFacilities)
+            .Include(o => o.VillaGalleries)
+            .FirstOrDefaultAsync(o => o.Id == id, ct);
     }
 
     public async Task<PaginatedList<Villa>> GetPaginatedAsync(int page, int pageSize, CancellationToken ct = default)

@@ -14,13 +14,13 @@ namespace AriaRealState.Web.Areas.Admin.Controllers;
 [Authorize]
 public class VillaController : Controller
 {
-	private readonly IVillaService _villaService;
+    private readonly IVillaService _villaService;
     private readonly IStaticFileService _fileService;
-	public VillaController(IVillaService villaService, IStaticFileService fileService)
-	{
-		_villaService = villaService;
+    public VillaController(IVillaService villaService, IStaticFileService fileService)
+    {
+        _villaService = villaService;
         _fileService = fileService;
-	}
+    }
     public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
     {
         var paginatedVillas = await _villaService.GetPaginatedAsync(page, pageSize);
@@ -52,12 +52,12 @@ public class VillaController : Controller
             return View(vm);
         }
         var coverPath = await _fileService.SaveFileAsync(vm.CoverImageFile, "uploads");
-        if(string.IsNullOrWhiteSpace(coverPath))
+        if (string.IsNullOrWhiteSpace(coverPath))
         {
             ModelState.AddModelError("", "خطا در ذخیره تصویر اصلی ویلا");
             FillDropdowns();
             return View(vm);
-        } 
+        }
         // 2) آپلود ویدیو (اختیاری)
         string? videoPath = null;
         if (vm.VideoFile != null)
@@ -121,8 +121,45 @@ public class VillaController : Controller
         var villa = await _villaService.GetByIdAsync(id, ct);
         if (villa == null) return NotFound();
 
+        var vm = new EditVillaViewModel
+        {
+            Id = villa.Id,
+            Code = villa.Code,
+            Title = villa.Title,
+            ShowPrice = villa.ShowPrice,
+            MinPrice = villa.MinPrice,
+            IsShow = villa.IsShow,
+            InfrastructureSize = villa.InfrastructureSize,
+            LandSize = villa.LandSize,
+            RoomCount = villa.RoomCount,
+            BuildingYear = villa.BuildingYear,
+            Description = villa.Description,
+            ArchitectureType = villa.ArchitectureType,
+            OccupancyStatus = villa.OccupancyStatus,
+            LocationType = villa.LocationType,
+            ExistingGalleryPaths = villa.VillaGalleries.Select(x => x.FilePath).ToList(),
+            ExistingAdvanceFacilities = villa.VillaAdvanceFacilities.Select(x => x.AdvanceFacility).ToList(),
+            SelectedAdvanceFacilities = villa.VillaAdvanceFacilities.Select(x => x.AdvanceFacility).ToList()
+        };
+
         FillDropdowns();
-        return View(villa);
+        return View(vm);
+    }
+
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(EditVillaViewModel vm, CancellationToken ct)
+    {
+        var villa = await _villaService.GetByIdAsync(vm.Id, ct);
+        if (villa == null) return NotFound();
+        if (vm.VideoFile != null)
+        {
+            var videoPath = await _fileService.SaveFileAsync(vm.VideoFile, "uploads");
+            villa.VideoLink = videoPath;
+        }
+        //Todo : mist be complete
+        return RedirectToAction(nameof(Index));
+
     }
 
 
