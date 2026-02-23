@@ -6,7 +6,8 @@
 </div>
 
 <!-- Add Agent -->
-<form method="post" asp-action="Create" asp-area="Admin" enctype="multipart/form-data">
+<form method="post" asp-action="Edit" asp-area="Admin" enctype="multipart/form-data">
+	<input type="hidden" value="@Model.Id">
 	@Html.AntiForgeryToken()
 
 	<div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
@@ -249,7 +250,7 @@
 						<i class="material-symbols-outlined ltr:left-0 rtl:right-0 absolute top-1/2 -translate-y-1/2">
 							add
 						</i>
-						ایجاد ویلا
+						ویرایش ویلا
 					</span>
 				</button>
 			</div>
@@ -262,56 +263,39 @@
 	<partial name="_ValidationScriptsPartial" />
 
 	<script>
-						// If you are using a rich text editor (Quill/TinyMCE/etc),
-						// make sure Description is synced before submit.
-						(function () {
-						  const form = document.querySelector('form');
-						  const desc = document.getElementById('Description');
-						  const editor = document.getElementById('richTextEditor');
+									// If you are using a rich text editor (Quill/TinyMCE/etc),
+									// make sure Description is synced before submit.
+									(function () {
+									  const form = document.querySelector('form');
+									  const desc = document.getElementById('Description');
+									  const editor = document.getElementById('richTextEditor');
 
-						  if (!form || !desc || !editor) return;
+									  if (!form || !desc || !editor) return;
 
-						  // Try to load initial value into editor (simple fallback)
-						  if (desc.value && !editor.innerHTML.trim()) {
-							editor.innerHTML = desc.value;
-						  }
+									  // Try to load initial value into editor (simple fallback)
+									  if (desc.value && !editor.innerHTML.trim()) {
+										editor.innerHTML = desc.value;
+									  }
 
-						  form.addEventListener('submit', function () {
-							// Basic sync: store HTML
-							desc.value = editor.innerHTML;
-						  });
+									  form.addEventListener('submit', function () {
+										// Basic sync: store HTML
+										desc.value = editor.innerHTML;
+									  });
 
-						  // Optional: show selected gallery files in the list (keeps your existing UI)
-						  const fileInput = document.getElementById('fileInput');
-						  const fileList = document.getElementById('fileList');
-						  if (fileInput && fileList) {
-							fileInput.addEventListener('change', function () {
-							  fileList.innerHTML = '';
-							  for (const f of fileInput.files) {
-								const li = document.createElement('li');
-								li.className = "text-sm mt-[10px]";
-								li.textContent = f.name;
-								fileList.appendChild(li);
-							  }
-							});
-						  }
-						})();
+									  // Optional: show selected gallery files in the list (keeps your existing UI)
+									  const fileInput = document.getElementById('fileInput');
+									  const fileList = document.getElementById('fileList');
+									  if (fileInput && fileList) {
+										fileInput.addEventListener('change', function () {
+										  fileList.innerHTML = '';
+										  for (const f of fileInput.files) {
+											const li = document.createElement('li');
+											li.className = "text-sm mt-[10px]";
+											li.textContent = f.name;
+											fileList.appendChild(li);
+										  }
+										});
+									  }
+									})();
 	</script>
-    <script>
-        (function () {
-            // نمایش نام فایل‌های جدید گالری
-            const fileInput = document.querySelector('input[name="GalleriesFile"]');
-            const fileList = document.getElementById('fileList');
-            if (fileInput && fileList) {
-                fileInput.addEventListener('change', function () {
-                    fileList.innerHTML = '';
-                    for (const f of fileInput.files) {
-                        const li = document.createElement('li');
-                        li.textContent = f.name;
-                        fileList.appendChild(li);
-                    }
-                });
-            }
-        })();
-    </script>
 }
