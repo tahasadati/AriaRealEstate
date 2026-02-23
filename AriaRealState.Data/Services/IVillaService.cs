@@ -15,6 +15,7 @@ public interface IVillaService
     Task<Villa?> GetByIdAsync(long id, CancellationToken ct = default);
     Task<PaginatedList<Villa>> GetPaginatedAsync(int page, int pageSize, CancellationToken ct = default);
     Task<List<Villa>> GetAllAsync(CancellationToken ct = default);
+    Task<List<Villa>> GetUserList(int size, CancellationToken ct = default);
 
 }
 
@@ -72,6 +73,14 @@ public class VillaService : IVillaService
     public async Task<List<Villa>> GetAllAsync(CancellationToken ct = default)
     {
         return await _db.Villas
+            .AsNoTracking()
+            .ToListAsync(ct);
+    }
+
+    public async Task<List<Villa>> GetUserList(int size, CancellationToken ct = default)
+    {
+        return await _db.Villas.Where(o => o.IsShow)
+            .Take(size)
             .AsNoTracking()
             .ToListAsync(ct);
     }

@@ -15,12 +15,12 @@
                  alt="icon-header"
                  class="w-50 sm:w-auto" />
             <div class="hidden xl:flex items-center justify-between gap-12 text-base font-yekan text-dark">
-                <a class="cursor-pointer">صفحه اصلی</a>
-                <a class="cursor-pointer">خرید ویلا</a>
-                <a class="cursor-pointer">خرید زمین</a>
+                <a asp-action="Index" asp-controller="Home" class="cursor-pointer">صفحه اصلی</a>
+                <a asp-action="Buy" asp-controller="Villa" class="cursor-pointer">خرید ویلا</a>
+                <a asp-action="Buy" asp-controller="Land" class="cursor-pointer">خرید زمین</a>
                 <a class="cursor-pointer">اخبار و مقالات</a>
                 <a asp-action="Index" asp-controller="AboutUs" class="cursor-pointer">درباره ی ما</a>
-                <a class="cursor-pointer">تماس با ما</a>
+                <a asp-action="Index" asp-controller="ContactUs" class="cursor-pointer">تماس با ما</a>
             </div>
             <button class="btn bg-primary w-50 h-11 rounded-2xl px-2.5 hidden xl:flex justify-between">
                 <span class="text-white text-sm font-alibaba">مشاوره رایگان</span>
@@ -46,12 +46,12 @@
                 </div>
                 <ul tabindex="0"
                     class="menu menu-sm dropdown-content space-y-1.5 mt-3 z-[1] p-2 shadow bg-white text-black rounded-box w-50 font-yekan">
-                    <li><a class="text-sm">صفحه اصلی</a></li>
+                    <li><a asp-action="Index" asp-controller="Home" class="text-sm">صفحه اصلی</a></li>
                     <li><a class="text-sm">خرید ویلا</a></li>
                     <li><a class="text-sm">خرید زمین</a></li>
                     <li><a class="text-sm">اخبار و مقالات</a></li>
                     <li><a asp-action="Index" asp-controller="AboutUs" class="text-sm">درباره ی ما</a></li>
-                    <li><a class="text-sm">تماس با ما</a></li>
+                    <li><a asp-action="Index" asp-controller="ContactUs" class="text-sm">تماس با ما</a></li>
                     <button class="btn bg-primary border-0! h-10 rounded-sm px-1 flex justify-between">
                         <span class="text-white text-sm font-alibaba">مشاوره رایگان</span>
                         <div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">

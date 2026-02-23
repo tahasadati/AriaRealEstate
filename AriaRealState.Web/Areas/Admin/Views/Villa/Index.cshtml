@@ -1,309 +1,278 @@
 ﻿@model AriaRealState.Data.Helps.Dtos.PaginatedList<AriaRealState.Data.Entities.Villa>
 @{
-    // هر چیزی که توی QueryString داری (مثل search یا pageSize) رو نگه می‌داریم
-    var pageSize = Context.Request.Query["pageSize"].ToString();
-    if (string.IsNullOrWhiteSpace(pageSize)) pageSize = "10";
+	// هر چیزی که توی QueryString داری (مثل search یا pageSize) رو نگه می‌داریم
+	var pageSize = Context.Request.Query["pageSize"].ToString();
+	if (string.IsNullOrWhiteSpace(pageSize)) pageSize = "10";
 
-    var search = Context.Request.Query["search"].ToString();
+	var search = Context.Request.Query["search"].ToString();
 
-    int current = Model.PageIndex;
-    int total = Model.TotalPages;
+	int current = Model.PageIndex;
+	int total = Model.TotalPages;
 
-    int window = 2; // چند صفحه اطراف صفحه جاری نمایش داده شود
-    int start = Math.Max(1, current - window);
-    int end = Math.Min(total, current + window);
+	int window = 2; // چند صفحه اطراف صفحه جاری نمایش داده شود
+	int start = Math.Max(1, current - window);
+	int end = Math.Min(total, current + window);
 }
 <!-- Properties -->
 <div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
-    <div class="trezo-card-header mb-[20px] md:mb-[25px] sm:flex items-center justify-between">
-        <div class="trezo-card-title">
-            <form class="relative sm:w-[265px]">
-                <label
-                    class="leading-none absolute ltr:left-[13px] rtl:right-[13px] text-black dark:text-white mt-px top-1/2 -translate-y-1/2">
-                    <i class="material-symbols-outlined !text-[20px]"> search </i>
-                </label>
-                <input type="text" placeholder="جستجو....."
-                       class="bg-gray-50 border border-gray-50 h-[36px] text-xs rounded-md w-full block text-black pt-[11px] pb-[12px] ltr:pl-[38px] rtl:pr-[38px] ltr:pr-[13px] ltr:md:pr-[16px] rtl:pl-[13px] rtl:md:pl-[16px] placeholder:text-gray-500 outline-0 dark:bg-[#15203c] dark:text-white dark:border-[#15203c] dark:placeholder:text-gray-400" />
-            </form>
-        </div>
-    </div>
-    <div class="trezo-card-content">
-        <div class="table-responsive overflow-x-auto">
-            <table class="w-full">
-                <thead class="text-black dark:text-white">
-                    <tr>
-                        <th
-                            class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
-                        </th>
-                        <th
-                            class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
-                            کد ویلا
-                        </th>
-                        <th
-                            class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
-                            قیمت
-                        </th>
-                        <th
-                            class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
-                            وضعیت ملک
-                        </th>
-                        <th
-                            class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
-                            تاریخ اضافه شدن
-                        </th>
-                        <th
-                            class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
-                            نمایش ملک
-                        </th>
-                        <th
-                            class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tr-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="text-black dark:text-white">
-                    @foreach (var i in Model)
-                    {
-                        <tr>
-                            <td
-                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                <div class="flex items-center gap-[13px]">
-                                    <div class="rounded-md w-[60px]">
-                                        <img src="@i.CoverImage" class="inline-block rounded-md" alt="@i.Title" />
-                                    </div>
-                                    <div>
+	<div class="trezo-card-header mb-[20px] md:mb-[25px] sm:flex items-center justify-between">
+		<div class="trezo-card-title">
+			<form class="relative sm:w-[265px]">
+				<label class="leading-none absolute ltr:left-[13px] rtl:right-[13px] text-black dark:text-white mt-px top-1/2 -translate-y-1/2">
+					<i class="material-symbols-outlined !text-[20px]"> search </i>
+				</label>
+				<input type="text" placeholder="جستجو....."
+					   class="bg-gray-50 border border-gray-50 h-[36px] text-xs rounded-md w-full block text-black pt-[11px] pb-[12px] ltr:pl-[38px] rtl:pr-[38px] ltr:pr-[13px] ltr:md:pr-[16px] rtl:pl-[13px] rtl:md:pl-[16px] placeholder:text-gray-500 outline-0 dark:bg-[#15203c] dark:text-white dark:border-[#15203c] dark:placeholder:text-gray-400" />
+			</form>
+		</div>
+	</div>
+	<div class="trezo-card-content">
+		<div class="table-responsive overflow-x-auto">
+			<table class="w-full">
+				<thead class="text-black dark:text-white">
+					<tr>
+						<th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
+						</th>
+						<th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
+							کد ویلا
+						</th>
+						<th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
+							قیمت
+						</th>
+						<th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
+							وضعیت ملک
+						</th>
+						<th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
+							تاریخ اضافه شدن
+						</th>
+						<th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
+							نمایش ملک
+						</th>
+						<th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tr-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
+						</th>
+					</tr>
+				</thead>
+				<tbody class="text-black dark:text-white">
+					@foreach (var i in Model)
+					{
+						<tr>
+							<td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+								<div class="flex items-center gap-[13px]">
+									<div class="rounded-md w-[60px]">
+										<img src="@i.CoverImage" class="inline-block rounded-md" alt="@i.Title" />
+									</div>
+									<div>
 
-                                        <a href="rea-property-details.html"
-                                               class="font-medium inline-block text-[14px] md:text-[15px] transition-all hover:text-primary-500 mt-[3px]">
-                                            @i.Title
-                                        </a>
-                                        <span class="block text-sm text-gray-500 dark:text-gray-400">
-                                            @i.ArchitectureType
-                                        </span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td
-                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                @i.Code
-                            </td>
-                            <td
-                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                @i.ShowPrice
-                            </td>
-                            <td
-                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                @i.OccupancyStatus
-                            </td>
-                            <td
-                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                @i.CreatedAt
-                            </td>
-                            <td
-                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+										<a href="rea-property-details.html"
+										   class="font-medium inline-block text-[14px] md:text-[15px] transition-all hover:text-primary-500 mt-[3px]">
+											@i.Title
+										</a>
+										<span class="block text-sm text-gray-500 dark:text-gray-400">
+											@i.ArchitectureType
+										</span>
+									</div>
+								</div>
+							</td>
+							<td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+								@i.Code
+							</td>
+							<td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+								@i.ShowPrice
+							</td>
+							<td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+								@i.OccupancyStatus
+							</td>
+							<td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+								@i.CreatedAt
+							</td>
+							<td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
 
-                                @if (i.IsShow)
-                                {
-                                    <span
-                                        class="inline-block text-xs font-medium px-[8px] text-success-600 border border-success-600 bg-success-100 text-sm rounded-[100px] dark:bg-[#15203c] dark:border-[#15203c]">
-                                        نمایش در سایت
-                                    </span>
-                                }
-                                else
-                                {
-                                    <span
-                                        class="inline-block text-xs font-medium px-[8px] text-danger-600 border border-danger-600 bg-danger-100 text-sm rounded-[100px] dark:bg-[#15203c] dark:border-[#15203c]">
-                                        غیر فعال در سایت
-                                    </span>
-                                }
+								@if (i.IsShow)
+								{
+									<span class="inline-block text-xs font-medium px-[8px] text-success-600 border border-success-600 bg-success-100 text-sm rounded-[100px] dark:bg-[#15203c] dark:border-[#15203c]">
+										نمایش در سایت
+									</span>
+								}
+								else
+								{
+									<span class="inline-block text-xs font-medium px-[8px] text-danger-600 border border-danger-600 bg-danger-100 text-sm rounded-[100px] dark:bg-[#15203c] dark:border-[#15203c]">
+										غیر فعال در سایت
+									</span>
+								}
 
-                            </td>
-                            <td
-                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                <div class="flex items-center gap-[9px]">
-                                    <a href="rea-property-details.html" class="text-primary-500 leading-none custom-tooltip"
-                                           id="customTooltip" data-text="نمایش">
-                                        <i class="material-symbols-outlined !text-md"> visibility </i>
-                                        <span class="tooltip-text">مشاهده</span></a>
-        
-                                        <a
-                                            asp-area="Admin"
-                                            asp-action="Edit"
-                                            asp-controller="Villa"
-                                            asp-route-id="@i.Id"
-                                         type="button"
-                                                class="text-gray-500 dark:text-gray-400 leading-none custom-tooltip"
-                                                id="customTooltip" data-text="ویرایش">
-                                            <i class="material-symbols-outlined !text-md"> edit </i>
-                                            <span class="tooltip-text">ویرایش</span>
-                                        </a>
-    
-                                        
-<button
-class="text-danger-500"
-                type="button"
-                id="add-new-popup-toggle"
-                >
-                                            <i class="material-symbols-outlined !text-md"> delete </i>
-                </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
+							</td>
+							<td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+								<div class="flex items-center gap-[9px]">
+									<a href="rea-property-details.html" class="text-primary-500 leading-none custom-tooltip"
+									   id="customTooltip" data-text="نمایش">
+										<i class="material-symbols-outlined !text-md"> visibility </i>
+										<span class="tooltip-text">مشاهده</span>
+									</a>
+
+									<a asp-area="Admin"
+									   asp-action="Edit"
+									   asp-controller="Villa"
+									   asp-route-id="@i.Id"
+									   type="button"
+									   class="text-gray-500 dark:text-gray-400 leading-none custom-tooltip"
+									   id="customTooltip" data-text="ویرایش">
+										<i class="material-symbols-outlined !text-md"> edit </i>
+										<span class="tooltip-text">ویرایش</span>
+									</a>
 
 
-                    </tbody>
-                </table>
-            </div>
-            <div class="px-[20px] py-[12px] md:py-[15px] rounded-b-md border-l border-r border-b border-gray-100 dark:border-[#172036] sm:flex sm:items-center justify-between">
-                <p>نمایش @Model.Count از @Model.TotalCount</p>
-    <ol class="mt-[10px] sm:mt-0" dir="ltr">
+									<button class="text-danger-500"
+											type="button"
+											id="add-new-popup-toggle">
+										<i class="material-symbols-outlined !text-md"> delete </i>
+									</button>
+								</div>
+							</td>
+						</tr>
+					}
 
-        <!-- Prev -->
-        <li class="inline-block mx-[1px]">
-            @if (Model.HasPreviousPage)
-            {
-                <a asp-area="Admin" asp-controller="Villa" asp-action="Index"
-                   asp-route-page="@(current - 1)"
-                   asp-route-pageSize="@pageSize"
-                   asp-route-search="@search"
-                   class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
-                    <span class="opacity-0">0</span>
-                    <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">chevron_left</i>
-                </a>
-            }
-            else
-            {
-                <span class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] opacity-50 cursor-not-allowed">
-                    <span class="opacity-0">0</span>
-                    <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">chevron_left</i>
-                </span>
-            }
-        </li>
 
-        <!-- First + Ellipsis -->
-        @if (start > 1)
-        {
-            <li class="inline-block mx-[1px]">
-                <a asp-area="Admin" asp-controller="Villa" asp-action="Index"
-                   asp-route-page="1"
-                   asp-route-pageSize="@pageSize"
-                   asp-route-search="@search"
-                   class="w-[31px] h-[31px] block leading-[29px] text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
-                    1
-                </a>
-            </li>
+				</tbody>
+			</table>
+		</div>
+		<div class="px-[20px] py-[12px] md:py-[15px] rounded-b-md border-l border-r border-b border-gray-100 dark:border-[#172036] sm:flex sm:items-center justify-between">
+			<p>نمایش @Model.Count از @Model.TotalCount</p>
+			<ol class="mt-[10px] sm:mt-0" dir="ltr">
 
-            @if (start > 2)
-            {
-                <li class="inline-block mx-[4px] text-gray-400">…</li>
-            }
-        }
+				<!-- Prev -->
+				<li class="inline-block mx-[1px]">
+					@if (Model.HasPreviousPage)
+					{
+						<a asp-area="Admin" asp-controller="Villa" asp-action="Index"
+						   asp-route-page="@(current - 1)"
+						   asp-route-pageSize="@pageSize"
+						   asp-route-search="@search"
+						   class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+							<span class="opacity-0">0</span>
+							<i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">chevron_left</i>
+						</a>
+					}
+					else
+					{
+						<span class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] opacity-50 cursor-not-allowed">
+							<span class="opacity-0">0</span>
+							<i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">chevron_left</i>
+						</span>
+					}
+				</li>
 
-        <!-- Pages -->
-        @for (int p = start; p <= end; p++)
-        {
-            <li class="inline-block mx-[1px]">
-                <a asp-area="Admin" asp-controller="Villa" asp-action="Index"
-                   asp-route-page="@p"
-                   asp-route-pageSize="@pageSize"
-                   asp-route-search="@search"
-                   class="w-[31px] h-[31px] block leading-[29px] text-center rounded-md border dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500
-                          @(p == current ? "border-primary-500 bg-primary-500 text-white" : "border-gray-100")">
-                    @p
-                </a>
-            </li>
-        }
+				<!-- First + Ellipsis -->
+				@if (start > 1)
+				{
+					<li class="inline-block mx-[1px]">
+						<a asp-area="Admin" asp-controller="Villa" asp-action="Index"
+						   asp-route-page="1"
+						   asp-route-pageSize="@pageSize"
+						   asp-route-search="@search"
+						   class="w-[31px] h-[31px] block leading-[29px] text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+							1
+						</a>
+					</li>
 
-        <!-- Ellipsis + Last -->
-        @if (end < total)
-        {
-            @if (end < total - 1)
-            {
-                <li class="inline-block mx-[4px] text-gray-400">…</li>
-            }
+					@if (start > 2)
+					{
+						<li class="inline-block mx-[4px] text-gray-400">…</li>
+					}
+				}
 
-            <li class="inline-block mx-[1px]">
-                <a asp-area="Admin" asp-controller="Villa" asp-action="Index"
-                   asp-route-page="@total"
-                   asp-route-pageSize="@pageSize"
-                   asp-route-search="@search"
-                   class="w-[31px] h-[31px] block leading-[29px] text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
-                    @total
-                </a>
-            </li>
-        }
+				<!-- Pages -->
+				@for (int p = start; p <= end; p++)
+				{
+					<li class="inline-block mx-[1px]">
+						<a asp-area="Admin" asp-controller="Villa" asp-action="Index"
+						   asp-route-page="@p"
+						   asp-route-pageSize="@pageSize"
+						   asp-route-search="@search"
+						   class="w-[31px] h-[31px] block leading-[29px] text-center rounded-md border dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500
+		                          @(p == current ? "border-primary-500 bg-primary-500 text-white" : "border-gray-100")">
+							@p
+						</a>
+					</li>
+				}
 
-        <!-- Next -->
-        <li class="inline-block mx-[1px]">
-            @if (Model.HasNextPage)
-            {
-                <a asp-area="Admin" asp-controller="Villa" asp-action="Index"
-                   asp-route-page="@(current + 1)"
-                   asp-route-pageSize="@pageSize"
-                   asp-route-search="@search"
-                   class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
-                    <span class="opacity-0">0</span>
-                    <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">chevron_right</i>
-                </a>
-            }
-            else
-            {
-                <span class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] opacity-50 cursor-not-allowed">
-                    <span class="opacity-0">0</span>
-                    <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">chevron_right</i>
-                </span>
-            }
-        </li>
+				<!-- Ellipsis + Last -->
+				@if (end < total)
+				{
+					@if (end < total - 1)
+					{
+						<li class="inline-block mx-[4px] text-gray-400">…</li>
+					}
 
-    </ol>
+					<li class="inline-block mx-[1px]">
+						<a asp-area="Admin" asp-controller="Villa" asp-action="Index"
+						   asp-route-page="@total"
+						   asp-route-pageSize="@pageSize"
+						   asp-route-search="@search"
+						   class="w-[31px] h-[31px] block leading-[29px] text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+							@total
+						</a>
+					</li>
+				}
+
+				<!-- Next -->
+				<li class="inline-block mx-[1px]">
+					@if (Model.HasNextPage)
+					{
+						<a asp-area="Admin" asp-controller="Villa" asp-action="Index"
+						   asp-route-page="@(current + 1)"
+						   asp-route-pageSize="@pageSize"
+						   asp-route-search="@search"
+						   class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+							<span class="opacity-0">0</span>
+							<i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">chevron_right</i>
+						</a>
+					}
+					else
+					{
+						<span class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] opacity-50 cursor-not-allowed">
+							<span class="opacity-0">0</span>
+							<i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">chevron_right</i>
+						</span>
+					}
+				</li>
+
+			</ol>
+		</div>
+	</div>
 </div>
-        </div>
-    </div>
 
 
 
 
 
-<div
-      class="add-new-popup z-[999] fixed transition-all inset-0 overflow-x-hidden overflow-y-auto lg:py-[20px]"
-      id="add-new-popup"
-    >
-      <div class="popup-dialog flex transition-all max-w-[550px] min-h-full items-center mx-auto">
-        <div class="trezo-card w-full bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
-          <div
-            class="trezo-card-header bg-gray-50 dark:bg-[#15203c] mb-[20px] md:mb-[25px] flex items-center justify-between -mx-[20px] md:-mx-[25px] -mt-[20px] md:-mt-[25px] p-[20px] md:p-[25px] rounded-t-md"
-          >
-            <div class="trezo-card-title">
-              <h5 class="!mb-0">عنوان مودال</h5>
-            </div>
-            <div class="trezo-card-subtitle">
-              <button
-                type="button"
-                class="text-[23px] transition-all leading-none text-black dark:text-white hover:text-primary-500"
-                id="add-new-popup-toggle"
-              >
-                <i class="ri-close-fill"></i>
-              </button>
-            </div>
-          </div>
-          <div class="trezo-card-content pb-[20px] md:pb-[25px]">.....</div>
-          <div
-            class="trezo-card-footer flex items-center justify-between -mx-[20px] md:-mx-[25px] px-[20px] md:px-[25px] pt-[20px] md:pt-[25px] border-t border-gray-100 dark:border-[#172036]"
-          >
-            <button
-              class="inline-block py-[10px] px-[30px] bg-danger-500 text-white transition-all hover:bg-danger-400 rounded-md border border-danger-500 hover:border-danger-400"
-              type="button"
-              id="add-new-popup-toggle"
-            >
-              بستن
-            </button>
-            <button
-              class="inline-block py-[10px] px-[30px] bg-primary-500 text-white transition-all hover:bg-primary-400 rounded-md border border-primary-500 hover:border-primary-400 ltr:mr-[11px] rtl:ml-[11px] mb-[15px]"
-              type="button"
-            >
-              ذخیره تغییرات
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="add-new-popup z-[999] fixed transition-all inset-0 overflow-x-hidden overflow-y-auto lg:py-[20px]"
+	 id="add-new-popup">
+	<div class="popup-dialog flex transition-all max-w-[550px] min-h-full items-center mx-auto">
+		<div class="trezo-card w-full bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+			<div class="trezo-card-header bg-gray-50 dark:bg-[#15203c] mb-[20px] md:mb-[25px] flex items-center justify-between -mx-[20px] md:-mx-[25px] -mt-[20px] md:-mt-[25px] p-[20px] md:p-[25px] rounded-t-md">
+				<div class="trezo-card-title">
+					<h5 class="!mb-0">عنوان مودال</h5>
+				</div>
+				<div class="trezo-card-subtitle">
+					<button type="button"
+							class="text-[23px] transition-all leading-none text-black dark:text-white hover:text-primary-500"
+							id="add-new-popup-toggle">
+						<i class="ri-close-fill"></i>
+					</button>
+				</div>
+			</div>
+			<div class="trezo-card-content pb-[20px] md:pb-[25px]">.....</div>
+			<div class="trezo-card-footer flex items-center justify-between -mx-[20px] md:-mx-[25px] px-[20px] md:px-[25px] pt-[20px] md:pt-[25px] border-t border-gray-100 dark:border-[#172036]">
+				<button class="inline-block py-[10px] px-[30px] bg-danger-500 text-white transition-all hover:bg-danger-400 rounded-md border border-danger-500 hover:border-danger-400"
+						type="button"
+						id="add-new-popup-toggle">
+					بستن
+				</button>
+				<button class="inline-block py-[10px] px-[30px] bg-primary-500 text-white transition-all hover:bg-primary-400 rounded-md border border-primary-500 hover:border-primary-400 ltr:mr-[11px] rtl:ml-[11px] mb-[15px]"
+						type="button">
+					ذخیره تغییرات
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
