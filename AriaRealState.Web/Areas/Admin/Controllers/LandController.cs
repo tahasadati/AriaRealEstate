@@ -185,7 +185,24 @@ public class LandController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-   
+
+    public async Task<IActionResult> Delete(long id, CancellationToken ct)
+    {
+        var land = await _landService.GetByIdAsync(id, ct);
+        if (land == null) return NotFound();
+        var isSuccess = await _landService.RemoveAsync(land);
+        if (isSuccess)
+        {
+            TempData["Success"] = "زمین با موفقیت حذف شد.";
+            return RedirectToAction(nameof(Index));
+        }
+        else
+        {
+            TempData["Error"] = "خطا در حذف زمین. لطفاً دوباره تلاش کنید.";
+            return RedirectToAction(nameof(Index));
+        }
+
+    }
 
     private void FillDropdowns()
     {

@@ -15,6 +15,7 @@ public interface ILandService
     Task<Land?> GetByIdAsync(long id, CancellationToken ct = default);
     Task<PaginatedList<Land>> GetPaginatedAsync(int page, int pageSize, CancellationToken ct = default);
     Task<List<Land>> GetAllAsync(CancellationToken ct = default);
+    Task<bool> RemoveAsync(Land land, CancellationToken ct = default);
 }
 
 public class LandService : ILandService
@@ -74,6 +75,20 @@ public class LandService : ILandService
         return await _db.Lands
             .AsNoTracking()
             .ToListAsync(ct);
+    }
+
+    public async Task<bool> RemoveAsync(Land land, CancellationToken ct = default)
+    {
+        try
+        {
+            _db.Lands.Remove(land);
+            await _db.SaveChangesAsync(ct);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
 }

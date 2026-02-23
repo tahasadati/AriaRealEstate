@@ -137,9 +137,26 @@ public class VillaController : Controller
             ArchitectureType = villa.ArchitectureType,
             OccupancyStatus = villa.OccupancyStatus,
             LocationType = villa.LocationType,
-            ExistingGalleryPaths = villa.VillaGalleries.Select(x => x.FilePath).ToList(),
-            ExistingAdvanceFacilities = villa.VillaAdvanceFacilities.Select(x => x.AdvanceFacility).ToList(),
-            SelectedAdvanceFacilities = villa.VillaAdvanceFacilities.Select(x => x.AdvanceFacility).ToList()
+
+            ExistingVideoPath = villa.VideoLink,
+            ExistingCoverPath = villa.CoverImage,
+
+            ExistingGalleries = villa.VillaGalleries
+                .OrderByDescending(x => x.Id)
+                .Select(x => new ExistingGalleryItemVm
+                {
+                    Id = x.Id,
+                    FilePath = x.FilePath
+                })
+                .ToList(),
+
+            ExistingAdvanceFacilities = villa.VillaAdvanceFacilities
+                .Select(x => x.AdvanceFacility)
+                .ToList(),
+
+            SelectedAdvanceFacilities = villa.VillaAdvanceFacilities
+                .Select(x => x.AdvanceFacility)
+                .ToList()
         };
 
         FillDropdowns();
