@@ -171,7 +171,7 @@ public class VillaController : Controller
         var isSuccess = await _villaService.RemoveAsync(villa);
         if(isSuccess)
         {
-            TempData["SuccessMessage"] = "ویلا با موفقیت حذف شد.";
+            TempData["Success"] = "ویلا با موفقیت حذف شد.";
             return RedirectToAction(nameof(Index));
         }
         else
