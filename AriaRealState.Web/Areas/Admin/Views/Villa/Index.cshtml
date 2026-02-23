@@ -124,22 +124,27 @@
                                            id="customTooltip" data-text="نمایش">
                                         <i class="material-symbols-outlined !text-md"> visibility </i>
                                         <span class="tooltip-text">مشاهده</span></a>
+        
                                         <a
-                                        asp-area="Admin"
-                                        asp-action="Edit"
-                                        asp-controller="Villa"
-                                        asp-route-id="@i.Id"
+                                            asp-area="Admin"
+                                            asp-action="Edit"
+                                            asp-controller="Villa"
+                                            asp-route-id="@i.Id"
                                          type="button"
                                                 class="text-gray-500 dark:text-gray-400 leading-none custom-tooltip"
                                                 id="customTooltip" data-text="ویرایش">
                                             <i class="material-symbols-outlined !text-md"> edit </i>
                                             <span class="tooltip-text">ویرایش</span>
                                         </a>
-                                        <button type="button" class="text-danger-500 leading-none custom-tooltip"
-                                                id="customTooltip" data-text="حذف">
+    
+                                        
+<button
+class="text-danger-500"
+                type="button"
+                id="add-new-popup-toggle"
+                >
                                             <i class="material-symbols-outlined !text-md"> delete </i>
-                                            <span class="tooltip-text">حذف</span>
-                                        </button>
+                </button>
                                     </div>
                                 </td>
                             </tr>
@@ -253,4 +258,52 @@
     </ol>
 </div>
         </div>
+    </div>
+
+
+
+
+
+<div
+      class="add-new-popup z-[999] fixed transition-all inset-0 overflow-x-hidden overflow-y-auto lg:py-[20px]"
+      id="add-new-popup"
+    >
+      <div class="popup-dialog flex transition-all max-w-[550px] min-h-full items-center mx-auto">
+        <div class="trezo-card w-full bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+          <div
+            class="trezo-card-header bg-gray-50 dark:bg-[#15203c] mb-[20px] md:mb-[25px] flex items-center justify-between -mx-[20px] md:-mx-[25px] -mt-[20px] md:-mt-[25px] p-[20px] md:p-[25px] rounded-t-md"
+          >
+            <div class="trezo-card-title">
+              <h5 class="!mb-0">عنوان مودال</h5>
+            </div>
+            <div class="trezo-card-subtitle">
+              <button
+                type="button"
+                class="text-[23px] transition-all leading-none text-black dark:text-white hover:text-primary-500"
+                id="add-new-popup-toggle"
+              >
+                <i class="ri-close-fill"></i>
+              </button>
+            </div>
+          </div>
+          <div class="trezo-card-content pb-[20px] md:pb-[25px]">.....</div>
+          <div
+            class="trezo-card-footer flex items-center justify-between -mx-[20px] md:-mx-[25px] px-[20px] md:px-[25px] pt-[20px] md:pt-[25px] border-t border-gray-100 dark:border-[#172036]"
+          >
+            <button
+              class="inline-block py-[10px] px-[30px] bg-danger-500 text-white transition-all hover:bg-danger-400 rounded-md border border-danger-500 hover:border-danger-400"
+              type="button"
+              id="add-new-popup-toggle"
+            >
+              بستن
+            </button>
+            <button
+              class="inline-block py-[10px] px-[30px] bg-primary-500 text-white transition-all hover:bg-primary-400 rounded-md border border-primary-500 hover:border-primary-400 ltr:mr-[11px] rtl:ml-[11px] mb-[15px]"
+              type="button"
+            >
+              ذخیره تغییرات
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
