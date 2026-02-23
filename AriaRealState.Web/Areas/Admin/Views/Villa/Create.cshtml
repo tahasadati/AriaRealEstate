@@ -42,17 +42,26 @@
 
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block"> حداقل قیمت </label>
-					<input type="text"
+					<input type="number"
 						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
 						   placeholder="حداقل قیمت" asp-for="MinPrice" />
 					<span asp-validation-for="MinPrice" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
 				<div>
+					<label class="mb-[10px] text-black dark:text-white font-medium block">تعداد اتاق خواب</label>
+					<input type="number"
+						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
+						   placeholder="تعداد اتاق خواب" asp-for="MinPrice" />
+					<span asp-validation-for="RoomCount" class="text-danger-400 text-sm mt-[10px] block"></span>
+				</div>
+
+				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block"> وضعیت ویلا </label>
-					<select class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
-							asp-for="OccupancyStatus"
-							asp-items="Html.GetEnumSelectList<AriaRealState.Data.Enums.Villa.VillaOccupancyStatus>()">
+					<select
+						class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
+						asp-for="OccupancyStatus"
+						asp-items="Html.GetEnumSelectList<AriaRealState.Data.Enums.Villa.VillaOccupancyStatus>()">
 						<option value="">انتخاب کنید</option>
 					</select>
 					<span asp-validation-for="OccupancyStatus" class="text-danger-400 text-sm mt-[10px] block"></span>
@@ -60,9 +69,10 @@
 
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block"> نوع ویلا </label>
-					<select class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
-							asp-for="ArchitectureType"
-							asp-items="Html.GetEnumSelectList<AriaRealState.Data.Enums.Villa.VillaArchitectureType>()">
+					<select
+						class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
+						asp-for="ArchitectureType"
+						asp-items="Html.GetEnumSelectList<AriaRealState.Data.Enums.Villa.VillaArchitectureType>()">
 						<option value="">انتخاب کنید</option>
 					</select>
 					<span asp-validation-for="ArchitectureType" class="text-danger-400 text-sm mt-[10px] block"></span>
@@ -70,8 +80,10 @@
 
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block"> نوع موقعیت </label>
-					<select class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
-							asp-for="LocationType" asp-items="Html.GetEnumSelectList<AriaRealState.Data.Enums.PropertyLocationType>()">
+					<select
+						class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
+						asp-for="LocationType"
+						asp-items="Html.GetEnumSelectList<AriaRealState.Data.Enums.PropertyLocationType>()">
 						<option value="">انتخاب کنید</option>
 					</select>
 					<span asp-validation-for="LocationType" class="text-danger-400 text-sm mt-[10px] block"></span>
@@ -79,8 +91,9 @@
 
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block"> نمایش در سایت </label>
-					<select class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
-							asp-for="IsShow">
+					<select
+						class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
+						asp-for="IsShow">
 						<option value="true">نمایش داده شود</option>
 						<option value="false">نمایش داده نشود</option>
 					</select>
@@ -92,7 +105,8 @@
 					<input type="text"
 						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
 						   placeholder="۱۸۰۰ فوت مربع" asp-for="InfrastructureSize" />
-					<span asp-validation-for="InfrastructureSize" class="text-danger-400 text-sm mt-[10px] block"></span>
+					<span asp-validation-for="InfrastructureSize"
+						  class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
 				<div>
@@ -127,9 +141,11 @@
 					<div>
 						<label class="mb-[10px] text-black dark:text-white font-medium block"> آپلود ویدئو </label>
 						<div id="videoUploader">
-							<div class="relative flex items-center justify-center overflow-hidden rounded-md py-[88px] px-[20px] border border-gray-200 dark:border-[#172036]">
+							<div
+								class="relative flex items-center justify-center overflow-hidden rounded-md py-[88px] px-[20px] border border-gray-200 dark:border-[#172036]">
 								<div class="flex items-center justify-center">
-									<div class="w-[35px] h-[35px] border border-gray-100 dark:border-[#15203c] flex items-center justify-center rounded-md text-primary-500 text-lg ltr:mr-[12px] rtl:ml-[12px]">
+									<div
+										class="w-[35px] h-[35px] border border-gray-100 dark:border-[#15203c] flex items-center justify-center rounded-md text-primary-500 text-lg ltr:mr-[12px] rtl:ml-[12px]">
 										<i class="ri-upload-2-line"></i>
 									</div>
 									<p class="!leading-[1.5]">
@@ -148,9 +164,11 @@
 					<div>
 						<label class="mb-[10px] text-black dark:text-white font-medium block"> عکس اصلی (کاور) </label>
 						<div id="coverUploader">
-							<div class="relative flex items-center justify-center overflow-hidden rounded-md py-[88px] px-[20px] border border-gray-200 dark:border-[#172036]">
+							<div
+								class="relative flex items-center justify-center overflow-hidden rounded-md py-[88px] px-[20px] border border-gray-200 dark:border-[#172036]">
 								<div class="flex items-center justify-center">
-									<div class="w-[35px] h-[35px] border border-gray-100 dark:border-[#15203c] flex items-center justify-center rounded-md text-primary-500 text-lg ltr:mr-[12px] rtl:ml-[12px]">
+									<div
+										class="w-[35px] h-[35px] border border-gray-100 dark:border-[#15203c] flex items-center justify-center rounded-md text-primary-500 text-lg ltr:mr-[12px] rtl:ml-[12px]">
 										<i class="ri-upload-2-line"></i>
 									</div>
 									<p class="!leading-[1.5]">
@@ -163,15 +181,19 @@
 									   asp-for="CoverImageFile" accept="image/*" />
 							</div>
 						</div>
-						<span asp-validation-for="CoverImageFile" class="text-danger-400 text-sm mt-[10px] block"></span>
+						<span asp-validation-for="CoverImageFile"
+							  class="text-danger-400 text-sm mt-[10px] block"></span>
 					</div>
 
 					<div>
-						<label class="mb-[10px] text-black dark:text-white font-medium block"> اضافه کردن عکس ویلا </label>
+						<label class="mb-[10px] text-black dark:text-white font-medium block"> اضافه کردن عکس ویلا
+						</label>
 						<div id="fileUploader">
-							<div class="relative flex items-center justify-center overflow-hidden rounded-md py-[88px] px-[20px] border border-gray-200 dark:border-[#172036]">
+							<div
+								class="relative flex items-center justify-center overflow-hidden rounded-md py-[88px] px-[20px] border border-gray-200 dark:border-[#172036]">
 								<div class="flex items-center justify-center">
-									<div class="w-[35px] h-[35px] border border-gray-100 dark:border-[#15203c] flex items-center justify-center rounded-md text-primary-500 text-lg ltr:mr-[12px] rtl:ml-[12px]">
+									<div
+										class="w-[35px] h-[35px] border border-gray-100 dark:border-[#15203c] flex items-center justify-center rounded-md text-primary-500 text-lg ltr:mr-[12px] rtl:ml-[12px]">
 										<i class="ri-upload-2-line"></i>
 									</div>
 									<p class="!leading-[1.5]">
@@ -217,39 +239,39 @@
 	<partial name="_ValidationScriptsPartial" />
 
 	<script>
-		// If you are using a rich text editor (Quill/TinyMCE/etc),
-		// make sure Description is synced before submit.
-		(function () {
-		  const form = document.querySelector('form');
-		  const desc = document.getElementById('Description');
-		  const editor = document.getElementById('richTextEditor');
+			// If you are using a rich text editor (Quill/TinyMCE/etc),
+			// make sure Description is synced before submit.
+			(function () {
+			  const form = document.querySelector('form');
+			  const desc = document.getElementById('Description');
+			  const editor = document.getElementById('richTextEditor');
 
-		  if (!form || !desc || !editor) return;
+			  if (!form || !desc || !editor) return;
 
-		  // Try to load initial value into editor (simple fallback)
-		  if (desc.value && !editor.innerHTML.trim()) {
-			editor.innerHTML = desc.value;
-		  }
-
-		  form.addEventListener('submit', function () {
-			// Basic sync: store HTML
-			desc.value = editor.innerHTML;
-		  });
-
-		  // Optional: show selected gallery files in the list (keeps your existing UI)
-		  const fileInput = document.getElementById('fileInput');
-		  const fileList = document.getElementById('fileList');
-		  if (fileInput && fileList) {
-			fileInput.addEventListener('change', function () {
-			  fileList.innerHTML = '';
-			  for (const f of fileInput.files) {
-				const li = document.createElement('li');
-				li.className = "text-sm mt-[10px]";
-				li.textContent = f.name;
-				fileList.appendChild(li);
+			  // Try to load initial value into editor (simple fallback)
+			  if (desc.value && !editor.innerHTML.trim()) {
+				editor.innerHTML = desc.value;
 			  }
-			});
-		  }
-		})();
+
+			  form.addEventListener('submit', function () {
+				// Basic sync: store HTML
+				desc.value = editor.innerHTML;
+			  });
+
+			  // Optional: show selected gallery files in the list (keeps your existing UI)
+			  const fileInput = document.getElementById('fileInput');
+			  const fileList = document.getElementById('fileList');
+			  if (fileInput && fileList) {
+				fileInput.addEventListener('change', function () {
+				  fileList.innerHTML = '';
+				  for (const f of fileInput.files) {
+					const li = document.createElement('li');
+					li.className = "text-sm mt-[10px]";
+					li.textContent = f.name;
+					fileList.appendChild(li);
+				  }
+				});
+			  }
+			})();
 	</script>
 }
