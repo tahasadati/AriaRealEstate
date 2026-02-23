@@ -102,6 +102,7 @@ public class LandController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    // صفحه Edit
     [HttpGet]
     public async Task<IActionResult> Edit(long id, CancellationToken ct)
     {
@@ -122,36 +123,89 @@ public class LandController : Controller
             UseType = land.UseType,
             LocationType = land.LocationType,
             CurrentCoverImage = land.CoverImage,
-            CurrentVideoLink = land.VideoLink
+            CurrentVideoLink = land.VideoLink,
+            ExistingGalleries = land.LandGalleries
+                .OrderByDescending(x => x.Id)
+                .Select(x => new ExistingGalleryItemVm
+                {
+                    Id = x.Id,
+                    FilePath = x.FilePath
+                }).ToList()
         };
 
-        FillDropdowns();
+        // اضافه کردن فایل‌های موجود برای ویدئو و گالری
         return View(vm);
     }
 
+    // Post - Edit
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(long id, EditLandViewModel vm, CancellationToken ct)
+    public async Task<IActionResult> Edit(EditLandViewModel vm, CancellationToken ct)
     {
-        if (id != vm.Id) return BadRequest();
-
-        var land = await _landService.GetByIdAsync(id, ct);
+        var land = await _landService.GetByIdAsync(vm.Id, ct);
         if (land == null) return NotFound();
 
         if (!ModelState.IsValid)
         {
-            FillDropdowns();
             return View(vm);
         }
 
-        // اگر فایل جدید ارسال شد، جایگزین کن؛ وگرنه قبلی بماند
+        // کاور: حذف / جایگزینی / حفظ
+        if (vm.RemoveCover)
+        {
+            if (!string.IsNullOrWhiteSpace(land.CoverImage))
+                _fileService.DeleteFile(land.CoverImage);
+
+            land.CoverImage = null;
+        }
         if (vm.CoverImageFile != null && vm.CoverImageFile.Length > 0)
+        {
+            if (!string.IsNullOrWhiteSpace(land.CoverImage))
+                _fileService.DeleteFile(land.CoverImage);
+
             land.CoverImage = await _fileService.SaveFileAsync(vm.CoverImageFile, "uploads");
+        }
 
+        // ویدئو: حذف / جایگزینی / حفظ
+        if (vm.RemoveVideo)
+        {
+            if (!string.IsNullOrWhiteSpace(land.VideoLink))
+                _fileService.DeleteFile(land.VideoLink);
+
+            land.VideoLink = null;
+        }
         if (vm.VideoFile != null && vm.VideoFile.Length > 0)
-            land.VideoLink = await _fileService.SaveFileAsync(vm.VideoFile, "uploads");
+        {
+            if (!string.IsNullOrWhiteSpace(land.VideoLink))
+                _fileService.DeleteFile(land.VideoLink);
 
-        // فیلدها
+            land.VideoLink = await _fileService.SaveFileAsync(vm.VideoFile, "uploads");
+        }
+
+        // گالری: حذف عکس‌های انتخابی
+        if (vm.RemoveGalleryIds?.Any() == true)
+        {
+            foreach (var gid in vm.RemoveGalleryIds.Distinct())
+            {
+                var gallery = land.LandGalleries.FirstOrDefault(x => x.Id == gid);
+                if (gallery == null) continue;
+
+                _fileService.DeleteFile(gallery.FilePath);
+                land.LandGalleries.Remove(gallery);
+            }
+        }
+
+        // گالری: افزودن عکس‌های جدید
+        if (vm.GalleriesFile?.Any() == true)
+        {
+            foreach (var file in vm.GalleriesFile.Where(f => f != null && f.Length > 0))
+            {
+                var path = await _fileService.SaveFileAsync(file, "uploads");
+                land.LandGalleries.Add(new LandGallery { LandId = land.Id, FilePath = path });
+            }
+        }
+
+        // به روزرسانی فیلدهای دیگر
         land.Code = vm.Code;
         land.Title = vm.Title;
         land.ShowPrice = vm.ShowPrice;
@@ -163,22 +217,10 @@ public class LandController : Controller
         land.UseType = vm.UseType;
         land.LocationType = vm.LocationType;
 
-        // گالری جدید (اضافه می‌کنیم)
-        if (vm.GalleriesFile != null && vm.GalleriesFile.Any())
-        {
-            land.LandGalleries ??= new List<LandGallery>();
-            foreach (var file in vm.GalleriesFile.Where(f => f != null && f.Length > 0))
-            {
-                var galleryPath = await _fileService.SaveFileAsync(file, "uploads");
-                land.LandGalleries.Add(new LandGallery { FilePath = galleryPath });
-            }
-        }
-
-        var ok = await _landService.UpdateAsync(land, ct);
-        if (!ok)
+        var success = await _landService.UpdateAsync(land, ct);
+        if (!success)
         {
             ModelState.AddModelError("", "خطا در بروزرسانی زمین");
-            FillDropdowns();
             return View(vm);
         }
 
