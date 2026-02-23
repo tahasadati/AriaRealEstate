@@ -40,43 +40,10 @@
     </button>
     <!-- End Light/Dark Mode Button -->
     <!-- Sign In -->
-    <div class="bg-white dark:bg-[#0a0e19] py-[60px] md:py-[80px] lg:py-[135px]">
-        <div class="mx-auto px-[12.5px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1255px]">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-[25px] items-center">
-                <div class="xl:ltr:-mr-[25px] xl:rtl:-ml-[25px] 2xl:ltr:-mr-[45px] 2xl:rtl:-ml-[45px] rounded-[25px] order-2 lg:order-1">
-                    <img src="assets/images/sign-in.jpg" alt="تصویر در تصویر" class="rounded-[25px]" />
-                </div>
-                <div class="xl:ltr:pl-[90px] xl:rtl:pr-[90px] 2xl:ltr:pl-[120px] 2xl:rtl:pr-[120px] order-1 lg:order-2">
-                    <img src="~/assets/images/logo-big.svg" alt="آرم" class="inline-block dark:hidden" />
-                    <img src="~/assets/images/white-logo-big.svg" alt="آرم" class="hidden dark:inline-block" />
-                    <div class="my-[17px] md:my-[25px]">
-                        <h1 class="!font-semibold !text-[22px] md:!text-xl lg:!text-2xl !mb-[5px] md:!mb-[7px]">
-                            به Trezo خوش آمدید!
-                        </h1>
-                        <p class="font-medium lg:text-md text-[#445164] dark:text-gray-400">
-                            با حساب اجتماعی وارد شوید یا جزئیات خود را وارد کنید
-                        </p>
-                    </div>
-                    <div class="flex items-center justify-between mb-[20px] md:mb-[23px] gap-[12px]">
-                        <div class="grow">
-                            <button type="button"
-                                    class="block text-center w-full rounded-md transition-all py-[8px] md:py-[10.5px] px-[15px] md:px-[25px] text-black dark:text-white border border-[#D6DAE1] bg-white dark:bg-[#0a0e19] dark:border-[#172036] shadow-sm hover:border-primary-500">
-                                <img src="~/assets/images/icons/google.svg" class="inline-block" alt="گوگل" />
-                            </button>
-                        </div>
-                        <div class="grow">
-                            <button type="button"
-                                    class="block text-center w-full rounded-md transition-all py-[8px] md:py-[10.5px] px-[15px] md:px-[25px] text-black dark:text-white border border-[#D6DAE1] bg-white dark:bg-[#0a0e19] dark:border-[#172036] shadow-sm hover:border-primary-500">
-                                <img src="~/assets/images/icons/facebook2.svg" class="inline-block" alt="گوگل" />
-                            </button>
-                        </div>
-                        <div class="grow">
-                            <button type="button"
-                                    class="block text-center w-full rounded-md transition-all py-[8px] md:py-[10.5px] px-[15px] md:px-[25px] text-black dark:text-white border border-[#D6DAE1] bg-white dark:bg-[#0a0e19] dark:border-[#172036] shadow-sm hover:border-primary-500">
-                                <img src="~/assets/images/icons/apple.svg" class="inline-block" alt="گوگل" />
-                            </button>
-                        </div>
-                    </div>
+    <div class="bg-white dark:bg-[#0a0e19] h-screen flex items-center">
+        <div class="container mx-auto w-full">
+            <div class="flex justify-center items-center">
+                <div class="w-full max-w-[550px] px-[20px]">
                     <form asp-action="Login" asp-controller="Auth" asp-area="Admin" method="post">
                     <div class="mb-[15px] relative">
                         <label class="mb-[10px] md:mb-[12px] text-black dark:text-white font-medium block">آدرس ایمیل</label>
@@ -98,19 +65,13 @@
                             <i class="ri-eye-off-line"></i>
                         </button>
                     </div>
-                    <a href="forgot-password.html"
-                       class="inline-block text-primary-500 transition-all font-semibold hover:underline">رمز ورود را فراموش کرده اید؟</a>
                     <button type="submit"
-                            class="md:text-md block w-full text-center transition-all rounded-md font-medium mt-[20px] md:mt-[25px] py-[12px] px-[25px] text-white bg-primary-500 hover:bg-primary-400">
+                            class="md:text-md block text-center transition-all rounded-md font-medium mt-[20px] md:mt-[25px] py-[12px] px-[25px] text-white bg-primary-500 hover:bg-primary-400">
                         <span class="flex items-center justify-center gap-[5px]">
                             <i class="material-symbols-outlined">login</i>ورود به سیستم
                         </span>
                     </button>
                     </form>
-                    <p class="mt-[15px] md:mt-[20px]">
-                        حساب کاربری ندارید<a href="sign-up.html"
-                                             class="text-primary-500 transition-all font-semibold hover:underline">ثبت نام کردن</a>
-                    </p>
                 </div>
             </div>
         </div>

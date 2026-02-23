@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AriaRealState.Web.Areas.Admin.Controllers;
 
+[Area("Admin")]
 public class UsersController : Controller
 {
     private readonly IUserService _userService;

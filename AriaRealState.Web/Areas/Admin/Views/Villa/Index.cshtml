@@ -34,23 +34,26 @@
                     <tr>
                         <th
                             class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
-                            نام ملک
                         </th>
                         <th
                             class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
-                            آدرس
+                            کد ویلا
                         </th>
                         <th
                             class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
-                            بازدیدها
+                            قیمت
                         </th>
                         <th
                             class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
-                            تاریخ
+                            وضعیت ملک
                         </th>
                         <th
                             class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
-                            وضعیت
+                            تاریخ اضافه شدن
+                        </th>
+                        <th
+                            class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tl-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
+                            نمایش ملک
                         </th>
                         <th
                             class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap ltr:first:rounded-tr-md ltr:last:rounded-tr-md rtl:first:rounded-tr-md rtl:last:rounded-tl-md">
@@ -58,92 +61,42 @@
                     </tr>
                 </thead>
                 <tbody class="text-black dark:text-white">
-                    <tr>
-                        <td
-                            class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                            <div class="flex items-center gap-[13px]">
-                                <div class="rounded-md w-[60px]">
-                                    <img src="~/assets/images/properties/property15.jpg" class="inline-block rounded-md"
-                                         alt="تصویر ملک" />
-                                </div>
-                                <div>
-                                    <span class="block text-sm text-gray-500 dark:text-gray-400"> آپارتمان لوکس </span>
-                                    <a href="rea-property-details.html"
-                                           class="font-medium inline-block text-[14px] md:text-[15px] transition-all hover:text-primary-500 mt-[3px]">
-                                        پناهگاه طلایی
-                                    </a>
-                                </div>
-                            </div>
-                        </td>
-                        <td
-                            class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                            بلوار سانشاین ۱۲۳، ونکوور، بریتیش کلمبیا
-                        </td>
-                        <td
-                            class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                            ۱۴۵۰
-                        </td>
-                        <td
-                            class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                            ۱۲ دی ۲۵
-                        </td>
-                        <td
-                            class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                            <span
-                                class="inline-block text-xs font-medium px-[8px] text-success-600 border border-success-600 bg-success-100 text-sm rounded-[100px] dark:bg-[#15203c] dark:border-[#15203c]">
-                                فعال
-                            </span>
-                        </td>
-                        <td
-                            class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                            <div class="flex items-center gap-[9px]">
-                                <a href="rea-property-details.html" class="text-primary-500 leading-none custom-tooltip"
-                                       id="customTooltip" data-text="نمایش">
-                                    <i class="material-symbols-outlined !text-md"> visibility </i>
-                                    <span class="tooltip-text">مشاهده</span></a>
-                                    <button type="button"
-                                            class="text-gray-500 dark:text-gray-400 leading-none custom-tooltip"
-                                            id="customTooltip" data-text="ویرایش">
-                                        <i class="material-symbols-outlined !text-md"> edit </i>
-                                        <span class="tooltip-text">ویرایش</span>
-                                    </button>
-                                    <button type="button" class="text-danger-500 leading-none custom-tooltip"
-                                            id="customTooltip" data-text="حذف">
-                                        <i class="material-symbols-outlined !text-md"> delete </i>
-                                        <span class="tooltip-text">حذف</span>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                    @foreach (var i in Model)
+                    {
                         <tr>
-                            
                             <td
                                 class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
                                 <div class="flex items-center gap-[13px]">
                                     <div class="rounded-md w-[60px]">
-                                        <img src="~/assets/images/properties/property16.jpg" class="inline-block rounded-md"
-                                             alt="تصویر ملک" />
+                                        <img src="@i.CoverImage" class="inline-block rounded-md" alt="@i." />
                                     </div>
                                     <div>
-                                        <span class="block text-sm text-gray-500 dark:text-gray-400"> ویلای لوکس </span>
+                                        
                                         <a href="rea-property-details.html"
                                                class="font-medium inline-block text-[14px] md:text-[15px] transition-all hover:text-primary-500 mt-[3px]">
-                                            پناهگاه طلایی
+                                            @i.Title
                                         </a>
+                    <span class="block text-sm text-gray-500 dark:text-gray-400">
+                                            @i.ArchitectureType
+                                        </span>
                                     </div>
                                 </div>
                             </td>
                             <td
                                 class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                ۴۵۶ خیابان ویسپرینگ پاینز، تورنتو، انتاریو
+                                @i.Code
                             </td>
                             <td
                                 class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                ۱۸۹۰
+                                @i.ShowPrice
                             </td>
                             <td
                                 class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                ۱۰ دی ۲۵
+                                @i.OccupancyStatus
+                            </td>
+                            <td
+                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                @i.CreatedAt
                             </td>
                             <td
                                 class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
@@ -173,524 +126,59 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                
-                                <td
-                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                    <div class="flex items-center gap-[13px]">
-                                        <div class="rounded-md w-[60px]">
-                                            <img src="~/assets/images/properties/property17.jpg" class="inline-block rounded-md"
-                                                 alt="تصویر ملک" />
-                                        </div>
-                                        <div>
-                                            <span class="block text-sm text-gray-500 dark:text-gray-400"> خانه ساحلی </span>
-                                            <a href="rea-property-details.html"
-                                                   class="font-medium inline-block text-[14px] md:text-[15px] transition-all hover:text-primary-500 mt-[3px]">
-                                                پناهگاه طلایی
-                                            </a>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td
-                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                    ۷۸۹ خیابان نورترن لایتس، کلگری، آلبرتا
-                                </td>
-                                <td
-                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                    ۱۳۲۰
-                                </td>
-                                <td
-                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                    ۸ دی ۲۵
-                                </td>
-                                <td
-                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                    <span
-                                        class="inline-block text-xs font-medium px-[8px] text-success-600 border border-success-600 bg-success-100 text-sm rounded-[100px] dark:bg-[#15203c] dark:border-[#15203c]">
-                                        فعال
-                                    </span>
-                                </td>
-                                <td
-                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                    <div class="flex items-center gap-[9px]">
-                                        <a href="rea-property-details.html" class="text-primary-500 leading-none custom-tooltip"
-                                               id="customTooltip" data-text="نمایش">
-                                            <i class="material-symbols-outlined !text-md"> visibility </i>
-                                            <span class="tooltip-text">مشاهده</span></a>
-                                            <button type="button"
-                                                    class="text-gray-500 dark:text-gray-400 leading-none custom-tooltip"
-                                                    id="customTooltip" data-text="ویرایش">
-                                                <i class="material-symbols-outlined !text-md"> edit </i>
-                                                <span class="tooltip-text">ویرایش</span>
-                                            </button>
-                                            <button type="button" class="text-danger-500 leading-none custom-tooltip"
-                                                    id="customTooltip" data-text="حذف">
-                                                <i class="material-symbols-outlined !text-md"> delete </i>
-                                                <span class="tooltip-text">حذف</span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    
-                                    <td
-                                        class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                        <div class="flex items-center gap-[13px]">
-                                            <div class="rounded-md w-[60px]">
-                                                <img src="~/assets/images/properties/property18.jpg" class="inline-block rounded-md"
-                                                     alt="تصویر ملک" />
-                                            </div>
-                                            <div>
-                                                <span class="block text-sm text-gray-500 dark:text-gray-400"> کابین کوهستانی </span>
-                                                <a href="rea-property-details.html"
-                                                       class="font-medium inline-block text-[14px] md:text-[15px] transition-all hover:text-primary-500 mt-[3px]">
-                                                    پناهگاه طلایی
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td
-                                        class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                        خیابان ساحلی ۲۳۴، هالیفاکس، ایالت نیوساید
-                                    </td>
-                                    <td
-                                        class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                        ۱۱۲۴
-                                    </td>
-                                    <td
-                                        class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                        ۱۰ دی ۲۵
-                                    </td>
-                                    <td
-                                        class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                        <span
-                                            class="inline-block text-xs font-medium px-[8px] text-danger-600 border border-danger-600 bg-danger-100 text-sm rounded-[100px] dark:bg-[#15203c] dark:border-[#15203c]">
-                                            غیرفعال
-                                        </span>
-                                    </td>
-                                    <td
-                                        class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                        <div class="flex items-center gap-[9px]">
-                                            <a href="rea-property-details.html" class="text-primary-500 leading-none custom-tooltip"
-                                                   id="customTooltip" data-text="نمایش">
-                                                <i class="material-symbols-outlined !text-md"> visibility </i>
-                                                <span class="tooltip-text">مشاهده</span></a>
-                                                <button type="button"
-                                                        class="text-gray-500 dark:text-gray-400 leading-none custom-tooltip"
-                                                        id="customTooltip" data-text="ویرایش">
-                                                    <i class="material-symbols-outlined !text-md"> edit </i>
-                                                    <span class="tooltip-text">ویرایش</span>
-                                                </button>
-                                                <button type="button" class="text-danger-500 leading-none custom-tooltip"
-                                                        id="customTooltip" data-text="حذف">
-                                                    <i class="material-symbols-outlined !text-md"> delete </i>
-                                                    <span class="tooltip-text">حذف</span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        
-                                        <td
-                                            class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                            <div class="flex items-center gap-[13px]">
-                                                <div class="rounded-md w-[60px]">
-                                                    <img src="~/assets/images/properties/property19.jpg" class="inline-block rounded-md"
-                                                         alt="تصویر ملک" />
-                                                </div>
-                                                <div>
-                                                    <span class="block text-sm text-gray-500 dark:text-gray-400"> مرکز تجاری </span>
-                                                    <a href="rea-property-details.html"
-                                                           class="font-medium inline-block text-[14px] md:text-[15px] transition-all hover:text-primary-500 mt-[3px]">
-                                                        پناهگاه طلایی
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td
-                                            class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                            ۵۶۷ گرینفیلد سیرکل، وینیپگ، بریتیش کلمبیا
-                                        </td>
-                                        <td
-                                            class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                            ۱۵۳۲
-                                        </td>
-                                        <td
-                                            class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                            ۱۸ اکتبر، ۲۵
-                                        </td>
-                                        <td
-                                            class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                            <span
-                                                class="inline-block text-xs font-medium px-[8px] text-success-600 border border-success-600 bg-success-100 text-sm rounded-[100px] dark:bg-[#15203c] dark:border-[#15203c]">
-                                                فعال
-                                            </span>
-                                        </td>
-                                        <td
-                                            class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                            <div class="flex items-center gap-[9px]">
-                                                <a href="rea-property-details.html" class="text-primary-500 leading-none custom-tooltip"
-                                                       id="customTooltip" data-text="نمایش">
-                                                    <i class="material-symbols-outlined !text-md"> visibility </i>
-                                                    <span class="tooltip-text">مشاهده</span></a>
-                                                    <button type="button"
-                                                            class="text-gray-500 dark:text-gray-400 leading-none custom-tooltip"
-                                                            id="customTooltip" data-text="ویرایش">
-                                                        <i class="material-symbols-outlined !text-md"> edit </i>
-                                                        <span class="tooltip-text">ویرایش</span>
-                                                    </button>
-                                                    <button type="button" class="text-danger-500 leading-none custom-tooltip"
-                                                            id="customTooltip" data-text="حذف">
-                                                        <i class="material-symbols-outlined !text-md"> delete </i>
-                                                        <span class="tooltip-text">حذف</span>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            
-                                            <td
-                                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                <div class="flex items-center gap-[13px]">
-                                                    <div class="rounded-md w-[60px]">
-                                                        <img src="~/assets/images/properties/property20.jpg" class="inline-block rounded-md"
-                                                             alt="تصویر ملک" />
-                                                    </div>
-                                                    <div>
-                                                        <span class="block text-sm text-gray-500 dark:text-gray-400">
-                                                            محل برگزاری کنفرانس و رویداد
-                                                        </span>
-                                                        <a href="rea-property-details.html"
-                                                               class="font-medium inline-block text-[14px] md:text-[15px] transition-all hover:text-primary-500 mt-[3px]">
-                                                            پناهگاه طلایی
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td
-                                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                خیابان نوآوری ۸۹۰، اتاوا، انتاریو
-                                            </td>
-                                            <td
-                                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                7721
-                                            </td>
-                                            <td
-                                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                ۱۷ اکتبر، ۲۵
-                                            </td>
-                                            <td
-                                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                <span
-                                                    class="inline-block text-xs font-medium px-[8px] text-success-600 border border-success-600 bg-success-100 text-sm rounded-[100px] dark:bg-[#15203c] dark:border-[#15203c]">
-                                                    فعال
-                                                </span>
-                                            </td>
-                                            <td
-                                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                <div class="flex items-center gap-[9px]">
-                                                    <a href="rea-property-details.html" class="text-primary-500 leading-none custom-tooltip"
-                                                           id="customTooltip" data-text="نمایش">
-                                                        <i class="material-symbols-outlined !text-md"> visibility </i>
-                                                        <span class="tooltip-text">مشاهده</span></a>
-                                                        <button type="button"
-                                                                class="text-gray-500 dark:text-gray-400 leading-none custom-tooltip"
-                                                                id="customTooltip" data-text="ویرایش">
-                                                            <i class="material-symbols-outlined !text-md"> edit </i>
-                                                            <span class="tooltip-text">ویرایش</span>
-                                                        </button>
-                                                        <button type="button" class="text-danger-500 leading-none custom-tooltip"
-                                                                id="customTooltip" data-text="حذف">
-                                                            <i class="material-symbols-outlined !text-md"> delete </i>
-                                                            <span class="tooltip-text">حذف</span>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                
-                                                <td
-                                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                    <div class="flex items-center gap-[13px]">
-                                                        <div class="rounded-md w-[60px]">
-                                                            <img src="~/assets/images/properties/property21.jpg" class="inline-block rounded-md"
-                                                                 alt="تصویر ملک" />
-                                                        </div>
-                                                        <div>
-                                                            <span class="block text-sm text-gray-500 dark:text-gray-400"> اقامتگاه لوکس </span>
-                                                            <a href="rea-property-details.html"
-                                                                   class="font-medium inline-block text-[14px] md:text-[15px] transition-all hover:text-primary-500 mt-[3px]">
-                                                                پناهگاه طلایی
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td
-                                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                    ۳۴۵ جاده سیتی‌اسکیپ، ادمونتون، آلبرتا
-                                                </td>
-                                                <td
-                                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                    ۵۲۱۴ عدد
-                                                </td>
-                                                <td
-                                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                    ۱۳ اکتبر، ۲۵
-                                                </td>
-                                                <td
-                                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                    <span
-                                                        class="inline-block text-xs font-medium px-[8px] text-danger-600 border border-danger-600 bg-danger-100 text-sm rounded-[100px] dark:bg-[#15203c] dark:border-[#15203c]">
-                                                        غیرفعال
-                                                    </span>
-                                                </td>
-                                                <td
-                                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                    <div class="flex items-center gap-[9px]">
-                                                        <a href="rea-property-details.html" class="text-primary-500 leading-none custom-tooltip"
-                                                               id="customTooltip" data-text="نمایش">
-                                                            <i class="material-symbols-outlined !text-md"> visibility </i>
-                                                            <span class="tooltip-text">مشاهده</span></a>
-                                                            <button type="button"
-                                                                    class="text-gray-500 dark:text-gray-400 leading-none custom-tooltip"
-                                                                    id="customTooltip" data-text="ویرایش">
-                                                                <i class="material-symbols-outlined !text-md"> edit </i>
-                                                                <span class="tooltip-text">ویرایش</span>
-                                                            </button>
-                                                            <button type="button" class="text-danger-500 leading-none custom-tooltip"
-                                                                    id="customTooltip" data-text="حذف">
-                                                                <i class="material-symbols-outlined !text-md"> delete </i>
-                                                                <span class="tooltip-text">حذف</span>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    
-                                                    <td
-                                                        class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                        <div class="flex items-center gap-[13px]">
-                                                            <div class="rounded-md w-[60px]">
-                                                                <img src="~/assets/images/properties/property22.jpg" class="inline-block rounded-md"
-                                                                     alt="تصویر ملک" />
-                                                            </div>
-                                                            <div>
-                                                                <span class="block text-sm text-gray-500 dark:text-gray-400"> استراحتگاه ساحلی
-                                                                </span>
-                                                                <a href="rea-property-details.html"
-                                                                       class="font-medium inline-block text-[14px] md:text-[15px] transition-all hover:text-primary-500 mt-[3px]">
-                                                                    پناهگاه طلایی
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td
-                                                        class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                        بلوار سانشاین ۱۲۳، ونکوور، بریتیش کلمبیا
-                                                    </td>
-                                                    <td
-                                                        class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                        ۱۴۵۰
-                                                    </td>
-                                                    <td
-                                                        class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                        ۱۲ دی ۲۵
-                                                    </td>
-                                                    <td
-                                                        class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                        <span
-                                                            class="inline-block text-xs font-medium px-[8px] text-success-600 border border-success-600 bg-success-100 text-sm rounded-[100px] dark:bg-[#15203c] dark:border-[#15203c]">
-                                                            فعال
-                                                        </span>
-                                                    </td>
-                                                    <td
-                                                        class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                        <div class="flex items-center gap-[9px]">
-                                                            <a href="rea-property-details.html" class="text-primary-500 leading-none custom-tooltip"
-                                                                   id="customTooltip" data-text="نمایش">
-                                                                <i class="material-symbols-outlined !text-md"> visibility </i>
-                                                                <span class="tooltip-text">مشاهده</span></a>
-                                                                <button type="button"
-                                                                        class="text-gray-500 dark:text-gray-400 leading-none custom-tooltip"
-                                                                        id="customTooltip" data-text="ویرایش">
-                                                                    <i class="material-symbols-outlined !text-md"> edit </i>
-                                                                    <span class="tooltip-text">ویرایش</span>
-                                                                </button>
-                                                                <button type="button" class="text-danger-500 leading-none custom-tooltip"
-                                                                        id="customTooltip" data-text="حذف">
-                                                                    <i class="material-symbols-outlined !text-md"> delete </i>
-                                                                    <span class="tooltip-text">حذف</span>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        
-                                                        <td
-                                                            class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                            <div class="flex items-center gap-[13px]">
-                                                                <div class="rounded-md w-[60px]">
-                                                                    <img src="~/assets/images/properties/property23.jpg" class="inline-block rounded-md"
-                                                                         alt="تصویر ملک" />
-                                                                </div>
-                                                                <div>
-                                                                    <span class="block text-sm text-gray-500 dark:text-gray-400"> هتل سازگار با محیط
-                                                                        زیست </span>
-                                                                        <a href="rea-property-details.html"
-                                                                               class="font-medium inline-block text-[14px] md:text-[15px] transition-all hover:text-primary-500 mt-[3px]">
-                                                                            پناهگاه طلایی
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td
-                                                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                                ۴۵۶ خیابان ویسپرینگ پاینز، تورنتو، انتاریو
-                                                            </td>
-                                                            <td
-                                                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                                ۱۸۹۰
-                                                            </td>
-                                                            <td
-                                                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                                ۱۰ دی ۲۵
-                                                            </td>
-                                                            <td
-                                                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                                <span
-                                                                    class="inline-block text-xs font-medium px-[8px] text-success-600 border border-success-600 bg-success-100 text-sm rounded-[100px] dark:bg-[#15203c] dark:border-[#15203c]">
-                                                                    فعال
-                                                                </span>
-                                                            </td>
-                                                            <td
-                                                                class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                                <div class="flex items-center gap-[9px]">
-                                                                    <a href="rea-property-details.html" class="text-primary-500 leading-none custom-tooltip"
-                                                                           id="customTooltip" data-text="نمایش">
-                                                                        <i class="material-symbols-outlined !text-md"> visibility </i>
-                                                                        <span class="tooltip-text">مشاهده</span></a>
-                                                                        <button type="button"
-                                                                                class="text-gray-500 dark:text-gray-400 leading-none custom-tooltip"
-                                                                                id="customTooltip" data-text="ویرایش">
-                                                                            <i class="material-symbols-outlined !text-md"> edit </i>
-                                                                            <span class="tooltip-text">ویرایش</span>
-                                                                        </button>
-                                                                        <button type="button" class="text-danger-500 leading-none custom-tooltip"
-                                                                                id="customTooltip" data-text="حذف">
-                                                                            <i class="material-symbols-outlined !text-md"> delete </i>
-                                                                            <span class="tooltip-text">حذف</span>
-                                                                        </button>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                
-                                                                <td
-                                                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                                    <div class="flex items-center gap-[13px]">
-                                                                        <div class="rounded-md w-[60px]">
-                                                                            <img src="~/assets/images/properties/property24.jpg" class="inline-block rounded-md"
-                                                                                 alt="تصویر ملک" />
-                                                                        </div>
-                                                                        <div>
-                                                                            <span class="block text-sm text-gray-500 dark:text-gray-400"> هتل بوتیک </span>
-                                                                            <a href="rea-property-details.html"
-                                                                                   class="font-medium inline-block text-[14px] md:text-[15px] transition-all hover:text-primary-500 mt-[3px]">
-                                                                                پناهگاه طلایی
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td
-                                                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                                    ۷۸۹ خیابان نورترن لایتس، کلگری، آلبرتا
-                                                                </td>
-                                                                <td
-                                                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                                    ۱۳۲۰
-                                                                </td>
-                                                                <td
-                                                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                                    ۸ دی ۲۵
-                                                                </td>
-                                                                <td
-                                                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                                    <span
-                                                                        class="inline-block text-xs font-medium px-[8px] text-success-600 border border-success-600 bg-success-100 text-sm rounded-[100px] dark:bg-[#15203c] dark:border-[#15203c]">
-                                                                        فعال
-                                                                    </span>
-                                                                </td>
-                                                                <td
-                                                                    class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                                                                    <div class="flex items-center gap-[9px]">
-                                                                        <a href="rea-property-details.html" class="text-primary-500 leading-none custom-tooltip"
-                                                                               id="customTooltip" data-text="نمایش">
-                                                                            <i class="material-symbols-outlined !text-md"> visibility </i>
-                                                                            <span class="tooltip-text">مشاهده</span></a>
-                                                                            <button type="button"
-                                                                                    class="text-gray-500 dark:text-gray-400 leading-none custom-tooltip"
-                                                                                    id="customTooltip" data-text="ویرایش">
-                                                                                <i class="material-symbols-outlined !text-md"> edit </i>
-                                                                                <span class="tooltip-text">ویرایش</span>
-                                                                            </button>
-                                                                            <button type="button" class="text-danger-500 leading-none custom-tooltip"
-                                                                                    id="customTooltip" data-text="حذف">
-                                                                                <i class="material-symbols-outlined !text-md"> delete </i>
-                                                                                <span class="tooltip-text">حذف</span>
-                                                                            </button>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div
-                                                        class="px-[20px] py-[12px] md:py-[15px] rounded-b-md border-l border-r border-b border-gray-100 dark:border-[#172036] sm:flex sm:items-center justify-between">
-                                                        <p class="!mb-0 text-sm">نمایش ۱۰ از ۳۶ نتیجه</p>
-                                                        <ol class="mt-[10px] sm:mt-0" dir="ltr">
-                                                            <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
-                                                                <a href="javascript:void(0);"
-                                                                       class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
-                                                                    <span class="opacity-0"> 0 </span>
-                                                                    <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
-                                                                        chevron_left
-                                                                    </i>
-                                                                </a>
-                                                            </li>
-                                                            <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
-                                                                <a href="javascript:void(0);"
-                                                                       class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-primary-500 bg-primary-500 text-white">
-                                                                    ۱
-                                                                </a>
-                                                            </li>
-                                                            <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
-                                                                <a href="javascript:void(0);"
-                                                                       class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
-                                                                    ۲
-                                                                </a>
-                                                            </li>
-                                                            <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
-                                                                <a href="javascript:void(0);"
-                                                                       class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
-                                                                    ۳
-                                                                </a>
-                                                            </li>
-                                                            <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
-                                                                <a href="javascript:void(0);"
-                                                                       class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
-                                                                    ۴
-                                                                </a>
-                                                            </li>
-                                                            <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
-                                                                <a href="javascript:void(0);"
-                                                                       class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
-                                                                    <span class="opacity-0"> 0 </span>
-                                                                    <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
-                                                                        chevron_right
-                                                                    </i>
-                                                                </a>
-                                                            </li>
-                                                        </ol>
-                                                    </div>
-                                                </div>
-</div>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+            <div
+                class="px-[20px] py-[12px] md:py-[15px] rounded-b-md border-l border-r border-b border-gray-100 dark:border-[#172036] sm:flex sm:items-center justify-between">
+                <p class="!mb-0 text-sm">نمایش ۱۰ از ۳۶ نتیجه</p>
+                <ol class="mt-[10px] sm:mt-0" dir="ltr">
+                    <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                        <a href="javascript:void(0);"
+                               class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                            <span class="opacity-0"> 0 </span>
+                            <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                                chevron_left
+                            </i>
+                        </a>
+                    </li>
+                    <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                        <a href="javascript:void(0);"
+                               class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-primary-500 bg-primary-500 text-white">
+                            ۱
+                        </a>
+                    </li>
+                    <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                        <a href="javascript:void(0);"
+                               class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                            ۲
+                        </a>
+                    </li>
+                    <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                        <a href="javascript:void(0);"
+                               class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                            ۳
+                        </a>
+                    </li>
+                    <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                        <a href="javascript:void(0);"
+                               class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                            ۴
+                        </a>
+                    </li>
+                    <li class="inline-block mx-[1px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                        <a href="javascript:void(0);"
+                               class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                            <span class="opacity-0"> 0 </span>
+                            <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                                chevron_right
+                            </i>
+                        </a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>

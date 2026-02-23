@@ -1,4 +1,19 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var area = ViewContext.RouteData.Values["area"]?.ToString();
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
+
+    bool IsActive(string a, string c, string ac = "Index")
+        => string.Equals(area, a, StringComparison.OrdinalIgnoreCase)
+        && string.Equals(controller, c, StringComparison.OrdinalIgnoreCase)
+        && string.Equals(action, ac, StringComparison.OrdinalIgnoreCase);
+
+    bool IsController(string a, string c)
+        => string.Equals(area, a, StringComparison.OrdinalIgnoreCase)
+        && string.Equals(controller, c, StringComparison.OrdinalIgnoreCase);
+}
+
+<!DOCTYPE html>
 <html dir="rtl">
   <head>
     <!-- Required meta tags -->
@@ -37,10 +52,8 @@
         class="logo bg-white dark:bg-[#0c1427] border-b border-gray-100 dark:border-[#172036] px-[25px] pt-[19px] pb-[15px] absolute z-[2] right-0 top-0 left-0"
       >
         <a href="index.html" class="transition-none relative flex items-center">
-          <img src="~/assets/images/logo-icon.svg" alt="logo-icon" />
-          <span class="font-bold text-black dark:text-white relative ltr:ml-[8px] rtl:mr-[8px] top-px text-xl">
-            هلدینگ علیزاده
-          </span>
+          <img src="~/public/img/logo.png" alt="logo-icon" />
+          
         </a>
         <button
           type="button"
@@ -51,13 +64,16 @@
         </button>
       </div>
       <div class="pt-[89px] px-[25px] pb-[20px] h-screen" data-simplebar>
-        <div class="accordion">
+        <div class="accordion px-0">
           <div class="accordion-item rounded-md text-black dark:text-white mb-[5px] whitespace-nowrap">
             <a
-              href="calendar.html"
-              class="accordion-button flex items-center transition-all py-[9px] ltr:pl-[14px] ltr:pr-[28px] rtl:pr-[14px] rtl:pl-[28px] rounded-md font-medium w-full relative hover:bg-gray-50 text-left dark:hover:bg-[#15203c]"
-            >
-            <i
+              asp-area="Admin"
+              asp-controller="Dashboard"
+              asp-action="Index"
+              class="accordion-button flex items-center transition-all py-[9px] ltr:pl-[14px] ltr:pr-[28px] rtl:pr-[14px] rtl:pl-[28px] rounded-md font-medium w-full relative hover:bg-gray-50 text-left dark:hover:bg-[#15203c]
+          @(IsActive("Admin","Dashboard","Index") ? "bg-primary-50 text-primary-500" : "")">
+            
+              <i
                 class="material-symbols-outlined transition-all text-gray-500 dark:text-gray-400 ltr:mr-[7px] rtl:ml-[7px] !text-[22px] leading-none relative -top-px"
               >
                 dashboard
@@ -65,11 +81,15 @@
               <span class="title leading-none"> داشبورد </span>
             </a>
           </div>
+
+@{
+    var blogOpen = IsController("Admin","Blog") || IsController("Admin","BlogCategory");
+}
           <div class="accordion-item rounded-md text-black dark:text-white mb-[5px] whitespace-nowrap">
             <button
-              class="accordion-button toggle flex items-center transition-all py-[9px] ltr:pl-[14px] ltr:pr-[28px] rtl:pr-[14px] rtl:pl-[28px] rounded-md font-medium w-full relative hover:bg-gray-50 text-left dark:hover:bg-[#15203c]"
+              class="accordion-button toggle flex items-center transition-all py-[9px] ltr:pl-[14px] ltr:pr-[28px] rtl:pr-[14px] rtl:pl-[28px] rounded-md font-medium w-full relative hover:bg-gray-50 text-left dark:hover:bg-[#15203c] @(blogOpen ? "bg-gray-50 dark:bg-[#15203c]" : "")"
               type="button"
-            >
+              aria-expanded="@(blogOpen.ToString().ToLower())">
               <i
                 class="material-symbols-outlined transition-all text-gray-500 dark:text-gray-400 ltr:mr-[7px] rtl:ml-[7px] !text-[22px] leading-none relative -top-px"
               >
@@ -77,21 +97,25 @@
               </i>
               <span class="title leading-none">وبلاگ</span>
             </button>
-            <div class="accordion-collapse hidden">
+            <div class="accordion-collapse @(blogOpen ? "" : "hidden")">
               <div class="pt-[4px]">
                 <ul class="sidebar-sub-menu">
                   <li class="sidemenu-item mb-[4px] last:mb-0">
                     <a
-                      href="fp-index.html"
-                      class="sidemenu-link rounded-md flex items-center relative transition-all font-medium text-gray-500 dark:text-gray-400 py-[9px] ltr:pl-[38px] ltr:pr-[30px] rtl:pr-[38px] rtl:pl-[30px] hover:text-primary-500 hover:bg-primary-50 w-full text-left dark:hover:bg-[#15203c]"
+                      asp-area="Admin"
+                      asp-controller="Blog"
+                      asp-action="Index"
+                      class="sidemenu-link rounded-md flex items-center relative transition-all font-medium text-gray-500 dark:text-gray-400 py-[9px] ltr:pl-[38px] ltr:pr-[30px] rtl:pr-[38px] rtl:pl-[30px] hover:text-primary-500 hover:bg-primary-50 w-full text-left dark:hover:bg-[#15203c] @(IsActive("Admin","Blog","Index") ? "text-primary-500 bg-primary-50" : "")"
                     >
-                    لیست
+                      لیست
                     </a>
                   </li>
                   <li class="sidemenu-item mb-[4px] last:mb-0">
                     <a
-                      href="fp-features.html"
-                      class="sidemenu-link rounded-md flex items-center relative transition-all font-medium text-gray-500 dark:text-gray-400 py-[9px] ltr:pl-[38px] ltr:pr-[30px] rtl:pr-[38px] rtl:pl-[30px] hover:text-primary-500 hover:bg-primary-50 w-full text-left dark:hover:bg-[#15203c]"
+                      asp-area="Admin"
+                      asp-controller="BlogCategory"
+                      asp-action="Index"
+                      class="sidemenu-link rounded-md flex items-center relative transition-all font-medium text-gray-500 dark:text-gray-400 py-[9px] ltr:pl-[38px] ltr:pr-[30px] rtl:pr-[38px] rtl:pl-[30px] hover:text-primary-500 hover:bg-primary-50 w-full text-left dark:hover:bg-[#15203c] @(IsActive("Admin","BlogCategory","Index") ? "text-primary-500 bg-primary-50" : "")"
                     >
                       دسته بندی
                     </a>
@@ -100,10 +124,15 @@
               </div>
             </div>
           </div>
-        <div class="accordion-item rounded-md text-black dark:text-white mb-[5px] whitespace-nowrap">
+
+@{
+    var villaOpen = IsController("Admin","Villa");
+}
+          <div class="accordion-item rounded-md text-black dark:text-white mb-[5px] whitespace-nowrap">
             <button
-              class="accordion-button toggle flex items-center transition-all py-[9px] ltr:pl-[14px] ltr:pr-[28px] rtl:pr-[14px] rtl:pl-[28px] rounded-md font-medium w-full relative hover:bg-gray-50 text-left dark:hover:bg-[#15203c]"
+              class="accordion-button toggle flex items-center transition-all py-[9px] ltr:pl-[14px] ltr:pr-[28px] rtl:pr-[14px] rtl:pl-[28px] rounded-md font-medium w-full relative hover:bg-gray-50 text-left dark:hover:bg-[#15203c] @(villaOpen ? "bg-gray-50 dark:bg-[#15203c]" : "")"
               type="button"
+              aria-expanded="@(villaOpen.ToString().ToLower())"
             >
               <i
                 class="material-symbols-outlined transition-all text-gray-500 dark:text-gray-400 ltr:mr-[7px] rtl:ml-[7px] !text-[22px] leading-none relative -top-px"
@@ -112,21 +141,25 @@
               </i>
               <span class="title leading-none">ویلا</span>
             </button>
-            <div class="accordion-collapse hidden">
+            <div class="accordion-collapse @(villaOpen ? "" : "hidden")">
               <div class="pt-[4px]">
                 <ul class="sidebar-sub-menu">
                   <li class="sidemenu-item mb-[4px] last:mb-0">
                     <a
-                      href="property-list.html"
-                      class="sidemenu-link rounded-md flex items-center relative transition-all font-medium text-gray-500 dark:text-gray-400 py-[9px] ltr:pl-[38px] ltr:pr-[30px] rtl:pr-[38px] rtl:pl-[30px] hover:text-primary-500 hover:bg-primary-50 w-full text-left dark:hover:bg-[#15203c]"
+                      asp-area="Admin"
+                      asp-controller="Villa"
+                      asp-action="Index"
+                      class="sidemenu-link rounded-md flex items-center relative transition-all font-medium text-gray-500 dark:text-gray-400 py-[9px] ltr:pl-[38px] ltr:pr-[30px] rtl:pr-[38px] rtl:pl-[30px] hover:text-primary-500 hover:bg-primary-50 w-full text-left dark:hover:bg-[#15203c] @(IsActive("Admin","Villa","Index") ? "text-primary-500 bg-primary-50" : "")"
                     >
                       لیست ویلا
                     </a>
                   </li>
                   <li class="sidemenu-item mb-[4px] last:mb-0">
                     <a
-                      href="re-add-property.html"
-                      class="sidemenu-link rounded-md flex items-center relative transition-all font-medium text-gray-500 dark:text-gray-400 py-[9px] ltr:pl-[38px] ltr:pr-[30px] rtl:pr-[38px] rtl:pl-[30px] hover:text-primary-500 hover:bg-primary-50 w-full text-left dark:hover:bg-[#15203c]"
+                      asp-area="Admin"
+                      asp-controller="Villa"
+                      asp-action="Create"
+                      class="sidemenu-link rounded-md flex items-center relative transition-all font-medium text-gray-500 dark:text-gray-400 py-[9px] ltr:pl-[38px] ltr:pr-[30px] rtl:pr-[38px] rtl:pl-[30px] hover:text-primary-500 hover:bg-primary-50 w-full text-left dark:hover:bg-[#15203c] @(IsActive("Admin","Villa","Create") ? "text-primary-500 bg-primary-50" : "")"
                     >
                       اضافه کردن ویلا
                     </a>
@@ -135,10 +168,15 @@
               </div>
             </div>
           </div>
+
+@{
+    var landOpen = IsController("Admin","Land");
+}
           <div class="accordion-item rounded-md text-black dark:text-white mb-[5px] whitespace-nowrap">
             <button
-              class="accordion-button toggle flex items-center transition-all py-[9px] ltr:pl-[14px] ltr:pr-[28px] rtl:pr-[14px] rtl:pl-[28px] rounded-md font-medium w-full relative hover:bg-gray-50 text-left dark:hover:bg-[#15203c]"
+              class="accordion-button toggle flex items-center transition-all py-[9px] ltr:pl-[14px] ltr:pr-[28px] rtl:pr-[14px] rtl:pl-[28px] rounded-md font-medium w-full relative hover:bg-gray-50 text-left dark:hover:bg-[#15203c] @(landOpen ? "bg-gray-50 dark:bg-[#15203c]" : "")"
               type="button"
+              aria-expanded="@(landOpen.ToString().ToLower())"
             >
               <i
                 class="material-symbols-outlined transition-all text-gray-500 dark:text-gray-400 ltr:mr-[7px] rtl:ml-[7px] !text-[22px] leading-none relative -top-px"
@@ -147,21 +185,25 @@
               </i>
               <span class="title leading-none">ملک</span>
             </button>
-            <div class="accordion-collapse hidden">
+            <div class="accordion-collapse @(landOpen ? "" : "hidden")">
               <div class="pt-[4px]">
                 <ul class="sidebar-sub-menu">
                   <li class="sidemenu-item mb-[4px] last:mb-0">
                     <a
-                      href="property-list.html"
-                      class="sidemenu-link rounded-md flex items-center relative transition-all font-medium text-gray-500 dark:text-gray-400 py-[9px] ltr:pl-[38px] ltr:pr-[30px] rtl:pr-[38px] rtl:pl-[30px] hover:text-primary-500 hover:bg-primary-50 w-full text-left dark:hover:bg-[#15203c]"
+                      asp-area="Admin"
+                      asp-controller="Land"
+                      asp-action="Index"
+                      class="sidemenu-link rounded-md flex items-center relative transition-all font-medium text-gray-500 dark:text-gray-400 py-[9px] ltr:pl-[38px] ltr:pr-[30px] rtl:pr-[38px] rtl:pl-[30px] hover:text-primary-500 hover:bg-primary-50 w-full text-left dark:hover:bg-[#15203c] @(IsActive("Admin","Land","Index") ? "text-primary-500 bg-primary-50" : "")"
                     >
                       لیست ملک
                     </a>
                   </li>
                   <li class="sidemenu-item mb-[4px] last:mb-0">
                     <a
-                      href="re-add-property.html"
-                      class="sidemenu-link rounded-md flex items-center relative transition-all font-medium text-gray-500 dark:text-gray-400 py-[9px] ltr:pl-[38px] ltr:pr-[30px] rtl:pr-[38px] rtl:pl-[30px] hover:text-primary-500 hover:bg-primary-50 w-full text-left dark:hover:bg-[#15203c]"
+                      asp-area="Admin"
+                      asp-controller="Land"
+                      asp-action="Create"
+                      class="sidemenu-link rounded-md flex items-center relative transition-all font-medium text-gray-500 dark:text-gray-400 py-[9px] ltr:pl-[38px] ltr:pr-[30px] rtl:pr-[38px] rtl:pl-[30px] hover:text-primary-500 hover:bg-primary-50 w-full text-left dark:hover:bg-[#15203c] @(IsActive("Admin","Land","Create") ? "text-primary-500 bg-primary-50" : "")"
                     >
                       اضافه کردن ملک
                     </a>
@@ -170,36 +212,44 @@
               </div>
             </div>
           </div>
-          
+
+@{
+    var usersOpen = IsController("Admin","Users");
+}
           <div class="accordion-item rounded-md text-black dark:text-white mb-[5px] whitespace-nowrap">
             <button
-              class="accordion-button toggle flex items-center transition-all py-[9px] ltr:pl-[14px] ltr:pr-[28px] rtl:pr-[14px] rtl:pl-[28px] rounded-md font-medium w-full relative hover:bg-gray-50 text-left dark:hover:bg-[#15203c]"
+              class="accordion-button toggle flex items-center transition-all py-[9px] ltr:pl-[14px] ltr:pr-[28px] rtl:pr-[14px] rtl:pl-[28px] rounded-md font-medium w-full relative hover:bg-gray-50 text-left dark:hover:bg-[#15203c] @(usersOpen ? "bg-gray-50 dark:bg-[#15203c]" : "")"
               type="button"
+              aria-expanded="@(usersOpen.ToString().ToLower())"
             >
               <i
                 class="material-symbols-outlined transition-all text-gray-500 dark:text-gray-400 ltr:mr-[7px] rtl:ml-[7px] !text-[22px] leading-none relative -top-px"
               >
                 person
               </i>
-              <span class="title leading-none"> کاربران </span>
+              <span class="title leading-none"> اعضا </span>
             </button>
-            <div class="accordion-collapse hidden">
+            <div class="accordion-collapse @(usersOpen ? "" : "hidden")">
               <div class="pt-[4px]">
                 <ul class="sidebar-sub-menu">
                   <li class="sidemenu-item mb-[4px] last:mb-0">
                     <a
-                      href="team-members.html"
-                      class="sidemenu-link rounded-md flex items-center relative transition-all font-medium text-gray-500 dark:text-gray-400 py-[9px] ltr:pl-[38px] ltr:pr-[30px] rtl:pr-[38px] rtl:pl-[30px] hover:text-primary-500 hover:bg-primary-50 w-full text-left dark:hover:bg-[#15203c]"
+                      asp-area="Admin"
+                      asp-controller="Users"
+                      asp-action="Index"
+                      class="sidemenu-link rounded-md flex items-center relative transition-all font-medium text-gray-500 dark:text-gray-400 py-[9px] ltr:pl-[38px] ltr:pr-[30px] rtl:pr-[38px] rtl:pl-[30px] hover:text-primary-500 hover:bg-primary-50 w-full text-left dark:hover:bg-[#15203c] @(IsActive("Admin","Users","Index") ? "text-primary-500 bg-primary-50" : "")"
                     >
                       اعضا تیم
                     </a>
                   </li>
                   <li class="sidemenu-item mb-[4px] last:mb-0">
                     <a
-                      href="add-user.html"
-                      class="sidemenu-link rounded-md flex items-center relative transition-all font-medium text-gray-500 dark:text-gray-400 py-[9px] ltr:pl-[38px] ltr:pr-[30px] rtl:pr-[38px] rtl:pl-[30px] hover:text-primary-500 hover:bg-primary-50 w-full text-left dark:hover:bg-[#15203c]"
+                      asp-area="Admin"
+                      asp-controller="Users"
+                      asp-action="Create"
+                      class="sidemenu-link rounded-md flex items-center relative transition-all font-medium text-gray-500 dark:text-gray-400 py-[9px] ltr:pl-[38px] ltr:pr-[30px] rtl:pr-[38px] rtl:pl-[30px] hover:text-primary-500 hover:bg-primary-50 w-full text-left dark:hover:bg-[#15203c] @(IsActive("Admin","Users","Create") ? "text-primary-500 bg-primary-50" : "")"
                     >
-                   عضو جدید 
+                      عضو جدید
                     </a>
                   </li>
                 </ul>
@@ -261,7 +311,20 @@
     </div>
     <!-- End Header -->
     <!-- Main Content -->
+
     <div class="main-content transition-all flex flex-col overflow-hidden min-h-screen" id="main-content">
+	@if (TempData["Success"] != null)
+		{
+			<div class="mx-6 my-3 p-3 bg-green-100 text-green-800 rounded-lg border border-green-300">
+				@TempData["Success"]
+			</div>
+		}
+		@if (TempData["Error"] != null)
+		{
+			<div class="mx-6 my-3 p-3 bg-red-100 text-red-800 rounded-lg border border-red-300">
+				@TempData["Error"]
+			</div>
+		}
         @RenderBody()
    </div> 
    <!-- End Main Content -->
