@@ -311,19 +311,18 @@
     </div>
     <!-- End Header -->
     <!-- Main Content -->
-
     <div class="main-content transition-all flex flex-col overflow-hidden min-h-screen" id="main-content">
-	@if (TempData["Success"] != null)
+@if (TempData["Success"] != null)
 		{
-			<div class="mx-6 my-3 p-3 bg-green-100 text-green-800 rounded-lg border border-green-300">
+<div class="py-[1rem] px-[1rem] text-success-500 bg-success-50 border border-success-200 dark:bg-[#15203c] dark:border-[#15203c] rounded-md">
 				@TempData["Success"]
-			</div>
+</div>
 		}
 		@if (TempData["Error"] != null)
 		{
-			<div class="mx-6 my-3 p-3 bg-red-100 text-red-800 rounded-lg border border-red-300">
+<div class="py-[1rem] px-[1rem] text-danger-500 bg-danger-50 border border-danger-200 dark:bg-[#15203c] dark:border-[#15203c] rounded-md">
 				@TempData["Error"]
-			</div>
+</div>
 		}
         @RenderBody()
    </div> 

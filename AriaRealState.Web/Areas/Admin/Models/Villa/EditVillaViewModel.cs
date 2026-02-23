@@ -4,72 +4,55 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AriaRealState.Web.Areas.Admin.Models.Villa
 {
-    public class EditVillaViewModel
-    {
-        public long Id { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
+    public class ExistingGalleryItemVm
+{
+    public long Id { get; set; }
+    public string FilePath { get; set; }
+}
 
-        [Display(Name = "کد ویلا")]
-        [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
-        public string Code { get; set; }
+public class EditVillaViewModel
+{
+    public long Id { get; set; }
 
-        [Display(Name = "عنوان")]
-        [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
-        public string Title { get; set; }
+    [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
+    public string Code { get; set; }
 
-        [Display(Name = "قیمت نمایشی")]
-        [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
-        public decimal ShowPrice { get; set; }
+    [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
+    public string Title { get; set; }
 
-        [Display(Name = "حداقل قیمت فروش")]
-        [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
-        public decimal MinPrice { get; set; }
-        public bool IsShow { get; set; } = true;
+    public decimal ShowPrice { get; set; }
+    public decimal MinPrice { get; set; }
+    public bool IsShow { get; set; } = true;
 
-        [Display(Name = "متراژ زیربنا")]
-        [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
-        public int InfrastructureSize { get; set; }
+    public int InfrastructureSize { get; set; }
+    public int LandSize { get; set; }
+    public int RoomCount { get; set; }
+    public int BuildingYear { get; set; }
 
-        [Display(Name = "متراژ زمین")]
-        [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
-        public int LandSize { get; set; }
+    [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
+    public string Description { get; set; }
 
-        [Display(Name = "تعداد اتاق")]
-        [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
-        public int RoomCount { get; set; }
+    public VillaArchitectureType ArchitectureType { get; set; }
+    public VillaOccupancyStatus OccupancyStatus { get; set; }
+    public PropertyLocationType LocationType { get; set; }
 
-        [Display(Name = "عمر ساخت")]
-        [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
-        public int BuildingYear { get; set; }
+    // آپلودهای جدید (اختیاری)
+    public IFormFile? VideoFile { get; set; }
+    public IFormFile? CoverImageFile { get; set; }
+    public List<IFormFile>? GalleriesFile { get; set; }
 
-        [Display(Name = "توضیحات")]
-        [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
-        public string Description { get; set; }
+    // فایل‌های موجود برای نمایش
+    public string? ExistingVideoPath { get; set; }
+    public string? ExistingCoverPath { get; set; }
+    public List<ExistingGalleryItemVm> ExistingGalleries { get; set; } = new();
 
-        [Display(Name = "نوع معماری")]
-        [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
-        public VillaArchitectureType ArchitectureType { get; set; }
+    // حذف‌ها
+    public bool RemoveVideo { get; set; }
+    public bool RemoveCover { get; set; }
+    public List<long> RemoveGalleryIds { get; set; } = new();
 
-        [Display(Name = "کارکرد ویلا")]
-        [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
-        public VillaOccupancyStatus OccupancyStatus { get; set; }
-
-        [Display(Name = "نوع ویلا")]
-        [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
-        public PropertyLocationType LocationType { get; set; }
-
-        [Display(Name = "ویدیو")]
-        public IFormFile? VideoFile { get; set; }
-
-        public IFormFile? CoverImageFile { get; set; }
-        public List<IFormFile>? GalleriesFile { get; set; }
-
-        [Display(Name = "امکانات پیشرفته")]
-        public List<AdvanceFacilityEnum> SelectedAdvanceFacilities { get; set; } = new();
-
-        // برای نمایش عکس‌های موجود
-        public List<string> ExistingGalleryPaths { get; set; } = new();
-        public List<AdvanceFacilityEnum> ExistingAdvanceFacilities { get; set; } = new();
-    }
+    // امکانات
+    public List<AdvanceFacilityEnum> SelectedAdvanceFacilities { get; set; } = new();
+    public List<AdvanceFacilityEnum> ExistingAdvanceFacilities { get; set; } = new();
+}
 }
