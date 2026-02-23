@@ -19,6 +19,8 @@ builder.Services.AddScoped<IVillaService, VillaService>();
 builder.Services.AddScoped<ICallRequestService, CallRequestService>();
 builder.Services.AddScoped<INeighborhoodService, NeighborhoodService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IVillaGalleryService, VillaGalleryService>();
+
 
 
 builder.Services.AddScoped<IStaticFileService, StaticFileService>();

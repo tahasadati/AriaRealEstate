@@ -16,10 +16,12 @@ public class VillaController : Controller
 {
     private readonly IVillaService _villaService;
     private readonly IStaticFileService _fileService;
-    public VillaController(IVillaService villaService, IStaticFileService fileService)
+    private readonly IVillaGalleryService _villaGalleryService;
+    public VillaController(IVillaService villaService, IStaticFileService fileService, IVillaGalleryService villaGalleryService)
     {
         _villaService = villaService;
         _fileService = fileService;
+        _villaGalleryService = villaGalleryService;
     }
     public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
     {
@@ -165,18 +167,92 @@ public class VillaController : Controller
 
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(EditVillaViewModel vm, CancellationToken ct)
     {
+        if (!ModelState.IsValid)
+            return View(vm);
+
         var villa = await _villaService.GetByIdAsync(vm.Id, ct);
         if (villa == null) return NotFound();
-        if (vm.VideoFile != null)
-        {
-            var videoPath = await _fileService.SaveFileAsync(vm.VideoFile, "uploads");
-            villa.VideoLink = videoPath;
-        }
-        //Todo : mist be complete
-        return RedirectToAction(nameof(Index));
 
+        // فیلدهای ساده
+        villa.Code = vm.Code;
+        villa.Title = vm.Title;
+        villa.ShowPrice = vm.ShowPrice;
+        villa.MinPrice = vm.MinPrice;
+        villa.IsShow = vm.IsShow;
+        villa.InfrastructureSize = vm.InfrastructureSize;
+        villa.LandSize = vm.LandSize;
+        villa.RoomCount = vm.RoomCount;
+        villa.BuildingYear = vm.BuildingYear;
+        villa.Description = vm.Description;
+        villa.ArchitectureType = vm.ArchitectureType;
+        villa.OccupancyStatus = vm.OccupancyStatus;
+        villa.LocationType = vm.LocationType;
+
+        // کاور: حذف / جایگزینی / حفظ
+        if (vm.RemoveCover)
+        {
+            if (!string.IsNullOrWhiteSpace(villa.CoverImage))
+                 _fileService.DeleteFile(villa.CoverImage);
+
+            villa.CoverImage = null; // اگر در DB nullable نیست، باید "" بذاری یا اجباریش کنی
+        }
+        if (vm.CoverImageFile != null && vm.CoverImageFile.Length > 0)
+        {
+            // اگر قبلا کاور داشت، پاکش کن
+            if (!string.IsNullOrWhiteSpace(villa.CoverImage))
+                  _fileService.DeleteFile(villa.CoverImage);
+
+            villa.CoverImage = await _fileService.SaveFileAsync(vm.CoverImageFile, "uploads");
+        }
+
+        // ویدئو: حذف / جایگزینی / حفظ
+        if (vm.RemoveVideo)
+        {
+            if (!string.IsNullOrWhiteSpace(villa.VideoLink))
+                 _fileService.DeleteFile(villa.VideoLink);
+
+            villa.VideoLink = null;
+        }
+        if (vm.VideoFile != null && vm.VideoFile.Length > 0)
+        {
+            if (!string.IsNullOrWhiteSpace(villa.VideoLink))
+                 _fileService.DeleteFile(villa.VideoLink);
+
+            villa.VideoLink = await _fileService.SaveFileAsync(vm.VideoFile, "uploads");
+        }
+
+        // گالری: حذف عکس‌های انتخابی
+        if (vm.RemoveGalleryIds?.Any() == true)
+        {
+            foreach (var gid in vm.RemoveGalleryIds.Distinct())
+            {
+                var gallery = villa.VillaGalleries.FirstOrDefault(x => x.Id == gid);
+                if (gallery == null) continue;
+
+                _fileService.DeleteFile(gallery.FilePath);
+                await _villaGalleryService.RemoveAsync(gallery);
+            }
+        }
+
+        // گالری: افزودن عکس‌های جدید
+        if (vm.GalleriesFile?.Any() == true)
+        {
+            foreach (var file in vm.GalleriesFile.Where(f => f != null && f.Length > 0))
+            {
+                var path = await _fileService.SaveFileAsync(file, "uploads");
+                villa.VillaGalleries.Add(new VillaGallery { VillaId = villa.Id, FilePath = path });
+            }
+        }
+
+        // امکانات پیشرفته: (ساده‌ترین روش: پاکسازی و ثبت مجدد)
+        await _villaService.UpdateAdvanceFacilitiesAsync(villa.Id, vm.SelectedAdvanceFacilities, ct);
+
+        await _villaService.UpdateAsync(villa, ct);
+
+        return RedirectToAction(nameof(Index));
     }
 
 

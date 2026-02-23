@@ -1,5 +1,6 @@
 ﻿using AriaRealState.Data.Context;
 using AriaRealState.Data.Entities;
+using AriaRealState.Data.Enums.Villa;
 using AriaRealState.Data.Helps.Dtos;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,6 +18,7 @@ public interface IVillaService
     Task<List<Villa>> GetAllAsync(CancellationToken ct = default);
     Task<List<Villa>> GetUserList(int size, CancellationToken ct = default);
     Task<bool> RemoveAsync(Villa villa, CancellationToken ct = default);
+    Task<bool> UpdateAdvanceFacilitiesAsync(long villaId, List<AdvanceFacilityEnum> selected, CancellationToken ct = default);
 
 }
 
@@ -95,6 +97,50 @@ public class VillaService : IVillaService
         try
         {
             _db.Villas.Remove(villa);
+            await _db.SaveChangesAsync(ct);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    public async Task<bool> UpdateAdvanceFacilitiesAsync(long villaId, List<AdvanceFacilityEnum> selected, CancellationToken ct = default)
+    {
+        try
+        {
+            selected ??= new List<AdvanceFacilityEnum>();
+            selected = selected.Distinct().ToList();
+
+            // امکانات فعلی
+            var current = await _db.VillaAdvanceFacilities
+                .Where(x => x.VillaId == villaId)
+                .ToListAsync(ct);
+
+            // حذف مواردی که دیگر انتخاب نشده‌اند
+            var toRemove = current
+                .Where(x => !selected.Contains(x.AdvanceFacility))
+                .ToList();
+
+            if (toRemove.Any())
+                _db.VillaAdvanceFacilities.RemoveRange(toRemove);
+
+            // اضافه کردن موارد جدید
+            var currentEnums = current.Select(x => x.AdvanceFacility).ToHashSet();
+
+            var toAdd = selected
+                .Where(x => !currentEnums.Contains(x))
+                .Select(x => new VillaAdvanceFacility
+                {
+                    VillaId = villaId,
+                    AdvanceFacility = x
+                })
+                .ToList();
+
+            if (toAdd.Any())
+                await _db.VillaAdvanceFacilities.AddRangeAsync(toAdd, ct);
+
             await _db.SaveChangesAsync(ct);
             return true;
         }
