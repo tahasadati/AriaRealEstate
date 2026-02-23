@@ -22,5 +22,4 @@ public class CreateVillaViewModel
     public required IFormFile CoverImageFile { get; set; }
     public List<IFormFile>? GalleriesFile { get; set; }
 
-
 }
