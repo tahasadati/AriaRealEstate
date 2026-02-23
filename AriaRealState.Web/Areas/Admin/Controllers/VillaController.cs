@@ -94,6 +94,16 @@ public class VillaController : Controller
             }
         }
 
+        if (vm.SelectedAdvanceFacilities != null && vm.SelectedAdvanceFacilities.Any())
+        {
+            foreach (var facility in vm.SelectedAdvanceFacilities.Distinct())
+            {
+                model.VillaAdvanceFacilities.Add(new VillaAdvanceFacility
+                {
+                    AdvanceFacility = facility
+                });
+            }
+        }
         var id = await _villaService.CreateAsync(model, ct);
         if (id <= 0)
         {
@@ -122,5 +132,6 @@ public class VillaController : Controller
         ViewBag.ArchitectureTypes = Enum.GetValues(typeof(VillaArchitectureType)).Cast<VillaArchitectureType>();
         ViewBag.OccupancyStatuses = Enum.GetValues(typeof(VillaOccupancyStatus)).Cast<VillaOccupancyStatus>();
         ViewBag.LocationTypes = Enum.GetValues(typeof(PropertyLocationType)).Cast<PropertyLocationType>();
+        ViewBag.AdvanceFacilities = Enum.GetValues(typeof(AdvanceFacilityEnum)).Cast<AdvanceFacilityEnum>();
     }
 }

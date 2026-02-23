@@ -27,10 +27,10 @@ public class Villa : BaseEntity
     public string CreateByUserId { get; set; }
 
 
-    public ICollection<CallRequest> CallRequests { get; set; }
-    public ICollection<CustomerLikedEstate> CustomerLikedEstates { get; set; }
-    public ICollection<VillaAdvanceFacility> VillaAdvanceFacilities { get; set; }
-    public ICollection<VillaGallery> VillaGalleries { get; set; }
+    public ICollection<CallRequest> CallRequests { get; set; } = new List<CallRequest>();
+    public ICollection<CustomerLikedEstate> CustomerLikedEstates { get; set; } = new List<CustomerLikedEstate>();
+    public ICollection<VillaAdvanceFacility> VillaAdvanceFacilities { get; set; } = new List<VillaAdvanceFacility>();
+    public ICollection<VillaGallery> VillaGalleries { get; set; } = new List<VillaGallery>();
 
     public iUser CreatedByUser { get; set; }
 

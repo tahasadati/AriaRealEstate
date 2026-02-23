@@ -56,5 +56,6 @@ public class CreateVillaViewModel
     public required IFormFile CoverImageFile { get; set; }
     public List<IFormFile>? GalleriesFile { get; set; }
 
-
+    [Display(Name = "امکانات پیشرفته")]
+    public List<AdvanceFacilityEnum> SelectedAdvanceFacilities { get; set; } = new();
 }
