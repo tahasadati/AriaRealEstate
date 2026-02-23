@@ -163,6 +163,25 @@ public class VillaController : Controller
     }
 
 
+    [HttpPost]
+    public async Task<IActionResult> Delete(long id, CancellationToken ct)
+    {
+        var villa = await _villaService.GetByIdAsync(id, ct);
+        if (villa == null) return NotFound();
+        var isSuccess = await _villaService.RemoveAsync(villa);
+        if(isSuccess)
+        {
+            TempData["SuccessMessage"] = "ویلا با موفقیت حذف شد.";
+            return RedirectToAction(nameof(Index));
+        }
+        else
+        {
+            TempData["Error"] = "خطا در حذف ویلا. لطفاً دوباره تلاش کنید.";
+            return RedirectToAction(nameof(Index));
+        }
+
+    }
+
 
     private void FillDropdowns()
     {
