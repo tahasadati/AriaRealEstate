@@ -1,8 +1,2013 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section Scripts {
+    <script src="~/js/main.js"></script>
+    <script>
+        const tabButtonsDesktop = document.querySelectorAll(
+          "#tab-villa, #tab-land",
+        );
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        const contentsDesktop = {
+          villa: document.getElementById("content-villa"),
+          land: document.getElementById("content-land"),
+        };
+
+        tabButtonsDesktop.forEach((button) => {
+          button.addEventListener("click", () => {
+            const tab = button.dataset.tab;
+
+            Object.values(contentsDesktop).forEach((content) => {
+              content.classList.add("hidden");
+            });
+
+            contentsDesktop[tab].classList.remove("hidden");
+
+            tabButtonsDesktop.forEach((btn) => {
+              btn.classList.remove("bg-primary", "text-white");
+              btn.classList.add("bg-white", "text-black");
+            });
+
+            button.classList.remove("bg-white", "text-black");
+            button.classList.add("bg-primary", "text-white");
+          });
+        });
+    </script>
+    <script>
+        const tabButtonsMobile = document.querySelectorAll(
+          "#tab-villa-mobile, #tab-land-mobile",
+        );
+
+        const contentsMobile = {
+          villa: document.getElementById("content-villa-mobile"),
+          land: document.getElementById("content-land-mobile"),
+        };
+
+        tabButtonsMobile.forEach((button) => {
+          button.addEventListener("click", () => {
+            const tab = button.dataset.tab;
+
+            Object.values(contentsMobile).forEach((content) => {
+              content.classList.add("hidden");
+            });
+
+            contentsMobile[tab].classList.remove("hidden");
+
+            tabButtonsMobile.forEach((btn) => {
+              btn.classList.remove("bg-primary", "text-white");
+              btn.classList.add("bg-white", "text-black");
+            });
+
+            button.classList.remove("bg-white", "text-black");
+            button.classList.add("bg-primary", "text-white");
+          });
+        });
+    </script>
+    <script>
+        const landSwiper = new Swiper(".landSwiper", {
+          loop: true,
+
+          grabCursor: true,
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          },
+
+          breakpoints: {
+            0: {
+              slidesPerView: 1.1,
+            },
+            640: {
+              slidesPerView: 2.2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+            1280: {
+              slidesPerView: 4,
+            },
+          },
+        });
+    </script>
+    <script>
+        new Swiper(".urgentSwiper", {
+          loop: true,
+          grabCursor: true,
+          speed: 300,
+
+          slidesPerView: 4,
+          slidesPerGroup: 8,
+
+          grid: {
+            rows: 2,
+            fill: "row",
+          },
+
+          autoplay: {
+            delay: 3500,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          },
+
+          breakpoints: {
+            0: {
+              slidesPerView: 1.1,
+              slidesPerGroup: 2,
+              grid: { rows: 1 },
+            },
+            640: {
+              slidesPerView: 2.2,
+              slidesPerGroup: 4,
+              grid: { rows: 2 },
+            },
+            1024: {
+              slidesPerView: 3,
+              slidesPerGroup: 8,
+              grid: { rows: 2 },
+            },
+            1280: {
+              slidesPerView: 4,
+              slidesPerGroup: 8,
+              grid: { rows: 2 },
+            },
+          },
+        });
+        const imageSwiper = new Swiper(".imageSwiper", {
+          loop: true,
+
+          breakpoints: {
+            0: {
+              slidesPerView: 1,
+            },
+            640: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+            1280: {
+              slidesPerView: 3,
+            },
+          },
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          },
+        });
+    </script>
+}
+    <section class="hero-section container px-2 sm:px-0 mx-auto hidden xl:block">
+        <div class="w-full relative">
+            <img src="public/img/layout-hero.png" alt="layout" class="mt-73" />
+            <img src="public/img/house.png"
+                 alt=""
+                 class="absolute bottom-0 left-0" />
+            <div class="absolute -top-35 right-0 px-2.5">
+                <div class="text-black font-alibaba-bold text-4xl">
+                    گروه
+                    <span class="text-5xl font-alibaba-black">مشاورین املاک</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                    <div class="text-primary text-8xl font-alibaba-black mt-5">
+                        آریــــــــا
+                    </div>
+                    <img src="public/img/arrow-down.png" alt="" />
+                </div>
+                <div class="bg-white rounded-md px-2 py-3 font-alibaba text-base text-dark">
+                    با مشاوران ما، مسیر پیدا کردن ملک ایده‌آل ساده، مطمئن و لذت‌بخش
+                    می‌شود.
+                </div>
+                <div class="bg-white max-w-90 rounded-md p-2 text-justify mt-2.5 font-alibaba text-base text-dark">
+                    از اولین بازدید تا امضای قرارداد، کنار شما هستیم تا<br />
+                    بهترین انتخاب را داشته باشید. می‌شود.
+                </div>
+                <button class="btn bg-primary h-12 w-full max-w-60 mt-2.5 border-0 rounded-md px-2 flex justify-between">
+                    <span class="text-white text-sm font-alibaba">مشاهده همه املاک</span>
+                    <div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">
+                        <img src="public/svg/arrow-up.svg" alt="arrow-up" />
+                    </div>
+                </button>
+            </div>
+
+            <section class="search-section absolute -bottom-25 px-3 mx-auto">
+                <div class="flex">
+                    <div id="tab-villa"
+                         data-tab="villa"
+                         class="tab-btn cursor-pointer text-black text-xl px-13 py-4 font-alibaba-bold bg-white rounded-tr-lg">
+                        خرید ویلا
+                    </div>
+
+                    <div id="tab-land"
+                         data-tab="land"
+                         class="tab-btn cursor-pointer text-white text-xl px-13 py-4 font-alibaba-bold bg-primary rounded-tl-lg">
+                        خرید زمین
+                    </div>
+                </div>
+
+                <div id="content-villa"
+                     class="tab-content w-full h-40 px-7 shadow-md rounded-tl-lg rounded-bl-lg rounded-br-lg bg-white grid grid-cols-12 items-center gap-5">
+                    <div class="space-y-3 col-span-5">
+                        <div class="font-alibaba text-base text-black">جستجو کنید!</div>
+                        <input type="text"
+                               placeholder="مثلا ویلا استخردار در ..."
+                               class="input w-full rounded-md shadow-sm h-12 bg-white placeholder:text-gray text-base font-alibaba text-black border border-border" />
+                    </div>
+
+                    <div class="space-y-3 col-span-2">
+                        <div class="font-alibaba text-base text-black">نوع ویلا</div>
+                        <select class="select w-full rounded-md shadow-sm h-12 bg-white text-base font-alibaba text-black border border-border">
+                            <option disabled selected class="text-gray">انتخاب کنید</option>
+                            <option>Crimson</option>
+                            <option>Amber</option>
+                            <option>Velvet</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-3 col-span-4">
+                        <div class="font-alibaba text-base text-black">محدوده قیمت</div>
+                        <div class="flex items-center gap-4">
+                            <input type="text"
+                                   placeholder="حداقل قیمت"
+                                   class="input w-full rounded-md shadow-sm h-12 bg-white placeholder:text-gray text-base font-alibaba text-black border border-border" />
+                            <div class="text-base text-black">تا</div>
+                            <input type="text"
+                                   placeholder="حداکثر قیمت"
+                                   class="input w-full rounded-md shadow-sm h-12 bg-white placeholder:text-gray text-base font-alibaba text-black border border-border" />
+                        </div>
+                    </div>
+
+                    <div class="col-span-1 mt-10">
+                        <button class="btn border-0 bg-primary h-12 rounded-md px-2 flex justify-between">
+                            <span class="text-white text-sm font-alibaba">جستجو</span>
+                            <div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">
+                                <img src="public/svg/search-.svg" alt="search" />
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="content-land"
+                     class="tab-content hidden w-full h-40 px-7 shadow-sm rounded-tl-lg rounded-bl-lg rounded-br-lg bg-white grid grid-cols-12 items-center gap-5">
+                    <div class="space-y-3 col-span-5">
+                        <div class="font-alibaba text-base text-black">جستجو کنید!</div>
+                        <input type="text"
+                               placeholder="مثلا زمین در ..."
+                               class="input w-full rounded-md shadow-sm h-12 bg-white placeholder:text-gray text-base font-alibaba text-black border border-border" />
+                    </div>
+
+                    <div class="space-y-3 col-span-2">
+                        <div class="font-alibaba text-base text-black">نوع زمین</div>
+                        <select class="select w-full rounded-md shadow-sm h-12 bg-white text-base font-alibaba text-black border border-border">
+                            <option disabled selected class="text-gray">انتخاب کنید</option>
+                            <option>مسکونی</option>
+                            <option>کشاورزی</option>
+                            <option>تجاری</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-3 col-span-4">
+                        <div class="font-alibaba text-base text-black">محدوده قیمت</div>
+                        <div class="flex items-center gap-4">
+                            <input type="text"
+                                   placeholder="حداقل قیمت"
+                                   class="input w-full rounded-md shadow-sm h-12 bg-white placeholder:text-gray text-base font-alibaba text-black border border-border" />
+                            <div class="text-base text-black">تا</div>
+                            <input type="text"
+                                   placeholder="حداکثر قیمت"
+                                   class="input w-full rounded-md shadow-sm h-12 bg-white placeholder:text-gray text-base font-alibaba text-black border border-border" />
+                        </div>
+                    </div>
+
+                    <div class="col-span-1 mt-10">
+                        <button class="btn border-0 bg-primary h-12 rounded-md px-2 flex justify-between">
+                            <span class="text-white text-sm font-alibaba">جستجو</span>
+                            <div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">
+                                <img src="public/svg/search-.svg" alt="search" />
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    <section class="hero-section container px-2 sm:px-0 mx-auto block xl:hidden">
+        <div>
+            <div class="w-full mt-4 flex items-center">
+                <div class="px-2.5 mx-auto w-full sm:w-auto text-center sm:text-right">
+                    <div class="text-black font-alibaba-bold text-lg lg:text-3xl">
+                        گروه
+                        <span class="text-2xl lg:text-4xl font-alibaba-black">
+                            مشاورین املاک
+                        </span>
+                    </div>
+
+                    <div class="text-primary text-4xl lg:text-7xl font-alibaba-black mt-3 md:mt-5">
+                        آریــــــــا
+                    </div>
+
+                    <div class="bg-white rounded-md mx-auto sm:mx-0 w-full sm:max-w-90 text-center sm:text-justify px-3 py-3 font-alibaba text-sm lg:text-base text-dark mt-2">
+                        با مشاوران ما، مسیر پیدا کردن ملک ایده‌آل ساده، مطمئن و لذت‌بخش
+                        می‌شود.
+                    </div>
+
+                    <div class="bg-white w-full sm:max-w-90 mx-auto sm:mx-0 rounded-md p-3 text-center sm:text-justify mt-2.5 font-alibaba text-sm lg:text-base text-dark">
+                        از اولین بازدید تا امضای قرارداد، کنار شما هستیم تا بهترین انتخاب
+                        را داشته باشید.
+                    </div>
+
+                    <button class="btn bg-primary mx-auto sm:mx-0 h-12 max-w-60 mt-3 border-0 rounded-md px-3 flex justify-between items-center">
+                        <span class="text-white text-sm font-alibaba">
+                            مشاهده همه املاک
+                        </span>
+                        <div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">
+                            <img src="public/svg/arrow-up.svg" alt="arrow-up" class="" />
+                        </div>
+                    </button>
+                </div>
+                <img src="public/img/house.png"
+                     alt=""
+                     class="w-100 lg:w-160 hidden sm:block" />
+            </div>
+            <section class="search-section mx-auto mt-10">
+                <div class="flex">
+                    <div id="tab-villa-mobile"
+                         data-tab="villa"
+                         class="tab-btn cursor-pointer text-black text-base md:text-xl px-6 md:px-13 py-3 md:py-4 font-alibaba-bold bg-white rounded-tr-lg">
+                        خرید ویلا
+                    </div>
+
+                    <div id="tab-land-mobile"
+                         data-tab="land"
+                         class="tab-btn cursor-pointer text-white text-base md:text-xl px-6 md:px-13 py-3 md:py-4 font-alibaba-bold bg-primary rounded-tl-lg">
+                        خرید زمین
+                    </div>
+                </div>
+
+                <div id="content-villa-mobile"
+                     class="tab-content w-full px-4 md:px-7 py-4 shadow-sm rounded-tl-lg rounded-bl-lg rounded-br-lg bg-white grid grid-cols-1 gap-4 items-start md:items-center">
+                    <div class="space-y-3 col-span-1">
+                        <div class="font-alibaba text-sm md:text-base text-black">
+                            جستجو کنید!
+                        </div>
+                        <input type="text"
+                               placeholder="مثلا ویلا استخردار در ..."
+                               class="input w-full rounded-md shadow-sm h-12 bg-white placeholder:text-gray text-sm md:text-base font-alibaba text-black border border-border" />
+                    </div>
+
+                    <div class="space-y-3 col-span-1">
+                        <div class="font-alibaba text-sm md:text-base text-black">
+                            نوع ویلا
+                        </div>
+                        <select class="select w-full rounded-md shadow-sm h-12 bg-white text-sm md:text-base font-alibaba text-black border border-border">
+                            <option disabled selected class="text-gray">انتخاب کنید</option>
+                            <option>Crimson</option>
+                            <option>Amber</option>
+                            <option>Velvet</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-3 col-span-1">
+                        <div class="font-alibaba text-sm md:text-base text-black">
+                            محدوده قیمت
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <input type="text"
+                                   placeholder="حداقل قیمت"
+                                   class="input w-full rounded-md shadow-sm h-12 bg-white placeholder:text-gray text-sm md:text-base font-alibaba text-black border border-border" />
+                            <div class="text-sm md:text-base text-black">تا</div>
+                            <input type="text"
+                                   placeholder="حداکثر قیمت"
+                                   class="input w-full rounded-md shadow-sm h-12 bg-white placeholder:text-gray text-sm md:text-base font-alibaba text-black border border-border" />
+                        </div>
+                    </div>
+
+                    <div class="col-span-1">
+                        <button class="btn border-0 bg-primary h-12 rounded-md px-3 w-full mx-auto w-full sm:max-w-60 flex justify-between items-center">
+                            <span class="text-white text-sm font-alibaba">جستجو</span>
+                            <div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">
+                                <img src="public/svg/search-.svg" alt="search" />
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="content-land-mobile"
+                     class="tab-content hidden w-full px-4 md:px-7 py-4 shadow-sm rounded-tl-lg rounded-bl-lg rounded-br-lg bg-white grid grid-cols-1 gap-4 md:gap-5 items-start md:items-center">
+                    <div class="space-y-3 col-span-1">
+                        <div class="font-alibaba text-sm md:text-base text-black">
+                            جستجو کنید!
+                        </div>
+                        <input type="text"
+                               placeholder="مثلا زمین در ..."
+                               class="input w-full rounded-md shadow-sm h-12 bg-white placeholder:text-gray text-sm md:text-base font-alibaba text-black border border-border" />
+                    </div>
+
+                    <div class="space-y-3 col-span-1">
+                        <div class="font-alibaba text-sm md:text-base text-black">
+                            نوع زمین
+                        </div>
+                        <select class="select w-full rounded-md shadow-sm h-12 bg-white text-sm md:text-base font-alibaba text-black border border-border">
+                            <option disabled selected class="text-gray">انتخاب کنید</option>
+                            <option>مسکونی</option>
+                            <option>کشاورزی</option>
+                            <option>تجاری</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-3 col-span-1">
+                        <div class="font-alibaba text-sm md:text-base text-black">
+                            محدوده قیمت
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <input type="text"
+                                   placeholder="حداقل قیمت"
+                                   class="input w-full rounded-md shadow-sm h-12 bg-white placeholder:text-gray text-sm md:text-base font-alibaba text-black border border-border" />
+                            <div class="text-sm md:text-base text-black">تا</div>
+                            <input type="text"
+                                   placeholder="حداکثر قیمت"
+                                   class="input w-full rounded-md shadow-sm h-12 bg-white placeholder:text-gray text-sm md:text-base font-alibaba text-black border border-border" />
+                        </div>
+                    </div>
+
+                    <div class="col-span-1">
+                        <button class="btn border-0 bg-primary h-12 rounded-md px-3 w-full flex justify-between items-center">
+                            <span class="text-white text-sm font-alibaba">جستجو</span>
+                            <div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">
+                                <img src="public/svg/search-.svg" alt="search" />
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    <div class="container px-2 sm:px-0 mx-auto">
+        <section class="category-section w-full bg-accent mt-5 lg:mt-15 rounded-lg grid grid-cols-1 xl:grid-cols-12 gap-5 items-center px-4 xl:px-7 py-5 xl:py-20">
+            <div class="relative col-span-1 xl:col-span-3">
+                <div class="text-xl sm:text-2xl font-alibaba-bold text-dark">
+                    خاص زندگی کن،
+                </div>
+
+                <div class="mt-1 text-black font-alibaba-black text-2xl sm:text-3xl">
+                    خاص انتخاب کن!
+                </div>
+
+                <p class="text-justify mt-1 font-alibaba leading-6 sm:leading-7 text-gray text-sm sm:text-base">
+                    چمستان با طبیعتی سرسبز و آب‌وهوایی دل‌نشین، مقصدی ایده‌آل برای
+                    کسانی‌ست که به‌دنبال آرامش و کیفیت زندگی هستند. در این منطقه،
+                    مجموعه‌ای متنوع از ویلاها با سبک‌های مدرن، کلاسیک و لوکس فراهم شده
+                    تا پاسخگوی هر سلیقه و نیازی باشد. از ویلاهای جنگلی دنج گرفته تا
+                    گزینه‌های شهرکی با امکانات کامل، هر انتخابی می‌تواند آغاز یک سبک
+                    زندگی متفاوت باشد. اینجا جایی‌ست که خانه، فراتر از یک ملک، به معنای
+                    واقعی آرامش تبدیل می‌شود.
+                </p>
+
+                <button class="btn bg-primary border-0! h-12 rounded-md mt-2 mx-auto xl:mx-0 w-full max-w-60 px-2 flex justify-between">
+                    <span class="text-white text-sm font-alibaba">
+                        مشاهده همه ویلاها
+                    </span>
+                    <div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">
+                        <img src="public/svg/arrow-up.svg" alt="arrow-up" />
+                    </div>
+                </button>
+
+                <img src="public/img/arrow-down.png"
+                     alt=""
+                     class="absolute -top-10 left-0 max-w-23 hidden xl:block" />
+            </div>
+
+            <div class="w-full col-span-1 xl:col-span-9">
+                <div class="swiper imageSwiper">
+                    <div class="swiper-wrapper gap-5 sm:gap-0">
+                        <div class="swiper-slide">
+                            <img src="public/img/pool.png"
+                                 class="rounded-lg max-w-70 xl:max-w-73" />
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="public/img/city.png"
+                                 class="rounded-lg max-w-70 xl:max-w-73" />
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="public/img/doblex.png"
+                                 class="max-w-70 xl:max-w-73 rounded-lg" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="xl:mt-8 mt-4 container px-2 sm:px-0 mx-auto">
+        <div class="grid lg:grid-cols-3 gap-3 xl:gap-5 mt-5">
+            <div class="shadow-xl flex items-center gap-5 bg-white rounded-2xl sm:rounded-3xl p-2 sm:p-3">
+                <div>
+                    <img src="public/img/money-icon.png" alt="" />
+                </div>
+                <div>
+                    <h3 class="text-dark text-sm xl:text-base font-alibaba-bold">
+                        قیمت گذاری واقعی منصفانه
+                    </h3>
+                    <p class="text-xs xl:text-sm text-gray font-alibaba">
+                        بر اساس شرایط روز بازار و مقایسه حرفه‌ای
+                    </p>
+                </div>
+            </div>
+            <div class="shadow-xl flex items-center gap-5 bg-white rounded-2xl sm:rounded-3xl p-2 sm:p-3">
+                <div>
+                    <img src="public/img/check-icon.png" alt="" />
+                </div>
+                <div>
+                    <h3 class="text-dark text-sm xl:text-base font-alibaba-bold">
+                        انتخاب هوشمندانه، نه فایل‌های تکراری
+                    </h3>
+                    <p class="text-xs xl:text-sm text-gray font-alibaba">
+                        فقط ملک‌هایی معرفی می‌شوند که ارزش خرید دارند.
+                    </p>
+                </div>
+            </div>
+            <div class="shadow-xl flex items-center gap-5 bg-white rounded-2xl sm:rounded-3xl p-2 sm:p-3">
+                <div>
+                    <img src="public/img/house-icon.png" alt="" />
+                </div>
+                <div>
+                    <h3 class="text-dark text-sm xl:text-base font-alibaba-bold">
+                        همراهی کامل تا نهایی شدن معامله
+                    </h3>
+                    <p class="text-xs xl:text-sm text-gray font-alibaba">
+                        از اولین بازدید تا امضای قرارداد، کنار شما هستیم.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="bg-white mt-5 lg:mt-15 py-3 lg:py-10">
+        <section class="container px-2 sm:px-0 mx-auto">
+            <div class="font-alibaba-bold text-center text-dark text-2xl sm:text-3xl">
+                فروش های فوری
+            </div>
+            <img src="public/img/Urgent sales.png" alt="" class="mx-auto mt-4" />
+            <div class="mt-5 relative">
+                <div class="swiper urgentSwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-lg p-2.5">
+                                <div class="relative w-full text-white">
+                                    <img src="public/img/villa.png"
+                                         class="w-full h-100 rounded-md object-cover" />
+                                    <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                    <div class="absolute w-full p-2 bottom-0 z-10">
+                                        <div class="text-base font-alibaba">
+                                            فروش ویلا خیلی خوشگل چمستان کد 321
+                                        </div>
+                                        <div class="flex flex-wrap mt-1 items-center gap-4">
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/calendar.svg" alt="" />
+                                                <div class="text-base">1398</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/area-.svg" alt="" />
+                                                <div class="text-base">138</div>
+                                                <div class="text-base">متر</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/bed.svg" alt="" />
+                                                <div class="text-base">2</div>
+                                                <div class="text-base">خوابه</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap justify-between items-center">
+                                            <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                                <div class="text-base text-primary">
+                                                    3.800.000.000
+                                                </div>
+                                                <div class="text-xs text-primary">تومان</div>
+                                            </div>
+                                            <div class="flex items-center gap-0.5">
+                                                <img src="public/svg/time.svg" alt="" />
+                                                <div class="text-xs">دقایقی پیش</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                        فوری
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-lg p-2.5">
+                                <div class="relative w-full text-white">
+                                    <img src="public/img/villa.png"
+                                         class="w-full h-100 rounded-md object-cover" />
+                                    <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                    <div class="absolute w-full p-2 bottom-0 z-10">
+                                        <div class="text-base font-alibaba">
+                                            فروش ویلا خیلی خوشگل چمستان کد 321
+                                        </div>
+                                        <div class="flex flex-wrap mt-1 items-center gap-4">
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/calendar.svg" alt="" />
+                                                <div class="text-base">1398</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/area-.svg" alt="" />
+                                                <div class="text-base">138</div>
+                                                <div class="text-base">متر</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/bed.svg" alt="" />
+                                                <div class="text-base">2</div>
+                                                <div class="text-base">خوابه</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap justify-between items-center">
+                                            <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                                <div class="text-base text-primary">
+                                                    3.800.000.000
+                                                </div>
+                                                <div class="text-xs text-primary">تومان</div>
+                                            </div>
+                                            <div class="flex items-center gap-0.5">
+                                                <img src="public/svg/time.svg" alt="" />
+                                                <div class="text-xs">دقایقی پیش</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                        فوری
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-lg p-2.5">
+                                <div class="relative w-full text-white">
+                                    <img src="public/img/villa.png"
+                                         class="w-full h-100 rounded-md object-cover" />
+                                    <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                    <div class="absolute w-full p-2 bottom-0 z-10">
+                                        <div class="text-base font-alibaba">
+                                            فروش ویلا خیلی خوشگل چمستان کد 321
+                                        </div>
+                                        <div class="flex flex-wrap mt-1 items-center gap-4">
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/calendar.svg" alt="" />
+                                                <div class="text-base">1398</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/area-.svg" alt="" />
+                                                <div class="text-base">138</div>
+                                                <div class="text-base">متر</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/bed.svg" alt="" />
+                                                <div class="text-base">2</div>
+                                                <div class="text-base">خوابه</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap justify-between items-center">
+                                            <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                                <div class="text-base text-primary">
+                                                    3.800.000.000
+                                                </div>
+                                                <div class="text-xs text-primary">تومان</div>
+                                            </div>
+                                            <div class="flex items-center gap-0.5">
+                                                <img src="public/svg/time.svg" alt="" />
+                                                <div class="text-xs">دقایقی پیش</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                        فوری
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-lg p-2.5">
+                                <div class="relative w-full text-white">
+                                    <img src="public/img/villa.png"
+                                         class="w-full h-100 rounded-md object-cover" />
+                                    <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                    <div class="absolute w-full p-2 bottom-0 z-10">
+                                        <div class="text-base font-alibaba">
+                                            فروش ویلا خیلی خوشگل چمستان کد 321
+                                        </div>
+                                        <div class="flex flex-wrap mt-1 items-center gap-4">
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/calendar.svg" alt="" />
+                                                <div class="text-base">1398</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/area-.svg" alt="" />
+                                                <div class="text-base">138</div>
+                                                <div class="text-base">متر</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/bed.svg" alt="" />
+                                                <div class="text-base">2</div>
+                                                <div class="text-base">خوابه</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap justify-between items-center">
+                                            <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                                <div class="text-base text-primary">
+                                                    3.800.000.000
+                                                </div>
+                                                <div class="text-xs text-primary">تومان</div>
+                                            </div>
+                                            <div class="flex items-center gap-0.5">
+                                                <img src="public/svg/time.svg" alt="" />
+                                                <div class="text-xs">دقایقی پیش</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                        فوری
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-lg p-2.5">
+                                <div class="relative w-full text-white">
+                                    <img src="public/img/villa.png"
+                                         class="w-full h-100 rounded-md object-cover" />
+                                    <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                    <div class="absolute w-full p-2 bottom-0 z-10">
+                                        <div class="text-base font-alibaba">
+                                            فروش ویلا خیلی خوشگل چمستان کد 321
+                                        </div>
+                                        <div class="flex flex-wrap mt-1 items-center gap-4">
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/calendar.svg" alt="" />
+                                                <div class="text-base">1398</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/area-.svg" alt="" />
+                                                <div class="text-base">138</div>
+                                                <div class="text-base">متر</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/bed.svg" alt="" />
+                                                <div class="text-base">2</div>
+                                                <div class="text-base">خوابه</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap justify-between items-center">
+                                            <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                                <div class="text-base text-primary">
+                                                    3.800.000.000
+                                                </div>
+                                                <div class="text-xs text-primary">تومان</div>
+                                            </div>
+                                            <div class="flex items-center gap-0.5">
+                                                <img src="public/svg/time.svg" alt="" />
+                                                <div class="text-xs">دقایقی پیش</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                        فوری
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-lg p-2.5">
+                                <div class="relative w-full text-white">
+                                    <img src="public/img/villa.png"
+                                         class="w-full h-100 rounded-md object-cover" />
+                                    <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                    <div class="absolute w-full p-2 bottom-0 z-10">
+                                        <div class="text-base font-alibaba">
+                                            فروش ویلا خیلی خوشگل چمستان کد 321
+                                        </div>
+                                        <div class="flex flex-wrap mt-1 items-center gap-4">
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/calendar.svg" alt="" />
+                                                <div class="text-base">1398</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/area-.svg" alt="" />
+                                                <div class="text-base">138</div>
+                                                <div class="text-base">متر</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/bed.svg" alt="" />
+                                                <div class="text-base">2</div>
+                                                <div class="text-base">خوابه</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap justify-between items-center">
+                                            <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                                <div class="text-base text-primary">
+                                                    3.800.000.000
+                                                </div>
+                                                <div class="text-xs text-primary">تومان</div>
+                                            </div>
+                                            <div class="flex items-center gap-0.5">
+                                                <img src="public/svg/time.svg" alt="" />
+                                                <div class="text-xs">دقایقی پیش</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                        فوری
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-lg p-2.5">
+                                <div class="relative w-full text-white">
+                                    <img src="public/img/villa.png"
+                                         class="w-full h-100 rounded-md object-cover" />
+                                    <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                    <div class="absolute w-full p-2 bottom-0 z-10">
+                                        <div class="text-base font-alibaba">
+                                            فروش ویلا خیلی خوشگل چمستان کد 321
+                                        </div>
+                                        <div class="flex flex-wrap mt-1 items-center gap-4">
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/calendar.svg" alt="" />
+                                                <div class="text-base">1398</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/area-.svg" alt="" />
+                                                <div class="text-base">138</div>
+                                                <div class="text-base">متر</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/bed.svg" alt="" />
+                                                <div class="text-base">2</div>
+                                                <div class="text-base">خوابه</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap justify-between items-center">
+                                            <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                                <div class="text-base text-primary">
+                                                    3.800.000.000
+                                                </div>
+                                                <div class="text-xs text-primary">تومان</div>
+                                            </div>
+                                            <div class="flex items-center gap-0.5">
+                                                <img src="public/svg/time.svg" alt="" />
+                                                <div class="text-xs">دقایقی پیش</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                        فوری
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-lg p-2.5">
+                                <div class="relative w-full text-white">
+                                    <img src="public/img/villa.png"
+                                         class="w-full h-100 rounded-md object-cover" />
+                                    <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                    <div class="absolute w-full p-2 bottom-0 z-10">
+                                        <div class="text-base font-alibaba">
+                                            فروش ویلا خیلی خوشگل چمستان کد 321
+                                        </div>
+                                        <div class="flex flex-wrap mt-1 items-center gap-4">
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/calendar.svg" alt="" />
+                                                <div class="text-base">1398</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/area-.svg" alt="" />
+                                                <div class="text-base">138</div>
+                                                <div class="text-base">متر</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/bed.svg" alt="" />
+                                                <div class="text-base">2</div>
+                                                <div class="text-base">خوابه</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap justify-between items-center">
+                                            <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                                <div class="text-base text-primary">
+                                                    3.800.000.000
+                                                </div>
+                                                <div class="text-xs text-primary">تومان</div>
+                                            </div>
+                                            <div class="flex items-center gap-0.5">
+                                                <img src="public/svg/time.svg" alt="" />
+                                                <div class="text-xs">دقایقی پیش</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                        فوری
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-lg p-2.5">
+                                <div class="relative w-full text-white">
+                                    <img src="public/img/villa.png"
+                                         class="w-full h-100 rounded-md object-cover" />
+                                    <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                    <div class="absolute w-full p-2 bottom-0 z-10">
+                                        <div class="text-base font-alibaba">
+                                            فروش ویلا خیلی خوشگل چمستان کد 321
+                                        </div>
+                                        <div class="flex flex-wrap mt-1 items-center gap-4">
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/calendar.svg" alt="" />
+                                                <div class="text-base">1398</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/area-.svg" alt="" />
+                                                <div class="text-base">138</div>
+                                                <div class="text-base">متر</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/bed.svg" alt="" />
+                                                <div class="text-base">2</div>
+                                                <div class="text-base">خوابه</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap justify-between items-center">
+                                            <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                                <div class="text-base text-primary">
+                                                    3.800.000.000
+                                                </div>
+                                                <div class="text-xs text-primary">تومان</div>
+                                            </div>
+                                            <div class="flex items-center gap-0.5">
+                                                <img src="public/svg/time.svg" alt="" />
+                                                <div class="text-xs">دقایقی پیش</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                        فوری
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-lg p-2.5">
+                                <div class="relative w-full text-white">
+                                    <img src="public/img/villa.png"
+                                         class="w-full h-100 rounded-md object-cover" />
+                                    <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                    <div class="absolute w-full p-2 bottom-0 z-10">
+                                        <div class="text-base font-alibaba">
+                                            فروش ویلا خیلی خوشگل چمستان کد 321
+                                        </div>
+                                        <div class="flex flex-wrap mt-1 items-center gap-4">
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/calendar.svg" alt="" />
+                                                <div class="text-base">1398</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/area-.svg" alt="" />
+                                                <div class="text-base">138</div>
+                                                <div class="text-base">متر</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/bed.svg" alt="" />
+                                                <div class="text-base">2</div>
+                                                <div class="text-base">خوابه</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap justify-between items-center">
+                                            <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                                <div class="text-base text-primary">
+                                                    3.800.000.000
+                                                </div>
+                                                <div class="text-xs text-primary">تومان</div>
+                                            </div>
+                                            <div class="flex items-center gap-0.5">
+                                                <img src="public/svg/time.svg" alt="" />
+                                                <div class="text-xs">دقایقی پیش</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                        فوری
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-lg p-2.5">
+                                <div class="relative w-full text-white">
+                                    <img src="public/img/villa.png"
+                                         class="w-full h-100 rounded-md object-cover" />
+                                    <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                    <div class="absolute w-full p-2 bottom-0 z-10">
+                                        <div class="text-base font-alibaba">
+                                            فروش ویلا خیلی خوشگل چمستان کد 321
+                                        </div>
+                                        <div class="flex flex-wrap mt-1 items-center gap-4">
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/calendar.svg" alt="" />
+                                                <div class="text-base">1398</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/area-.svg" alt="" />
+                                                <div class="text-base">138</div>
+                                                <div class="text-base">متر</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/bed.svg" alt="" />
+                                                <div class="text-base">2</div>
+                                                <div class="text-base">خوابه</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap justify-between items-center">
+                                            <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                                <div class="text-base text-primary">
+                                                    3.800.000.000
+                                                </div>
+                                                <div class="text-xs text-primary">تومان</div>
+                                            </div>
+                                            <div class="flex items-center gap-0.5">
+                                                <img src="public/svg/time.svg" alt="" />
+                                                <div class="text-xs">دقایقی پیش</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                        فوری
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-lg p-2.5">
+                                <div class="relative w-full text-white">
+                                    <img src="public/img/villa.png"
+                                         class="w-full h-100 rounded-md object-cover" />
+                                    <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                    <div class="absolute w-full p-2 bottom-0 z-10">
+                                        <div class="text-base font-alibaba">
+                                            فروش ویلا خیلی خوشگل چمستان کد 321
+                                        </div>
+                                        <div class="flex flex-wrap mt-1 items-center gap-4">
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/calendar.svg" alt="" />
+                                                <div class="text-base">1398</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/area-.svg" alt="" />
+                                                <div class="text-base">138</div>
+                                                <div class="text-base">متر</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/bed.svg" alt="" />
+                                                <div class="text-base">2</div>
+                                                <div class="text-base">خوابه</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap justify-between items-center">
+                                            <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                                <div class="text-base text-primary">
+                                                    3.800.000.000
+                                                </div>
+                                                <div class="text-xs text-primary">تومان</div>
+                                            </div>
+                                            <div class="flex items-center gap-0.5">
+                                                <img src="public/svg/time.svg" alt="" />
+                                                <div class="text-xs">دقایقی پیش</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                        فوری
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-lg p-2.5">
+                                <div class="relative w-full text-white">
+                                    <img src="public/img/villa.png"
+                                         class="w-full h-100 rounded-md object-cover" />
+                                    <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                    <div class="absolute w-full p-2 bottom-0 z-10">
+                                        <div class="text-base font-alibaba">
+                                            فروش ویلا خیلی خوشگل چمستان کد 321
+                                        </div>
+                                        <div class="flex flex-wrap mt-1 items-center gap-4">
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/calendar.svg" alt="" />
+                                                <div class="text-base">1398</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/area-.svg" alt="" />
+                                                <div class="text-base">138</div>
+                                                <div class="text-base">متر</div>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <img src="public/svg/bed.svg" alt="" />
+                                                <div class="text-base">2</div>
+                                                <div class="text-base">خوابه</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap justify-between items-center">
+                                            <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                                <div class="text-base text-primary">
+                                                    3.800.000.000
+                                                </div>
+                                                <div class="text-xs text-primary">تومان</div>
+                                            </div>
+                                            <div class="flex items-center gap-0.5">
+                                                <img src="public/svg/time.svg" alt="" />
+                                                <div class="text-xs">دقایقی پیش</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                        فوری
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn bg-primary border-0! h-12 rounded-md mx-auto mt-5 lg:mt-10 w-full max-w-60 px-2 flex justify-between">
+                <span class="text-white text-sm font-alibaba">
+                    مشاهده همه موارد
+                </span>
+                <div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">
+                    <img src="public/svg/arrow-up.svg" alt="arrow-up" />
+                </div>
+            </button>
+        </section>
+    </div>
+
+    <section class="mt-5 container px-2 sm:px-0 mx-auto lg:mt-15 grid xl:grid-cols-2 items-center gap-5">
+        <div class="col-span-1 hidden xl:block">
+            <img src="public/img/about.png" alt="" />
+            <div class="mt-5 rounded-lg bg-white py-3 flex items-center">
+                <img src="public/img/ARYA GROUP.png" alt="" class="mx-auto" />
+            </div>
+        </div>
+        <div class="col-span-1">
+            <div class="flex gap-2 justify-between items-center">
+                <div class="space-y-2">
+                    <div class="text-dark font-alibaba-bold text-center sm:text-right text-xl sm:text-3xl">
+                        از اولین بازدید تا امضای قرارداد
+                    </div>
+                    <img src="public/img/From viewing to signing.png" alt="" />
+                </div>
+                <img src="public/img/arrow-icon.png"
+                     alt=""
+                     class="w-25 hidden sm:block" />
+            </div>
+            <p class="text-gray text-sm sm:text-base text-justify mt-3 sm:mt-0 leading-6 sm:leading-7">
+                از<span class="font-yekan-bold">اولین بازدید</span> تا<span class="font-yekan-bold">
+                    امضای نهایی
+                </span>
+                <span class="font-yekan-bold">قرارداد</span> ، تمامی مراحل خرید زمین و
+                ویلا با رویکردی دقیق، حرفه‌ای و کاملاً شفاف مدیریت می‌شود.<br />
+                ما با شناخت عمیق از بازار،
+                <span class="font-yekan-bold">بررسی کامل موقعیت ملک</span>،
+                <span class="font-yekan-bold">اصالت اسناد</span>،
+                <span class="font-yekan-bold">کاربری زمین</span> و
+                <span class="font-yekan-bold">ارزش‌گذاری</span>
+                <span class="font-yekan-bold">واقعی</span>
+                ،<br />
+                گزینه‌هایی را پیشنهاد می‌کنیم که علاوه بر کیفیت، امنیت سرمایه‌گذاری
+                شما را تضمین کند.<br />
+                در فرآیند خرید ویلا، تمرکز ما بر انتخاب ملک‌هایی با معماری شاخص،
+                موقعیت ممتاز و ارزش افزوده بلندمدت است؛<br />
+                و در خرید زمین، تمامی جزئیات حقوقی، کاربری، امکان ساخت و پتانسیل رشد
+                منطقه به‌صورت تخصصی بررسی می‌شود.<br />
+                از هماهنگی بازدیدهای اختصاصی و مشاوره تخصصی گرفته تا<span class="font-yekan-bold">مدیریت مذاکرات</span>، <span class="font-yekan-bold">تنظیم توافقات</span> و همراهی کامل تا
+                مرحله امضای قرارداد، در کنار شما هستیم تا تجربه‌ای آرام، مطمئن و درخور
+                یک انتخاب لوکس را رقم بزنیم.
+                <br />
+                <span class="font-yekan-bold">
+                    برای ما، خرید ملک تنها یک معامله نیست؛
+                </span><br />
+                بلکه<span class="font-yekan-bold">
+                    ساختن یک تصمیم هوشمندانه و ماندگار
+                </span>
+                برای آینده شماست.
+            </p>
+            <div class="mt-3 flex justify-center xl:justify-start items-end gap-2">
+                <div class="space-y-2.5">
+                    <img src="public/img/title-customer.png" alt="" />
+                    <button class="btn bg-secondary border-0! h-12 rounded-md mx-auto w-full max-w-60 px-2 flex justify-between">
+                        <span class="text-dark text-sm font-alibaba">
+                            مشاهده فایل های زمین
+                        </span>
+                        <div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">
+                            <img src="public/svg/arrow-up.svg" alt="arrow-up" />
+                        </div>
+                    </button>
+                    <button class="btn bg-primary border-0! h-12 rounded-md mx-auto w-full max-w-60 px-2 flex justify-between">
+                        <span class="text-white text-sm font-alibaba">
+                            مشاهده راه های ارتباطی
+                        </span>
+                        <div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">
+                            <img src="public/svg/arrow-up.svg" alt="arrow-up" />
+                        </div>
+                    </button>
+                </div>
+
+                <img src="public/img/file.png" alt="" class="w-51 hidden sm:block" />
+                <img src="public/img/customer.png"
+                     alt=""
+                     class="w-51 hidden sm:block" />
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-5 container px-2 sm:px-0 mx-auto lg:mt-15">
+        <div class="font-alibaba-bold text-center text-dark text-2xl sm:text-3xl">
+            جدیدترین ویلاها
+        </div>
+        <img src="public/img/The newest villas.png" alt="" class="mx-auto mt-4" />
+        <div class="mt-5 swiper landSwiper">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <div class="bg-white rounded-lg p-2.5">
+                        <div class="relative w-full text-white">
+                            <img src="public/img/villa.png"
+                                 class="w-full h-100 rounded-md object-cover" />
+
+                            <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                            <div class="absolute w-full p-2 bottom-0 z-10">
+                                <div class="text-base font-alibaba">
+                                    فروش ویلا خیلی خوشگل چمستان کد 321
+                                </div>
+
+                                <div class="flex flex-wrap mt-1 items-center gap-4">
+                                    <div class="flex items-center gap-1">
+                                        <img src="public/svg/calendar.svg" alt="" />
+                                        <div class="text-base">1398</div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <img src="public/svg/area-.svg" alt="" />
+                                        <div class="text-base">138</div>
+                                        <div class="text-base">متر</div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <img src="public/svg/bed.svg" alt="" />
+                                        <div class="text-base">2</div>
+                                        <div class="text-base">خوابه</div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2 flex flex-wrap justify-between items-center">
+                                    <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                        <div class="text-base text-primary">3.800.000.000</div>
+                                        <div class="text-xs text-primary">تومان</div>
+                                    </div>
+                                    <div class="flex items-center gap-0.5">
+                                        <img src="public/svg/time.svg" alt="" />
+                                        <div class="text-xs">دقایقی پیش</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                فوری
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                    <div class="bg-white rounded-lg p-2.5">
+                        <div class="relative w-full text-white">
+                            <img src="public/img/villa.png"
+                                 class="w-full h-100 rounded-md object-cover" />
+
+                            <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                            <div class="absolute w-full p-2 bottom-0 z-10">
+                                <div class="text-base font-alibaba">
+                                    فروش ویلا خیلی خوشگل چمستان کد 321
+                                </div>
+
+                                <div class="flex flex-wrap mt-1 items-center gap-4">
+                                    <div class="flex items-center gap-1">
+                                        <img src="public/svg/calendar.svg" alt="" />
+                                        <div class="text-base">1398</div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <img src="public/svg/area-.svg" alt="" />
+                                        <div class="text-base">138</div>
+                                        <div class="text-base">متر</div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <img src="public/svg/bed.svg" alt="" />
+                                        <div class="text-base">2</div>
+                                        <div class="text-base">خوابه</div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2 flex flex-wrap justify-between items-center">
+                                    <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                        <div class="text-base text-primary">3.800.000.000</div>
+                                        <div class="text-xs text-primary">تومان</div>
+                                    </div>
+                                    <div class="flex items-center gap-0.5">
+                                        <img src="public/svg/time.svg" alt="" />
+                                        <div class="text-xs">دقایقی پیش</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                فوری
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="bg-white rounded-lg p-2.5">
+                        <div class="relative w-full text-white">
+                            <img src="public/img/villa.png"
+                                 class="w-full h-100 rounded-md object-cover" />
+
+                            <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                            <div class="absolute w-full p-2 bottom-0 z-10">
+                                <div class="text-base font-alibaba">
+                                    فروش ویلا خیلی خوشگل چمستان کد 321
+                                </div>
+
+                                <div class="flex flex-wrap mt-1 items-center gap-4">
+                                    <div class="flex items-center gap-1">
+                                        <img src="public/svg/calendar.svg" alt="" />
+                                        <div class="text-base">1398</div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <img src="public/svg/area-.svg" alt="" />
+                                        <div class="text-base">138</div>
+                                        <div class="text-base">متر</div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <img src="public/svg/bed.svg" alt="" />
+                                        <div class="text-base">2</div>
+                                        <div class="text-base">خوابه</div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2 flex flex-wrap justify-between items-center">
+                                    <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                        <div class="text-base text-primary">3.800.000.000</div>
+                                        <div class="text-xs text-primary">تومان</div>
+                                    </div>
+                                    <div class="flex items-center gap-0.5">
+                                        <img src="public/svg/time.svg" alt="" />
+                                        <div class="text-xs">دقایقی پیش</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                فوری
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="bg-white rounded-lg p-2.5">
+                        <div class="relative w-full text-white">
+                            <img src="public/img/villa.png"
+                                 class="w-full h-100 rounded-md object-cover" />
+
+                            <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                            <div class="absolute w-full p-2 bottom-0 z-10">
+                                <div class="text-base font-alibaba">
+                                    فروش ویلا خیلی خوشگل چمستان کد 321
+                                </div>
+
+                                <div class="flex flex-wrap mt-1 items-center gap-4">
+                                    <div class="flex items-center gap-1">
+                                        <img src="public/svg/calendar.svg" alt="" />
+                                        <div class="text-base">1398</div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <img src="public/svg/area-.svg" alt="" />
+                                        <div class="text-base">138</div>
+                                        <div class="text-base">متر</div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <img src="public/svg/bed.svg" alt="" />
+                                        <div class="text-base">2</div>
+                                        <div class="text-base">خوابه</div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2 flex flex-wrap justify-between items-center">
+                                    <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                        <div class="text-base text-primary">3.800.000.000</div>
+                                        <div class="text-xs text-primary">تومان</div>
+                                    </div>
+                                    <div class="flex items-center gap-0.5">
+                                        <img src="public/svg/time.svg" alt="" />
+                                        <div class="text-xs">دقایقی پیش</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                فوری
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="bg-white rounded-lg p-2.5">
+                        <div class="relative w-full text-white">
+                            <img src="public/img/villa.png"
+                                 class="w-full h-100 rounded-md object-cover" />
+
+                            <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                            <div class="absolute w-full p-2 bottom-0 z-10">
+                                <div class="text-base font-alibaba">
+                                    فروش ویلا خیلی خوشگل چمستان کد 321
+                                </div>
+
+                                <div class="flex flex-wrap mt-1 items-center gap-4">
+                                    <div class="flex items-center gap-1">
+                                        <img src="public/svg/calendar.svg" alt="" />
+                                        <div class="text-base">1398</div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <img src="public/svg/area-.svg" alt="" />
+                                        <div class="text-base">138</div>
+                                        <div class="text-base">متر</div>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <img src="public/svg/bed.svg" alt="" />
+                                        <div class="text-base">2</div>
+                                        <div class="text-base">خوابه</div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2 flex flex-wrap justify-between items-center">
+                                    <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                        <div class="text-base text-primary">3.800.000.000</div>
+                                        <div class="text-xs text-primary">تومان</div>
+                                    </div>
+                                    <div class="flex items-center gap-0.5">
+                                        <img src="public/svg/time.svg" alt="" />
+                                        <div class="text-xs">دقایقی پیش</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                فوری
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn bg-primary border-0! h-12 rounded-md mx-auto mt-5 lg:mt-10 w-full max-w-60 px-2 flex justify-between">
+            <span class="text-white text-sm font-alibaba"> مشاهده همه موارد </span>
+            <div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">
+                <img src="public/svg/arrow-up.svg" alt="arrow-up" />
+            </div>
+        </button>
+    </section>
+    <div class="bg-white mt-5 lg:mt-15 py-3 lg:py-10">
+        <section class="container px-2 sm:px-0 mx-auto">
+            <div class="font-alibaba-bold text-center text-dark text-2xl sm:text-3xl">
+                خرید زمین
+            </div>
+
+            <img src="public/img/Buying land.png" alt="" class="mx-auto mt-4" />
+
+            <!-- Swiper -->
+            <div class="mt-5 swiper landSwiper">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg p-2.5">
+                            <div class="relative w-full text-white">
+                                <img src="public/img/villa.png"
+                                     class="w-full h-100 rounded-md object-cover" />
+
+                                <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                <div class="absolute w-full p-2 bottom-0 z-10">
+                                    <div class="text-base font-alibaba">
+                                        فروش ویلا خیلی خوشگل چمستان کد 321
+                                    </div>
+
+                                    <div class="flex flex-wrap mt-1 items-center gap-4">
+                                        <div class="flex items-center gap-1">
+                                            <img src="public/svg/calendar.svg" alt="" />
+                                            <div class="text-base">1398</div>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <img src="public/svg/area-.svg" alt="" />
+                                            <div class="text-base">138</div>
+                                            <div class="text-base">متر</div>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <img src="public/svg/bed.svg" alt="" />
+                                            <div class="text-base">2</div>
+                                            <div class="text-base">خوابه</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-2 flex flex-wrap justify-between items-center">
+                                        <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                            <div class="text-base text-primary">3.800.000.000</div>
+                                            <div class="text-xs text-primary">تومان</div>
+                                        </div>
+                                        <div class="flex items-center gap-0.5">
+                                            <img src="public/svg/time.svg" alt="" />
+                                            <div class="text-xs">دقایقی پیش</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                    فوری
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg p-2.5">
+                            <div class="relative w-full text-white">
+                                <img src="public/img/villa.png"
+                                     class="w-full h-100 rounded-md object-cover" />
+
+                                <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                <div class="absolute w-full p-2 bottom-0 z-10">
+                                    <div class="text-base font-alibaba">
+                                        فروش ویلا خیلی خوشگل چمستان کد 321
+                                    </div>
+
+                                    <div class="flex flex-wrap mt-1 items-center gap-4">
+                                        <div class="flex items-center gap-1">
+                                            <img src="public/svg/calendar.svg" alt="" />
+                                            <div class="text-base">1398</div>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <img src="public/svg/area-.svg" alt="" />
+                                            <div class="text-base">138</div>
+                                            <div class="text-base">متر</div>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <img src="public/svg/bed.svg" alt="" />
+                                            <div class="text-base">2</div>
+                                            <div class="text-base">خوابه</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-2 flex flex-wrap justify-between items-center">
+                                        <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                            <div class="text-base text-primary">3.800.000.000</div>
+                                            <div class="text-xs text-primary">تومان</div>
+                                        </div>
+                                        <div class="flex items-center gap-0.5">
+                                            <img src="public/svg/time.svg" alt="" />
+                                            <div class="text-xs">دقایقی پیش</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                    فوری
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg p-2.5">
+                            <div class="relative w-full text-white">
+                                <img src="public/img/villa.png"
+                                     class="w-full h-100 rounded-md object-cover" />
+
+                                <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                <div class="absolute w-full p-2 bottom-0 z-10">
+                                    <div class="text-base font-alibaba">
+                                        فروش ویلا خیلی خوشگل چمستان کد 321
+                                    </div>
+
+                                    <div class="flex flex-wrap mt-1 items-center gap-4">
+                                        <div class="flex items-center gap-1">
+                                            <img src="public/svg/calendar.svg" alt="" />
+                                            <div class="text-base">1398</div>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <img src="public/svg/area-.svg" alt="" />
+                                            <div class="text-base">138</div>
+                                            <div class="text-base">متر</div>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <img src="public/svg/bed.svg" alt="" />
+                                            <div class="text-base">2</div>
+                                            <div class="text-base">خوابه</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-2 flex flex-wrap justify-between items-center">
+                                        <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                            <div class="text-base text-primary">3.800.000.000</div>
+                                            <div class="text-xs text-primary">تومان</div>
+                                        </div>
+                                        <div class="flex items-center gap-0.5">
+                                            <img src="public/svg/time.svg" alt="" />
+                                            <div class="text-xs">دقایقی پیش</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                    فوری
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg p-2.5">
+                            <div class="relative w-full text-white">
+                                <img src="public/img/villa.png"
+                                     class="w-full h-100 rounded-md object-cover" />
+
+                                <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                <div class="absolute w-full p-2 bottom-0 z-10">
+                                    <div class="text-base font-alibaba">
+                                        فروش ویلا خیلی خوشگل چمستان کد 321
+                                    </div>
+
+                                    <div class="flex flex-wrap mt-1 items-center gap-4">
+                                        <div class="flex items-center gap-1">
+                                            <img src="public/svg/calendar.svg" alt="" />
+                                            <div class="text-base">1398</div>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <img src="public/svg/area-.svg" alt="" />
+                                            <div class="text-base">138</div>
+                                            <div class="text-base">متر</div>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <img src="public/svg/bed.svg" alt="" />
+                                            <div class="text-base">2</div>
+                                            <div class="text-base">خوابه</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-2 flex flex-wrap justify-between items-center">
+                                        <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                            <div class="text-base text-primary">3.800.000.000</div>
+                                            <div class="text-xs text-primary">تومان</div>
+                                        </div>
+                                        <div class="flex items-center gap-0.5">
+                                            <img src="public/svg/time.svg" alt="" />
+                                            <div class="text-xs">دقایقی پیش</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                    فوری
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg p-2.5">
+                            <div class="relative w-full text-white">
+                                <img src="public/img/villa.png"
+                                     class="w-full h-100 rounded-md object-cover" />
+
+                                <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+                                <div class="absolute w-full p-2 bottom-0 z-10">
+                                    <div class="text-base font-alibaba">
+                                        فروش ویلا خیلی خوشگل چمستان کد 321
+                                    </div>
+
+                                    <div class="flex flex-wrap mt-1 items-center gap-4">
+                                        <div class="flex items-center gap-1">
+                                            <img src="public/svg/calendar.svg" alt="" />
+                                            <div class="text-base">1398</div>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <img src="public/svg/area-.svg" alt="" />
+                                            <div class="text-base">138</div>
+                                            <div class="text-base">متر</div>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <img src="public/svg/bed.svg" alt="" />
+                                            <div class="text-base">2</div>
+                                            <div class="text-base">خوابه</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-2 flex flex-wrap justify-between items-center">
+                                        <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+                                            <div class="text-base text-primary">3.800.000.000</div>
+                                            <div class="text-xs text-primary">تومان</div>
+                                        </div>
+                                        <div class="flex items-center gap-0.5">
+                                            <img src="public/svg/time.svg" alt="" />
+                                            <div class="text-xs">دقایقی پیش</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+                                    فوری
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn bg-primary border-0! h-12 rounded-md mx-auto mt-5 lg:mt-10 w-full max-w-60 px-2 flex justify-between">
+                <span class="text-white text-sm font-alibaba">
+                    مشاهده همه موارد
+                </span>
+                <div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">
+                    <img src="public/svg/arrow-up.svg" alt="arrow-up" />
+                </div>
+            </button>
+        </section>
+    </div>
+    <section class="container relative mx-auto px-2 sm:px-0 mt-5 lg:mt-15">
+        <div class="grid grid-cols-1 px-2 xl:px-8 rounded-md sm:rounded-lg bg-primary pt-2 xl:pt-10 pb-2 xl:pb-20 xl:grid-cols-5 items-center gap-5">
+            <div class="col-span-1 xl:col-span-2">
+                <img src="public/img/FAQ.png" alt="" class="hidden xl:block" />
+                <div class="relative mt-2">
+                    <div class="space-y-2">
+                        <div class="text-white font-alibaba-bold text-center sm:text-right text-lg sm:text-2xl">
+                            سوالی دارید؟
+                        </div>
+                        <div class="text-white font-alibaba-bold text-center sm:text-right text-lg sm:text-2xl">
+                            از مشاوران<span class="text-secondary text-xl sm:text-3xl font-alibaba-black">
+                                گروه آریا
+                            </span>
+                            بپرسید.
+                        </div>
+                    </div>
+                    <img src="public/img/arrow-down-faq.png"
+                         alt=""
+                         class="w-30 absolute bottom-0 left-0 hidden xl:block" />
+                </div>
+                <p class="text-sm sm:text-base text-justify leading-7 text-white! mt-4">
+                    در این بخش، پاسخ سؤالات رایج شما درباره فرآیند خرید زمین و ویلا،
+                    مراحل حقوقی، شرایط بازدید، نحوه قیمت‌گذاری و جزئیات قرارداد ارائه
+                    شده است. ما تلاش کرده‌ایم با شفاف‌سازی کامل، اطمینان و آرامش خاطر
+                    شما را در مسیر انتخاب و خرید ملک فراهم کنیم. <br />در صورتی که پاسخ
+                    سؤال خود را در این بخش نیافتید، کارشناسان ما آماده‌اند تا به‌صورت
+                    تخصصی و دقیق، راهنمای شما باشند.
+                </p>
+                <button class="btn bg-secondary text-primary border-0! mx-auto xl:mx-0 h-12 rounded-md mt-2 w-full max-w-60 px-2 flex justify-between">
+                    <span class="text-primary text-sm font-alibaba">
+                        راه های ارتباطی
+                    </span>
+                    <div class="w-8 h-8 rounded-full bg-primary flex justify-center items-center">
+                        <img src="public/svg/arrow-up-white.svg"
+                             alt="arrow-up "
+                             class="" />
+                    </div>
+                </button>
+            </div>
+            <div class="space-y-3 col-span-1 xl:col-span-3">
+                <div class="collapse p-0 bg-white rounded-sm sm:rounded-md group">
+                    <input type="radio" name="my-accordion-1" checked="checked" />
+                    <div class="collapse-title flex justify-between p-2 sm:p-3 items-center text-black font-alibaba-bold text-sm sm:text-xl">
+                        <div>مراحل خرید ملک از شما به چه صورت است؟</div>
+                        <div class="w-8 h-8 bg-orange hidden sm:flex rounded-full items-center justify-center transition-transform duration-300 group-has-[input:checked]:rotate-180">
+                            <img src="public/svg/arrow-down.svg" alt="" />
+                        </div>
+                    </div>
+                    <div class="collapse-content text-sm sm:text-base font-alibaba text-gray text-justify">
+                        از مرحله انتخاب اولیه ملک و هماهنگی بازدیدهای هدفمند تا بررسی کامل
+                        حقوقی، اسناد، کاربری و جزئیات قانونی، تمامی مراحل خرید با نظارت و
+                        همراهی دقیق کارشناسان ما انجام می‌شود. در طول این مسیر، مشاوره
+                        تخصصی، مدیریت مذاکرات، شفاف‌سازی شرایط قرارداد و پیگیری امور
+                        اجرایی به‌گونه‌ای انجام می‌گیرد که شما با اطمینان کامل و آرامش
+                        خاطر، به مرحله امضای نهایی قرارداد برسید.
+                    </div>
+                </div>
+                <div class="collapse p-0 bg-white rounded-sm sm:rounded-md group">
+                    <input type="radio" name="my-accordion-1" />
+                    <div class="collapse-title flex justify-between p-2 sm:p-3 items-center text-black font-alibaba-bold text-sm sm:text-xl">
+                        <div>
+                            آیا اسناد و وضعیت حقوقی املاک قبل از فروش بررسی می‌شوند؟
+                        </div>
+                        <div class="w-8 h-8 bg-orange hidden sm:flex rounded-full items-center justify-center transition-transform duration-300 group-has-[input:checked]:rotate-180">
+                            <img src="public/svg/arrow-down.svg" alt="" />
+                        </div>
+                    </div>
+                    <div class="collapse-content text-sm sm:text-base font-alibaba text-gray text-justify">
+                        از مرحله انتخاب اولیه ملک و هماهنگی بازدیدهای هدفمند تا بررسی کامل
+                        حقوقی، اسناد، کاربری و جزئیات قانونی، تمامی مراحل خرید با نظارت و
+                        همراهی دقیق کارشناسان ما انجام می‌شود. در طول این مسیر، مشاوره
+                        تخصصی، مدیریت مذاکرات، شفاف‌سازی شرایط قرارداد و پیگیری امور
+                        اجرایی به‌گونه‌ای انجام می‌گیرد که شما با اطمینان کامل و آرامش
+                        خاطر، به مرحله امضای نهایی قرارداد برسید.
+                    </div>
+                </div>
+                <div class="collapse p-0 bg-white rounded-sm sm:rounded-md group">
+                    <input type="radio" name="my-accordion-1" />
+                    <div class="collapse-title flex justify-between p-2 sm:p-3 items-center text-black font-alibaba-bold text-sm sm:text-xl">
+                        <div>امکان خرید زمین و ویلا برای سرمایه‌گذاری وجود دارد؟</div>
+                        <div class="w-8 h-8 bg-orange hidden sm:flex rounded-full items-center justify-center transition-transform duration-300 group-has-[input:checked]:rotate-180">
+                            <img src="public/svg/arrow-down.svg" alt="" />
+                        </div>
+                    </div>
+                    <div class="collapse-content text-sm sm:text-base font-alibaba text-gray text-justify">
+                        از مرحله انتخاب اولیه ملک و هماهنگی بازدیدهای هدفمند تا بررسی کامل
+                        حقوقی، اسناد، کاربری و جزئیات قانونی، تمامی مراحل خرید با نظارت و
+                        همراهی دقیق کارشناسان ما انجام می‌شود. در طول این مسیر، مشاوره
+                        تخصصی، مدیریت مذاکرات، شفاف‌سازی شرایط قرارداد و پیگیری امور
+                        اجرایی به‌گونه‌ای انجام می‌گیرد که شما با اطمینان کامل و آرامش
+                        خاطر، به مرحله امضای نهایی قرارداد برسید.
+                    </div>
+                </div>
+                <div class="collapse p-0 bg-white rounded-sm sm:rounded-md group">
+                    <input type="radio" name="my-accordion-1" />
+                    <div class="collapse-title flex justify-between p-2 sm:p-3 items-center text-black font-alibaba-bold text-sm sm:text-xl">
+                        <div>آیا تا زمان نهایی شدن قرارداد همراهی کامل دارید؟</div>
+                        <div class="w-8 h-8 bg-orange hidden sm:flex rounded-full items-center justify-center transition-transform duration-300 group-has-[input:checked]:rotate-180">
+                            <img src="public/svg/arrow-down.svg" alt="" />
+                        </div>
+                    </div>
+                    <div class="collapse-content text-sm sm:text-base font-alibaba text-gray text-justify">
+                        از مرحله انتخاب اولیه ملک و هماهنگی بازدیدهای هدفمند تا بررسی کامل
+                        حقوقی، اسناد، کاربری و جزئیات قانونی، تمامی مراحل خرید با نظارت و
+                        همراهی دقیق کارشناسان ما انجام می‌شود. در طول این مسیر، مشاوره
+                        تخصصی، مدیریت مذاکرات، شفاف‌سازی شرایط قرارداد و پیگیری امور
+                        اجرایی به‌گونه‌ای انجام می‌گیرد که شما با اطمینان کامل و آرامش
+                        خاطر، به مرحله امضای نهایی قرارداد برسید.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <img src="public/img/FAQ-ascis.png"
+             alt=""
+             class="absolute bottom-2 -right-1 z-0 hidden xl:block" />
+    </section>
+    <div class="bg-white mt-5 lg:mt-15 py-3 lg:py-10">
+        <section class="container px-2 sm:px-0 mx-auto">
+            <div class="font-alibaba-bold text-center text-dark text-2xl sm:text-3xl">
+                جدیدترین اخبار و مقالات
+            </div>
+            <img src="public/img/Latest news and articles.png"
+                 alt=""
+                 class="mx-auto mt-4" />
+            <div class="mt-5 grid xl:grid-cols-2 justify-center gap-5">
+                <div class="relative">
+                    <img src="public/img/bolg.png"
+                         alt=""
+                         class="w-full rounded-md sm:rounded-lg" />
+
+                    <div class="bg-accent absolute -bottom-22 sm:-bottom-2 rounded-md sm:rounded-lg p-2 sm:p-3 flex flex-col sm:flex-row gap-1 justify-center items-center">
+                        <div class="space-y-1">
+                            <div class="font-alibaba-bold text-base sm:text-xl text-black">
+                                تیتر مقاله اینجاست
+                            </div>
+                            <p class="text-xs sm:text-sm text-justify">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و
+                                مجله در ستون و سطرآنچنان که ...
+                            </p>
+                        </div>
+                        <div class="p-2 bg-orange rounded-full hidden sm:flex justify-center items-center">
+                            <img src="public/svg/arrow-blog.svg" alt="" />
+                        </div>
+                        <div class="p-2 bg-orange text-xs btn border-0 rounded-xs sm:hidden flex justify-center items-center">
+                            مشاهده بیشتر
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-2 sm:space-y-4 sm:mt-0 mt-20">
+                    <div class="bg-accent rounded-md sm:rounded-lg p-3 flex flex-col sm:flex-row gap-2 justify-center items-center">
+                        <img src="public/img/bolg.png"
+                             alt=""
+                             class="sm:w-24 w-full h-full sm:h-22 rounded-md" />
+                        <div class="space-y-1">
+                            <div class="font-alibaba-bold text-xl text-black">
+                                تیتر مقاله اینجاست
+                            </div>
+                            <p class="text-sm font-alibaba text-justify">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و
+                                مجله در ستون و سطرآنچنان که ...
+                            </p>
+                        </div>
+                        <div class="p-2 bg-orange rounded-full hidden sm:flex justify-center items-center">
+                            <img src="public/svg/arrow-blog.svg" alt="" />
+                        </div>
+                        <div class="p-2 bg-orange btn border-0 rounded-xs sm:hidden flex justify-center items-center">
+                            مشاهده بیشتر
+                        </div>
+                    </div>
+                    <div class="bg-accent rounded-md sm:rounded-lg p-3 flex flex-col sm:flex-row gap-2 justify-center items-center">
+                        <img src="public/img/bolg.png"
+                             alt=""
+                             class="sm:w-24 w-full h-full sm:h-22 rounded-sm sm:rounded-md" />
+                        <div class="space-y-1">
+                            <div class="font-alibaba-bold text-lg sm:text-xl text-black">
+                                تیتر مقاله اینجاست
+                            </div>
+                            <p class="text-xs sm:text-sm font-alibaba text-justify">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و
+                                مجله در ستون و سطرآنچنان که ...
+                            </p>
+                        </div>
+                        <div class="p-2 bg-orange rounded-full hidden sm:flex justify-center items-center">
+                            <img src="public/svg/arrow-blog.svg" alt="" />
+                        </div>
+                        <div class="p-2 bg-orange text-xs btn border-0 rounded-xs sm:hidden flex justify-center items-center">
+                            مشاهده بیشتر
+                        </div>
+                    </div>
+                    <div class="bg-accent rounded-md sm:rounded-lg p-3 flex flex-col sm:flex-row gap-2 justify-center items-center">
+                        <img src="public/img/bolg.png"
+                             alt=""
+                             class="sm:w-24 w-full h-full sm:h-22 rounded-sm sm:rounded-md" />
+                        <div class="space-y-1">
+                            <div class="font-alibaba-bold text-lg sm:text-xl text-black">
+                                تیتر مقاله اینجاست
+                            </div>
+                            <p class="text-xs sm:text-sm font-alibaba text-justify">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و
+                                مجله در ستون و سطرآنچنان که ...
+                            </p>
+                        </div>
+                        <div class="p-2 bg-orange rounded-full hidden sm:flex justify-center items-center">
+                            <img src="public/svg/arrow-blog.svg" alt="" />
+                        </div>
+                        <div class="p-2 bg-orange text-xs btn border-0 rounded-xs sm:hidden flex justify-center items-center">
+                            مشاهده بیشتر
+                        </div>
+                    </div>
+                    <div class="bg-accent rounded-md sm:rounded-lg p-3 flex flex-col sm:flex-row gap-2 justify-center items-center">
+                        <img src="public/img/bolg.png"
+                             alt=""
+                             class="sm:w-24 w-full h-full sm:h-22 rounded-sm sm:rounded-md" />
+                        <div class="space-y-1">
+                            <div class="font-alibaba-bold text-lg sm:text-xl text-black">
+                                تیتر مقاله اینجاست
+                            </div>
+                            <p class="text-xs sm:text-sm font-alibaba text-justify">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و
+                                مجله در ستون و سطرآنچنان که ...
+                            </p>
+                        </div>
+                        <div class="p-2 bg-orange rounded-full hidden sm:flex justify-center items-center">
+                            <img src="public/svg/arrow-blog.svg" alt="" />
+                        </div>
+                        <div class="p-2 bg-orange text-xs btn border-0 rounded-xs sm:hidden flex justify-center items-center">
+                            مشاهده بیشتر
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+

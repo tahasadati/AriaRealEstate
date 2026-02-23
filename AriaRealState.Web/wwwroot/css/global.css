@@ -1,0 +1,204 @@
+@font-face {
+  font-family: "YekanBakh";
+  src: url("../public/font/YekanBakhFaNum-Regular.ttf") format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "YekanBakhBold";
+  src: url("../public/font/YekanBakhFaNum-Bold.ttf") format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "YekanBakhBlack";
+  src: url("../public/font/YekanBakhFaNum-ExtraBlack.ttf") format("woff2");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "Alibaba";
+  src: url("../public/font/alibaba-regular.woff2") format("truetype");
+  /* font-weight: 400; */
+}
+
+@font-face {
+  font-family: "AlibabaBold";
+  src: url("../public/font/alibaba-bold.woff2") format("truetype");
+  /* font-weight: 700; */
+}
+
+@font-face {
+  font-family: "AlibabaBlack";
+  src: url("../public/font/alibaba-black.woff") format("truetype");
+  /* font-weight: 900; */
+}
+
+:root {
+  --color-background: #f7f7f7;
+  --color-border: #d9d9d9;
+  --color-accent: #e4e8f2;
+  --color-primary: #2a3a6d;
+  --color-secondary: #9bd6ef;
+  --color-light: #e7ebf6;
+  --color-dark: #1d1d1d;
+  --color-gray: #717171;
+  --color-orange: #ff5d11;
+  --radius-lg: 30px;
+  --radius-md: 15px;
+  --radius-sm: 10px;
+  --radius-xs: 5px;
+}
+
+html {
+  background-color: #f7f7f7 !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "YekanBakh";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "AlibabaBold";
+}
+
+p {
+  color: var(--color-gray);
+}
+
+/* font family */
+.alibaba-bold {
+  font-family: "AlibabaBold";
+}
+
+/* ===== Text Colors ===== */
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-light {
+  color: var(--color-light);
+}
+
+.text-dark {
+  color: var(--color-dark);
+}
+
+.text-gray {
+  color: var(--color-gray);
+}
+
+.text-orange {
+  color: var(--color-orange);
+}
+
+/* ===== Background Colors ===== */
+.bg-background {
+  background-color: var(--color-background);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+
+.bg-light {
+  background-color: var(--color-light);
+}
+
+.bg-dark {
+  background-color: var(--color-dark);
+}
+
+.bg-gray {
+  background-color: var(--color-gray);
+}
+
+.bg-orange {
+  background-color: var(--color-orange);
+}
+.bg-accent {
+  background-color: var(--color-accent);
+}
+
+/* Border-radius */
+.rounded-lg {
+  border-radius: var(--radius-lg);
+}
+
+.rounded-md {
+  border-radius: var(--radius-md);
+}
+
+.rounded-sm {
+  border-radius: var(--radius-sm);
+}
+
+.rounded-xs {
+  border-radius: var(--radius-xs);
+}
+
+/* border-color */
+.border-border {
+  border-color: var(--color-border);
+}
+.border-light {
+  border-color: var(--color-light);
+}
+
+/* YekanBakh */
+.font-yekan {
+  font-family: "YekanBakh", sans-serif;
+  font-weight: 400;
+}
+
+.font-yekan-bold {
+  font-family: "YekanBakhBold", sans-serif;
+  font-weight: 700;
+}
+
+.font-yekan-black {
+  font-family: "YekanBakhBlack", sans-serif;
+  font-weight: 900;
+}
+
+/* Alibaba */
+.font-alibaba {
+  font-family: "Alibaba", sans-serif;
+  font-weight: 400;
+}
+
+.font-alibaba-bold {
+  font-family: "AlibabaBold", sans-serif;
+  font-weight: 700;
+}
+
+.font-alibaba-black {
+  font-family: "AlibabaBlack", sans-serif;
+  font-weight: 900;
+}
+
+.image-animate {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+#mainImage {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}

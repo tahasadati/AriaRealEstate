@@ -1,50 +1,210 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl" data-theme="light">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AriaRealState.Web</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/AriaRealState.Web.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/global.css" />
+    <link href="~/css/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/swiper.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AriaRealState.Web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+    <div class="container px-2 sm:px-0 mx-auto">
+        <header class="w-full bg-white shadow-sm rounded-2xl sm:rounded-3xl mt-5 xl:mt-9 flex justify-between items-center p-3">
+            <img src="public/img/icon-header.png"
+                 alt="icon-header"
+                 class="w-50 sm:w-auto" />
+            <div class="hidden xl:flex items-center justify-between gap-12 text-base font-yekan text-dark">
+                <a class="cursor-pointer">صفحه اصلی</a>
+                <a class="cursor-pointer">خرید ویلا</a>
+                <a class="cursor-pointer">خرید زمین</a>
+                <a class="cursor-pointer">اخبار و مقالات</a>
+                <a asp-action="Index" asp-controller="AboutUs" class="cursor-pointer">درباره ی ما</a>
+                <a class="cursor-pointer">تماس با ما</a>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+            <button class="btn bg-primary w-50 h-11 rounded-2xl px-2.5 hidden xl:flex justify-between">
+                <span class="text-white text-sm font-alibaba">مشاوره رایگان</span>
+                <div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">
+                    <img src="public/svg/arrow-up.svg" alt="arrow-up" />
+                </div>
+            </button>
+
+            <div class="dropdown dropdown-end xl:hidden">
+                <div tabindex="0"
+                     role="button"
+                     class="btn bg-primary text-white rounded-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="h-6 w-6"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor">
+                        <path stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M4 6h16M4 12h16M4 18h7" />
+                    </svg>
+                </div>
+                <ul tabindex="0"
+                    class="menu menu-sm dropdown-content space-y-1.5 mt-3 z-[1] p-2 shadow bg-white text-black rounded-box w-50 font-yekan">
+                    <li><a class="text-sm">صفحه اصلی</a></li>
+                    <li><a class="text-sm">خرید ویلا</a></li>
+                    <li><a class="text-sm">خرید زمین</a></li>
+                    <li><a class="text-sm">اخبار و مقالات</a></li>
+                    <li><a asp-action="Index" asp-controller="AboutUs" class="text-sm">درباره ی ما</a></li>
+                    <li><a class="text-sm">تماس با ما</a></li>
+                    <button class="btn bg-primary border-0! h-10 rounded-sm px-1 flex justify-between">
+                        <span class="text-white text-sm font-alibaba">مشاوره رایگان</span>
+                        <div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">
+                            <img src="public/svg/arrow-up.svg" alt="arrow-up" />
+                        </div>
+                    </button>
+                </ul>
+            </div>
+        </header>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - AriaRealState.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+      @RenderBody()
+        
+    
+
+    <div class="container px-2 sm:px-0 mx-auto">
+        <footer class="mt-10">
+            <div class="flex flex-col md:flex-row justify-between items-start lg:items-center gap-6">
+                <img src="public/img/icon-header.png"
+                     alt="icon-header"
+                     class="w-40 sm:w-50 lg:w-auto mx-auto lg:mx-0" />
+
+                <p class="text-justify text-gray text-sm leading-5 lg:flex-1">
+                    با سال‌ها تجربه در بازار املاک، شناخت کامل مناطق، تحلیل دقیق قیمت‌ها
+                    و بررسی تمام جزئیات حقوقی و کاربری ملک، اطمینان می‌دهیم که هر خرید،
+                    امن، سریع و بدون دغدغه انجام شود.کارشناسان ما از اولین بازدید تا
+                    امضای قرارداد، شما را همراهی می‌کنند و با مشاوره تخصصی، هماهنگی
+                    بازدیدها و مدیریت مذاکرات، مسیر خرید را ساده و مطمئن می‌سازند.ما به
+                    شفافیت، کیفیت و رضایت مشتری اعتقاد داریم و تلاش می‌کنیم هر خرید به
+                    تجربه‌ای لذت‌بخش و درخور اعتماد شما تبدیل شود.ما همراه شما هستیم تا
+                    بهترین انتخاب ممکن را انجام دهید.
+                </p>
+
+                <div class="grid grid-cols-6 md:grid-cols-2 xl:grid-cols-3 gap-2.5 w-full md:max-w-33 justify-items-center">
+                    <div class="w-10 h-10 bg-primary rounded-xs flex justify-center items-center">
+                        <img src="public/svg/whatsapp.svg" alt="whatsapp" />
+                    </div>
+                    <div class="w-10 h-10 bg-primary rounded-xs flex justify-center items-center">
+                        <img src="public/svg/instagram.svg" alt="instagram" />
+                    </div>
+                    <div class="w-10 h-10 bg-primary rounded-xs flex justify-center items-center">
+                        <img src="public/svg/linkedin.svg" alt="linkedin" />
+                    </div>
+                    <div class="w-10 h-10 bg-primary rounded-xs flex justify-center items-center">
+                        <img src="public/svg/aparat.svg" alt="aparat" />
+                    </div>
+                    <div class="w-10 h-10 bg-primary rounded-xs flex justify-center items-center">
+                        <img src="public/svg/twitter.svg" alt="twitter" />
+                    </div>
+                    <div class="w-10 h-10 bg-primary rounded-xs flex justify-center items-center">
+                        <img src="public/svg/telegram.svg" alt="telegram" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 flex flex-col md:flex-row gap-6">
+                <div class="space-y-1.5 w-full sm:w-[35%] lg:w-[18%]">
+                    <h3 class="text-black text-base">راه های ارتباطی با گروه آریا</h3>
+
+                    <div class="flex items-center gap-1.5">
+                        <div class="w-10 h-10 bg-primary rounded-xs flex justify-center items-center">
+                            <img src="public/svg/phone.svg" alt="phone" />
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray font-alibaba">تلفن پشتیبانی</div>
+                            <div class="text-sm text-dark">011-1234</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-1.5">
+                        <div class="w-10 h-10 bg-primary rounded-xs flex justify-center items-center">
+                            <img src="public/svg/email.svg" alt="email" />
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray font-alibaba">ارسال ایمیل</div>
+                            <div class="text-sm text-dark">info@DOMAIN.com</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-1.5">
+                        <div class="w-10 h-10 bg-primary rounded-xs flex justify-center items-center">
+                            <img src="public/svg/map.svg" alt="map" />
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray font-alibaba">آدرس</p>
+                            <p class="text-sm font-alibaba text-dark">چمستان، آدرس</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full">
+                    <div class="flex flex-col lg:flex-row gap-3 justify-between items-start">
+                        <div class="space-y-2">
+                            <h3 class="text-black">دسترسی های سریع</h3>
+                            <div class="grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-3 gap-x-10 sm:gap-x-1 lg:gap-x-2 gap-y-1 font-alibaba text-sm text-gray">
+                                <div>صفحه اصلی</div>
+                                <div>درباره ی ما</div>
+                                <div>راه های ارتباطی</div>
+                                <div>فایل ها</div>
+                                <div>مقالات</div>
+                                <div>ارسال پیام</div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <h3 class="text-black">پرطرفدارها</h3>
+                            <div class="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-3 xl:grid-cols-5 gap-x-10 sm:gap-x-2 gap-y-2.5 font-alibaba text-sm text-gray">
+                                <p>خرید ویلا</p>
+                                <p>خرید ویلا شهرکی</p>
+                                <p>خرید زمین</p>
+                                <p>خرید ویلا تا 3 میلیارد</p>
+                                <p>خرید زمین تا 500 متر</p>
+                                <p>خرید ویلا استخردار</p>
+                                <p>خرید ویلا دوبلکس</p>
+                                <p>خرید ویلا تا 2 میلیارد</p>
+                                <p>خرید ویلا 120 متری</p>
+                                <p>خرید زمین تا 4 میلیارد</p>
+                            </div>
+                        </div>
+
+                        <div class="w-22 h-22 mx-auto xl:mx-0 border rounded-sm bg-white border-border border-dashed text-dark flex justify-center items-center">
+                            مجوز
+                        </div>
+                    </div>
+
+                    <div class="p-5 mt-6 rounded-3xl bg-accent hidden xl:flex flex-col sm:flex-row gap-3 justify-between items-center text-center sm:text-right">
+                        <div class="text-gray font-alibaba text-xs sm:text-sm">
+                            تمامی حقوق مادی و معنوی برای
+                            <span class="text-dark font-alibaba-bold text-sm sm:text-base">گروه آریا</span>
+                            محفوظ میباشد.
+                        </div>
+                        <div class="text-gray font-alibaba text-xs sm:text-sm">
+                            طراحی:
+                            <span class="text-dark font-alibaba-bold text-sm sm:text-base">لایت کمپانی</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 mt-2 rounded-xl bg-accent xl:hidden flex flex-col sm:flex-row gap-3 justify-between items-center text-center sm:text-right">
+                <div class="text-gray font-alibaba text-xs sm:text-sm">
+                    تمامی حقوق مادی و معنوی برای
+                    <span class="text-dark font-alibaba-bold text-sm sm:text-base">گروه آریا</span>
+                    محفوظ میباشد.
+                </div>
+                <div class="text-gray font-alibaba text-xs sm:text-sm">
+                    طراحی:
+                    <span class="text-dark font-alibaba-bold text-sm sm:text-base">لایت کمپانی</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
