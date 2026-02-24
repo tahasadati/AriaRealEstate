@@ -3292,6 +3292,11 @@
             display: block;
         }
     }
+    .lg\:grid {
+        @media (width >= 64rem) {
+            display: grid;
+        }
+    }
 
     .lg\:hidden {
         @media (width >= 64rem) {

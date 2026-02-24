@@ -3,6 +3,7 @@ using AriaRealState.Data.Enums.Villa;
 using AriaRealState.Data.Services;
 using AriaRealState.Web.Models.Villa;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Validation;
 using System.Threading.Tasks;
 
 namespace AriaRealState.Web.Controllers;
@@ -20,6 +21,7 @@ public class VillaController : Controller
                 selectedArchitectureTypes,
                 selectedLocationTypes,
                 selectedOccupancyStatuses);
+
 		var viewModels = new List<VillaListViewModel>();
         if (villas != null && villas.Count != 0)
 		{

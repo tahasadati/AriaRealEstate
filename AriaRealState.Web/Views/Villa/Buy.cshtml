@@ -1,489 +1,526 @@
-﻿@model List<AriaRealState.Web.Models.Villa.VillaListViewModel>
+﻿@using AriaRealState.Data.Enums
+@using AriaRealState.Data.Enums.Villa
+@using MD.PersianDateTime
+@model List<AriaRealState.Web.Models.Villa.VillaListViewModel>
+@{
+	var qSearch = Context.Request.Query["searchTerm"].ToString();
+	bool IsChecked(string key, int value) => Context.Request.Query[key].Contains(value.ToString());
+}
+
 <section class="grid lg:grid-cols-12 px-2 sm:px-0 gap-4 sm:gap-8 mt-5 lg:mt-15 container mx-auto">
-    <div class="col-span-1 lg:col-span-3 space-y-2 sm:space-y-4">
-        <div class="flex w-full items-center" id="buyTabs">
-            <div data-tab="villa"
-                 class="tab-item text-white w-full rounded-tr-md rounded-br-md h-15 font-alibaba-bold text-lg sm:text-xl bg-primary flex justify-center items-center cursor-pointer">
-                خرید ویلا
-            </div>
+	<div class="col-span-1 lg:col-span-3 space-y-2 sm:space-y-4">
+		<div class="flex w-full items-center" id="buyTabs">
+			<div data-tab="villa"
+				 class="tab-item text-white w-full rounded-tr-md rounded-br-md h-15 font-alibaba-bold text-lg sm:text-xl bg-primary flex justify-center items-center cursor-pointer">
+				خرید ویلا
+			</div>
 
-            <div data-tab="land"
-                 class="tab-item text-black w-full bg-white rounded-tl-md rounded-bl-md h-15 font-alibaba-bold text-lg sm:text-xl border border-border flex justify-center items-center cursor-pointer">
-                خرید زمین
-            </div>
-        </div>
-        <label class="input w-full h-15 rounded-md bg-white border border-border text-dark">
-            <img src="public/svg/search.svg" alt="" />
-            <input type="search"
-                   required
-                   placeholder="جستجو کد ملک"
-                   class="text-sm" />
-            <button class="btn border-0 bg-primary text-white text-sm py-2.5 px-3 rounded-sm">
-                جستجو
-            </button>
-        </label>
-        <div class="w-full hidden lg:block bg-white rounded-md p-4 border border-border">
-            <div class="flex justify-between items-center pb-2.5 border-b border-accent">
-                <div class="text-sm text-primary font-alibaba-bold">
-                    فیلتر نتایج
-                </div>
-                <div class="text-xs text-gray font-alibaba">پاک کردن همه</div>
-            </div>
-            <div class="mt-2.5 pb-6 border-b border-accent">
-                <div class="text-xs text-gray font-alibaba">معماری و ساخت</div>
-                <div class="space-y-2 mt-1">
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-1">
-                            <input type="checkbox" checked
-                                   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                            <div class="text-primary text-base font-alibaba">فلت</div>
-                        </div>
-                        <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                            21
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-1">
-                            <input type="checkbox" checked
-                                   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                            <div class="text-primary text-base font-alibaba">
-                                نیم پیلوت
-                            </div>
-                        </div>
-                        <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                            21
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-1">
-                            <input type="checkbox" checked
-                                   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                            <div class="text-primary text-base font-alibaba">دوبلکس</div>
-                        </div>
-                        <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                            21
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-1">
-                            <input type="checkbox" checked
-                                   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                            <div class="text-primary text-base font-alibaba">تریبلکس</div>
-                        </div>
-                        <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                            21
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-1">
-                            <input type="checkbox" checked
-                                   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                            <div class="text-primary text-base font-alibaba">
-                                سایر موارد
-                            </div>
-                        </div>
-                        <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                            21
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-6 pb-6 border-b border-accent">
-                <div class="text-xs text-gray font-alibaba">موقعیت ملک</div>
-                <div class="space-y-2 mt-1">
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-1">
-                            <input type="checkbox" checked
-                                   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                            <div class="text-primary text-base font-alibaba">شهرکی</div>
-                        </div>
-                        <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                            21
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-1">
-                            <input type="checkbox" checked
-                                   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                            <div class="text-primary text-base font-alibaba">مستقل</div>
-                        </div>
-                        <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                            21
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-6">
-                <div class="text-xs text-gray font-alibaba">کارکرد</div>
-                <div class="space-y-2 mt-1">
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-1">
-                            <input type="checkbox" checked
-                                   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                            <div class="text-primary text-base font-alibaba">
-                                کلید خورده
-                            </div>
-                        </div>
-                        <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                            21
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-1">
-                            <input type="checkbox" checked
-                                   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                            <div class="text-primary text-base font-alibaba">
-                                کلید نخورده
-                            </div>
-                        </div>
-                        <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                            21
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="collapse p-0 lg:hidden bg-white rounded-md border border-border group">
-            <input type="checkbox" name="my-accordion-1" />
-            <div class="collapse-title flex justify-between p-3 items-center text-gray font-alibaba text-sm">
-                <div class="text-gray font-alibaba text-sm">فیلتر نتایج</div>
-                <div class="w-6 h-6 bg-primary flex rounded-full items-center justify-center transition-transform duration-300 group-has-[input:checked]:rotate-180">
-                    <img src="public/svg/arrow-down.svg" alt="" />
-                </div>
-            </div>
-            <div class="collapse-content text-sm sm:text-base font-alibaba text-gray text-justify">
-                <div class="w-full bg-white">
-                    <div class="flex justify-between items-center pb-2.5 border-b border-accent">
-                        <div class="text-sm text-primary font-alibaba-bold">
-                            فیلتر نتایج
-                        </div>
-                        <div class="text-xs text-gray font-alibaba">پاک کردن همه</div>
-                    </div>
-                    <div class="mt-2.5 pb-6 border-b border-accent">
-                        <div class="text-xs text-gray font-alibaba">معماری و ساخت</div>
-                        <div class="space-y-2 mt-1">
-                            <div class="flex justify-between items-center">
-                                <div class="flex items-center gap-1">
-                                    <input type="checkbox"
-                                           class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                                    <div class="text-primary text-base font-alibaba">فلت</div>
-                                </div>
-                                <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                                    21
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <div class="flex items-center gap-1">
-                                    <input type="checkbox"
-                                           class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                                    <div class="text-primary text-base font-alibaba">
-                                        نیم پیلوت
-                                    </div>
-                                </div>
-                                <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                                    21
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <div class="flex items-center gap-1">
-                                    <input type="checkbox"
-                                           class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                                    <div class="text-primary text-base font-alibaba">
-                                        دوبلکس
-                                    </div>
-                                </div>
-                                <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                                    21
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <div class="flex items-center gap-1">
-                                    <input type="checkbox"
-                                           class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                                    <div class="text-primary text-base font-alibaba">
-                                        تریبلکس
-                                    </div>
-                                </div>
-                                <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                                    21
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <div class="flex items-center gap-1">
-                                    <input type="checkbox"
-                                           class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                                    <div class="text-primary text-base font-alibaba">
-                                        سایر موارد
-                                    </div>
-                                </div>
-                                <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                                    21
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-6 pb-6 border-b border-accent">
-                        <div class="text-xs text-gray font-alibaba">موقعیت ملک</div>
-                        <div class="space-y-2 mt-1">
-                            <div class="flex justify-between items-center">
-                                <div class="flex items-center gap-1">
-                                    <input type="checkbox"
-                                           class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                                    <div class="text-primary text-base font-alibaba">
-                                        شهرکی
-                                    </div>
-                                </div>
-                                <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                                    21
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <div class="flex items-center gap-1">
-                                    <input type="checkbox"
-                                           class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                                    <div class="text-primary text-base font-alibaba">
-                                        مستقل
-                                    </div>
-                                </div>
-                                <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                                    21
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-6">
-                        <div class="text-xs text-gray font-alibaba">کارکرد</div>
-                        <div class="space-y-2 mt-1">
-                            <div class="flex justify-between items-center">
-                                <div class="flex items-center gap-1">
-                                    <input type="checkbox"
-                                           class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                                    <div class="text-primary text-base font-alibaba">
-                                        کلید خورده
-                                    </div>
-                                </div>
-                                <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                                    21
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <div class="flex items-center gap-1">
-                                    <input type="checkbox"
-                                           class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
-                                    <div class="text-primary text-base font-alibaba">
-                                        کلید نخورده
-                                    </div>
-                                </div>
-                                <div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
-                                    21
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+			<div data-tab="land"
+				 class="tab-item text-black w-full bg-white rounded-tl-md rounded-bl-md h-15 font-alibaba-bold text-lg sm:text-xl border border-border flex justify-center items-center cursor-pointer">
+				خرید زمین
+			</div>
+		</div>
+		<form class="space-y-2 sm:space-y-4">
+			<label class="hidden lg:flex input w-full h-15 rounded-md bg-white border border-border text-dark">
+				<img src="public/svg/search.svg" alt="" />
+				<input type="search"
+					   required
+					   placeholder="جستجو کد ملک"
+					   class="text-sm" />
+				<button class="btn border-0 bg-primary text-white text-sm py-2.5 px-3 rounded-sm">
+					جستجو
+				</button>
+			</label>
 
-        <div class="w-full lg:block hidden bg-white rounded-md py-2 px-4 border border-border">
-            <div class="flex justify-between items-center pb-2.5 border-b border-accent">
-                <div class="text-sm text-primary font-alibaba-bold">متراژ ها</div>
-                <div class="text-xs text-gray font-alibaba">پاک کردن همه</div>
-            </div>
-            <div class="mt-2.5">
-                <div class="text-gray text-xs">
-                    متراژ زیر بنا
-                    <span class="text-primary font-alibaba">(متر مربع)</span>
-                </div>
-                <div class="mt-2 flex justify-between items-center gap-2.5">
-                    <input type="text"
-                           placeholder="حداقل متراژ "
-                           class="input rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
-                    <input type="text"
-                           placeholder="حداکثر متراژ "
-                           class="input rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
-                </div>
-            </div>
-            <div class="mt-2.5">
-                <div class="text-gray text-xs">
-                    متراژ زمین
-                    <span class="text-primary font-alibaba">(متر مربع)</span>
-                </div>
-                <div class="mt-2 flex justify-between items-center gap-2.5">
-                    <input type="text"
-                           placeholder="حداقل متراژ "
-                           class="input rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
-                    <input type="text"
-                           placeholder="حداکثر متراژ "
-                           class="input rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
-                </div>
-            </div>
-        </div>
-        <div class="collapse p-0 lg:hidden bg-white rounded-md border border-border group">
-            <input type="checkbox" name="my-accordion-1" />
-            <div class="collapse-title flex justify-between p-3 items-center text-gray font-alibaba text-sm">
-                <div class="text-gray font-alibaba text-sm">متراژ ها</div>
-                <div class="w-6 h-6 bg-primary flex rounded-full items-center justify-center transition-transform duration-300 group-has-[input:checked]:rotate-180">
-                    <img src="public/svg/arrow-down.svg" alt="" />
-                </div>
-            </div>
-            <div class="collapse-content text-sm sm:text-base font-alibaba text-gray text-justify">
-                <div class="w-full bg-white">
-                    <div class="flex justify-between items-center pb-2.5 border-b border-accent">
-                        <div class="text-sm text-primary font-alibaba-bold">
-                            متراژ ها
-                        </div>
-                        <div class="text-xs text-gray font-alibaba">پاک کردن همه</div>
-                    </div>
-                    <div class="mt-2.5">
-                        <div class="text-gray text-xs">
-                            متراژ زیر بنا
-                            <span class="text-primary font-alibaba">(متر مربع)</span>
-                        </div>
-                        <div class="mt-2 flex justify-between items-center gap-2.5">
-                            <input type="text"
-                                   placeholder="حداقل متراژ "
-                                   class="input rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
-                            <input type="text"
-                                   placeholder="حداکثر متراژ "
-                                   class="input rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
-                        </div>
-                    </div>
-                    <div class="mt-2.5">
-                        <div class="text-gray text-xs">
-                            متراژ زمین
-                            <span class="text-primary font-alibaba">(متر مربع)</span>
-                        </div>
-                        <div class="mt-2 flex justify-between items-center gap-2.5">
-                            <input type="text"
-                                   placeholder="حداقل متراژ "
-                                   class="input rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
-                            <input type="text"
-                                   placeholder="حداکثر متراژ "
-                                   class="input rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="collapse p-0 bg-white rounded-md border border-border group">
-            <input type="checkbox" name="my-accordion-1" />
-            <div class="collapse-title flex justify-between p-3 items-center text-gray font-alibaba text-sm">
-                <div>سن بنا</div>
-                <div class="w-6 h-6 bg-primary flex rounded-full items-center justify-center transition-transform duration-300 group-has-[input:checked]:rotate-180">
-                    <img src="public/svg/arrow-down.svg" alt="" />
-                </div>
-            </div>
-            <div class="collapse-content text-sm sm:text-base font-alibaba text-gray text-justify">
-                <input type="text"
-                       placeholder="سن بنا"
-                       class="input w-full rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
-            </div>
-        </div>
-        <div class="collapse p-0 bg-white rounded-md border border-border group">
-            <input type="checkbox" name="my-accordion-1" />
-            <div class="collapse-title flex justify-between p-3 items-center text-gray font-alibaba text-sm">
-                <div>تعداد اتاق</div>
-                <div class="w-6 h-6 bg-primary flex rounded-full items-center justify-center transition-transform duration-300 group-has-[input:checked]:rotate-180">
-                    <img src="public/svg/arrow-down.svg" alt="" />
-                </div>
-            </div>
-            <div class="collapse-content text-sm sm:text-base font-alibaba text-gray text-justify">
-                <input type="text"
-                       placeholder="تعداد اتاق"
-                       class="input w-full rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
-            </div>
-        </div>
-        <div class="collapse p-0 bg-white rounded-md border border-border group">
-            <input type="checkbox" name="my-accordion-1" />
-            <div class="collapse-title flex justify-between p-3 items-center text-gray font-alibaba text-sm">
-                <div>امکانات پیشرفته</div>
-                <div class="w-6 h-6 bg-primary flex rounded-full items-center justify-center transition-transform duration-300 group-has-[input:checked]:rotate-180">
-                    <img src="public/svg/arrow-down.svg" alt="" />
-                </div>
-            </div>
-            <div class="collapse-content text-sm sm:text-base font-alibaba text-gray text-justify">
-                <input type="text"
-                       placeholder="امکانات پیشرفته"
-                       class="input w-full rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
-            </div>
-        </div>
-    </div>
-    <div class="col-span-1 lg:col-span-9">
-        <div class="flex flex-col sm:flex-row justify-between gap-2 sm:gap-0 items-center border-b border-b-accent py-2 sm:py-4">
-            <div class="flex flex-wrap justify-center text-gray text-sm sm:text-base items-center gap-5 sm:gap-10"
-                 id="sortTabs">
-                <div class="text-sm sm:text-base">مرتب‌سازی</div>
+			@* mobile *@
+			<div class="collapse p-0 lg:hidden bg-white rounded-md border border-border group">
+				<input type="checkbox" name="my-accordion-1" />
+				<div class="collapse-title flex justify-between p-3 items-center text-gray font-alibaba text-sm">
+					<div class="text-gray font-alibaba text-sm">فیلتر نتایج</div>
+					<div class="w-6 h-6 bg-primary flex rounded-full items-center justify-center transition-transform duration-300 group-has-[input:checked]:rotate-180">
+						<img src="public/svg/arrow-down.svg" alt="" />
+					</div>
+				</div>
+				<div class="collapse-content text-sm sm:text-base font-alibaba text-gray text-justify">
+					<div class="w-full bg-white">
+						<div class="flex justify-between items-center pb-2.5 border-b border-accent">
+							<div class="text-sm text-primary font-alibaba-bold">
+								فیلتر نتایج
+							</div>
+							<div class="text-xs text-gray font-alibaba">پاک کردن همه</div>
+						</div>
+						<div class="mt-2.5 pb-6 border-b border-accent">
+							<div class="text-xs text-gray font-alibaba">معماری و ساخت</div>
+							<div class="space-y-2 mt-1">
+								<div class="flex justify-between items-center">
+									<div class="flex items-center gap-1">
+										<input type="checkbox"
+											   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
+										<div class="text-primary text-base font-alibaba">فلت</div>
+									</div>
+									<div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+										@Model.Where(o => o.ArchitectureType == AriaRealState.Data.Enums.Villa.VillaArchitectureType.Flat).Count()
+									</div>
+								</div>
+								<div class="flex justify-between items-center">
+									<div class="flex items-center gap-1">
+										<input type="checkbox"
+											   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
+										<div class="text-primary text-base font-alibaba">
+											نیم پیلوت
+										</div>
+									</div>
+									<div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+										@Model.Where(o => o.ArchitectureType == AriaRealState.Data.Enums.Villa.VillaArchitectureType.SplitLevel).Count()
+									</div>
+								</div>
+								<div class="flex justify-between items-center">
+									<div class="flex items-center gap-1">
+										<input type="checkbox"
+											   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
+										<div class="text-primary text-base font-alibaba">
+											دوبلکس
+										</div>
+									</div>
+									<div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+										@Model.Where(o => o.ArchitectureType == AriaRealState.Data.Enums.Villa.VillaArchitectureType.Duplex).Count()
+									</div>
+								</div>
+								<div class="flex justify-between items-center">
+									<div class="flex items-center gap-1">
+										<input type="checkbox"
+											   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
+										<div class="text-primary text-base font-alibaba">
+											تریبلکس
+										</div>
+									</div>
+									<div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+										@Model.Where(o => o.ArchitectureType == AriaRealState.Data.Enums.Villa.VillaArchitectureType.Triplex).Count()
+									</div>
+								</div>
+								<div class="flex justify-between items-center">
+									<div class="flex items-center gap-1">
+										<input type="checkbox"
+											   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
+										<div class="text-primary text-base font-alibaba">
+											سایر موارد
+										</div>
+									</div>
+									<div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+										@Model.Where(o => o.ArchitectureType == AriaRealState.Data.Enums.Villa.VillaArchitectureType.Other).Count()
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="mt-6 pb-6 border-b border-accent">
+							<div class="text-xs text-gray font-alibaba">موقعیت ملک</div>
+							<div class="space-y-2 mt-1">
+								<div class="flex justify-between items-center">
+									<div class="flex items-center gap-1">
+										<input type="checkbox"
+											   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
+										<div class="text-primary text-base font-alibaba">
+											شهرکی
+										</div>
+									</div>
+									<div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+										@Model.Where(o => o.LocationType == AriaRealState.Data.Enums.PropertyLocationType.GatedCommunity).Count()
+									</div>
+								</div>
+								<div class="flex justify-between items-center">
+									<div class="flex items-center gap-1">
+										<input type="checkbox"
+											   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
+										<div class="text-primary text-base font-alibaba">
+											مستقل
+										</div>
+									</div>
+									<div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+										@Model.Where(o => o.LocationType == AriaRealState.Data.Enums.PropertyLocationType.Detached).Count()
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="mt-6">
+							<div class="text-xs text-gray font-alibaba">کارکرد</div>
+							<div class="space-y-2 mt-1">
+								<div class="flex justify-between items-center">
+									<div class="flex items-center gap-1">
+										<input type="checkbox"
+											   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
+										<div class="text-primary text-base font-alibaba">
+											کلید خورده
+										</div>
+									</div>
+									<div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+										@Model.Where(o => o.OccupancyStatus == AriaRealState.Data.Enums.Villa.VillaOccupancyStatus.Resale).Count()
+									</div>
+								</div>
+								<div class="flex justify-between items-center">
+									<div class="flex items-center gap-1">
+										<input type="checkbox"
+											   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs" />
+										<div class="text-primary text-base font-alibaba">
+											کلید نخورده
+										</div>
+									</div>
+									<div class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+										@Model.Where(o => o.OccupancyStatus == AriaRealState.Data.Enums.Villa.VillaOccupancyStatus.BrandNew).Count()
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-                <div class="sort-tab cursor-pointer">جدیدترین</div>
-                <div class="sort-tab cursor-pointer">بیشترین بازدید</div>
-                <div class="sort-tab cursor-pointer">ارزان‌ترین</div>
-                <div class="sort-tab cursor-pointer">گران‌ترین</div>
-            </div>
+			@* mobile *@
+			<div class="collapse p-0 lg:hidden bg-white rounded-md border border-border group">
+				<input type="checkbox" name="my-accordion-1" />
+				<div class="collapse-title flex justify-between p-3 items-center text-gray font-alibaba text-sm">
+					<div class="text-gray font-alibaba text-sm">متراژ ها</div>
+					<div class="w-6 h-6 bg-primary flex rounded-full items-center justify-center transition-transform duration-300 group-has-[input:checked]:rotate-180">
+						<img src="public/svg/arrow-down.svg" alt="" />
+					</div>
+				</div>
+				<div class="collapse-content text-sm sm:text-base font-alibaba text-gray text-justify">
+					<div class="w-full bg-white">
+						<div class="flex justify-between items-center pb-2.5 border-b border-accent">
+							<div class="text-sm text-primary font-alibaba-bold">
+								متراژ ها
+							</div>
+							<div class="text-xs text-gray font-alibaba">پاک کردن همه</div>
+						</div>
+						<div class="mt-2.5">
+							<div class="text-gray text-xs">
+								متراژ زیر بنا
+								<span class="text-primary font-alibaba">(متر مربع)</span>
+							</div>
+							<div class="mt-2 flex justify-between items-center gap-2.5">
+								<input type="text"
+									   placeholder="حداقل متراژ "
+									   class="input rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
+								<input type="text"
+									   placeholder="حداکثر متراژ "
+									   class="input rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
+							</div>
+						</div>
+						<div class="mt-2.5">
+							<div class="text-gray text-xs">
+								متراژ زمین
+								<span class="text-primary font-alibaba">(متر مربع)</span>
+							</div>
+							<div class="mt-2 flex justify-between items-center gap-2.5">
+								<input type="text"
+									   placeholder="حداقل متراژ "
+									   class="input rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
+								<input type="text"
+									   placeholder="حداکثر متراژ "
+									   class="input rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-            <div class="text-xs sm:text-sm text-gray">800 مورد فایل</div>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 mt-2 sm:mt-4 gap-3 sm:gap-4">
-            
 
-            @foreach (var villa in Model)
-            {
-                <div class="bg-white rounded-lg p-2.5">
-                    <div class="relative w-full text-white">
-                        <img src="@villa.CoverImage"
-                             class="w-full h-100 rounded-md object-cover" />
+			<div class=" lg:hidden collapse p-0 bg-white rounded-md border border-border group">
+				<input type="checkbox" name="my-accordion-1" />
+				<div class="collapse-title flex justify-between p-3 items-center text-gray font-alibaba text-sm">
+					<div>سن بنا</div>
+					<div class="w-6 h-6 bg-primary flex rounded-full items-center justify-center transition-transform duration-300 group-has-[input:checked]:rotate-180">
+						<img src="public/svg/arrow-down.svg" alt="" />
+					</div>
+				</div>
+				<div class="collapse-content text-sm sm:text-base font-alibaba text-gray text-justify">
+					<input type="text"
+						   placeholder="سن بنا"
+						   class="input w-full rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
+				</div>
+			</div>
+			<div class=" lg:hidden collapse p-0 bg-white rounded-md border border-border group">
+				<input type="checkbox" name="my-accordion-1" />
+				<div class="collapse-title flex justify-between p-3 items-center text-gray font-alibaba text-sm">
+					<div>تعداد اتاق</div>
+					<div class="w-6 h-6 bg-primary flex rounded-full items-center justify-center transition-transform duration-300 group-has-[input:checked]:rotate-180">
+						<img src="public/svg/arrow-down.svg" alt="" />
+					</div>
+				</div>
+				<div class="collapse-content text-sm sm:text-base font-alibaba text-gray text-justify">
+					<input type="text"
+						   placeholder="تعداد اتاق"
+						   class="input w-full rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
+				</div>
+			</div>
+			<div class=" lg:hidden collapse p-0 bg-white rounded-md border border-border group">
+				<input type="checkbox" name="my-accordion-1" />
+				<div class="collapse-title flex justify-between p-3 items-center text-gray font-alibaba text-sm">
+					<div>امکانات پیشرفته</div>
+					<div class="w-6 h-6 bg-primary flex rounded-full items-center justify-center transition-transform duration-300 group-has-[input:checked]:rotate-180">
+						<img src="public/svg/arrow-down.svg" alt="" />
+					</div>
+				</div>
+				<div class="collapse-content text-sm sm:text-base font-alibaba text-gray text-justify">
+					<input type="text"
+						   placeholder="امکانات پیشرفته"
+						   class="input w-full rounded-sm h-8 border border-border font-alibaba bg-white text-sm text-gray" />
+				</div>
+			</div>
 
-                        <div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
 
-                        <div class="absolute w-full p-2 bottom-0 z-10">
-                            <div class="text-base font-alibaba">
-                                @villa.Title کد @villa.Code
-                            </div>
-                            <div class="flex mt-1 items-center gap-4">
-                                <div class="flex items-center gap-1">
-                                    <img src="public/svg/calendar.svg" alt="" />
-                                    <div class="text-base">1398</div>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <img src="public/svg/area-.svg" alt="" />
-                                    <div class="text-base">@villa.InfrastructureSize</div>
-                                    <div class="text-base">متر</div>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <img src="public/svg/bed.svg" alt="" />
-                                    <div class="text-base">@villa.RoomCount</div>
-                                    <div class="text-base">خوابه</div>
-                                </div>
-                            </div>
-                            <div class="mt-2 flex justify-between items-center">
-                                <div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
-                                    <div class="text-base text-primary">@villa.ShowPrice.ToString("N0")</div>
-                                    <div class="text-xs text-primary">تومان</div>
-                                </div>
-                                <div class="flex items-center gap-0.5">
-                                    <img src="public/svg/time.svg" alt="" />
-                                    <div class="text-xs">دقایقی پیش</div>
-                                </div>
-                            </div>
-                        </div>
-                        @if (villa.IsImmediate)
-                        {
-                            <div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
-                                فوری
-                            </div>
-                        }
+		</form>
+		<form method="get" asp-action="Buy" asp-controller="Villa" class="space-y-2 sm:space-y-4 hidden lg:block">
 
-                    </div>
-                </div>
+			<!-- سرچ دسکتاپ -->
+			<label class="flex input w-full h-15 rounded-md bg-white border border-border text-dark">
+				<img src="public/svg/search.svg" alt="" />
+				<input type="search"
+					   name="searchTerm"
+					   value="@qSearch"
+					   placeholder="جستجو کد ملک"
+					   class="text-sm" />
+				<button type="submit" class="btn border-0 bg-primary text-white text-sm py-2.5 px-3 rounded-sm">
+					جستجو
+				</button>
+			</label>
 
-            }
-        </div>
-        <button class="btn bg-primary border-0! h-12 rounded-md mx-auto mt-5 lg:mt-10 w-full max-w-60 px-2 flex justify-between">
-            <span class="text-white text-sm font-alibaba">
-                مشاهده فایل های بیشتر
-            </span>
-            <div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">
-                <img src="public/svg/arrow-more.svg" alt="arrow-up" />
-            </div>
-        </button>
-    </div>
+			<!-- فیلتر دسکتاپ -->
+			<div class="w-full bg-white rounded-md p-4 border border-border">
+				<div class="flex justify-between items-center pb-2.5 border-b border-accent">
+					<div class="text-sm text-primary font-alibaba-bold">فیلتر نتایج</div>
+					<a href="/Villa/Buy" class="text-xs text-gray font-alibaba">پاک کردن همه</a>
+				</div>
+
+				<!-- معماری -->
+				<div class="mt-2.5 pb-6 border-b border-accent">
+					<div class="text-xs text-gray font-alibaba">معماری و ساخت</div>
+					<div class="space-y-2 mt-1">
+
+						<label class="flex justify-between items-center">
+							<span class="flex items-center gap-1">
+								<input type="checkbox"
+									   name="selectedArchitectureTypes"
+									   value="@((int)VillaArchitectureType.Flat)"
+									   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs"
+									   @(IsChecked("selectedArchitectureTypes", (int)VillaArchitectureType.Flat) ? "checked" : "") />
+								<span class="text-primary text-base font-alibaba">فلت</span>
+							</span>
+							<span class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+								@Model.Count(o => o.ArchitectureType == VillaArchitectureType.Flat)
+							</span>
+						</label>
+
+						<label class="flex justify-between items-center">
+							<span class="flex items-center gap-1">
+								<input type="checkbox"
+									   name="selectedArchitectureTypes"
+									   value="@((int)VillaArchitectureType.SplitLevel)"
+									   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs"
+									   @(IsChecked("selectedArchitectureTypes", (int)VillaArchitectureType.SplitLevel) ? "checked" : "") />
+								<span class="text-primary text-base font-alibaba">نیم پیلوت</span>
+							</span>
+							<span class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+								@Model.Count(o => o.ArchitectureType == VillaArchitectureType.SplitLevel)
+							</span>
+						</label>
+
+						<label class="flex justify-between items-center">
+							<span class="flex items-center gap-1">
+								<input type="checkbox"
+									   name="selectedArchitectureTypes"
+									   value="@((int)VillaArchitectureType.Duplex)"
+									   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs"
+									   @(IsChecked("selectedArchitectureTypes", (int)VillaArchitectureType.Duplex) ? "checked" : "") />
+								<span class="text-primary text-base font-alibaba">دوبلکس</span>
+							</span>
+							<span class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+								@Model.Count(o => o.ArchitectureType == VillaArchitectureType.Duplex)
+							</span>
+						</label>
+
+						<label class="flex justify-between items-center">
+							<span class="flex items-center gap-1">
+								<input type="checkbox"
+									   name="selectedArchitectureTypes"
+									   value="@((int)VillaArchitectureType.Triplex)"
+									   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs"
+									   @(IsChecked("selectedArchitectureTypes", (int)VillaArchitectureType.Triplex) ? "checked" : "") />
+								<span class="text-primary text-base font-alibaba">تریبلکس</span>
+							</span>
+							<span class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+								@Model.Count(o => o.ArchitectureType == VillaArchitectureType.Triplex)
+							</span>
+						</label>
+
+						<label class="flex justify-between items-center">
+							<span class="flex items-center gap-1">
+								<input type="checkbox"
+									   name="selectedArchitectureTypes"
+									   value="@((int)VillaArchitectureType.Other)"
+									   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs"
+									   @(IsChecked("selectedArchitectureTypes", (int)VillaArchitectureType.Other) ? "checked" : "") />
+								<span class="text-primary text-base font-alibaba">سایر موارد</span>
+							</span>
+							<span class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+								@Model.Count(o => o.ArchitectureType == VillaArchitectureType.Other)
+							</span>
+						</label>
+
+					</div>
+				</div>
+
+				<!-- موقعیت -->
+				<div class="mt-6 pb-6 border-b border-accent">
+					<div class="text-xs text-gray font-alibaba">موقعیت ملک</div>
+					<div class="space-y-2 mt-1">
+
+						<label class="flex justify-between items-center">
+							<span class="flex items-center gap-1">
+								<input type="checkbox"
+									   name="selectedLocationTypes"
+									   value="@((int)PropertyLocationType.GatedCommunity)"
+									   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs"
+									   @(IsChecked("selectedLocationTypes", (int)PropertyLocationType.GatedCommunity) ? "checked" : "") />
+								<span class="text-primary text-base font-alibaba">شهرکی</span>
+							</span>
+							<span class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+								@Model.Count(o => o.LocationType == PropertyLocationType.GatedCommunity)
+							</span>
+						</label>
+
+						<label class="flex justify-between items-center">
+							<span class="flex items-center gap-1">
+								<input type="checkbox"
+									   name="selectedLocationTypes"
+									   value="@((int)PropertyLocationType.Detached)"
+									   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs"
+									   @(IsChecked("selectedLocationTypes", (int)PropertyLocationType.Detached) ? "checked" : "") />
+								<span class="text-primary text-base font-alibaba">مستقل</span>
+							</span>
+							<span class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+								@Model.Count(o => o.LocationType == PropertyLocationType.Detached)
+							</span>
+						</label>
+
+					</div>
+				</div>
+
+				<!-- کارکرد -->
+				<div class="mt-6">
+					<div class="text-xs text-gray font-alibaba">کارکرد</div>
+					<div class="space-y-2 mt-1">
+
+						<label class="flex justify-between items-center">
+							<span class="flex items-center gap-1">
+								<input type="checkbox"
+									   name="selectedOccupancyStatuses"
+									   value="@((int)VillaOccupancyStatus.Resale)"
+									   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs"
+									   @(IsChecked("selectedOccupancyStatuses", (int)VillaOccupancyStatus.Resale) ? "checked" : "") />
+								<span class="text-primary text-base font-alibaba">کلید خورده</span>
+							</span>
+							<span class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+								@Model.Count(o => o.OccupancyStatus == VillaOccupancyStatus.Resale)
+							</span>
+						</label>
+
+						<label class="flex justify-between items-center">
+							<span class="flex items-center gap-1">
+								<input type="checkbox"
+									   name="selectedOccupancyStatuses"
+									   value="@((int)VillaOccupancyStatus.BrandNew)"
+									   class="checkbox checkbox-primary checkbox-xs border-border rounded-xs"
+									   @(IsChecked("selectedOccupancyStatuses", (int)VillaOccupancyStatus.BrandNew) ? "checked" : "") />
+								<span class="text-primary text-base font-alibaba">کلید نخورده</span>
+							</span>
+							<span class="bg-accent text-gray w-6 h-6 text-center rounded-full text-sm font-alibaba">
+								@Model.Count(o => o.OccupancyStatus == VillaOccupancyStatus.BrandNew)
+							</span>
+						</label>
+					</div>
+				</div>
+
+			</div>
+		</form>
+	</div>
+	<div class="col-span-1 lg:col-span-9">
+		<div class="flex flex-col sm:flex-row justify-between gap-2 sm:gap-0 items-center border-b border-b-accent py-2 sm:py-4">
+			<div class="flex flex-wrap justify-center text-gray text-sm sm:text-base items-center gap-5 sm:gap-10"
+				 id="sortTabs">
+				<div class="text-sm sm:text-base">مرتب‌سازی</div>
+
+				<div class="sort-tab cursor-pointer">جدیدترین</div>
+				<div class="sort-tab cursor-pointer">بیشترین بازدید</div>
+				<div class="sort-tab cursor-pointer">ارزان‌ترین</div>
+				<div class="sort-tab cursor-pointer">گران‌ترین</div>
+			</div>
+
+			<div class="text-xs sm:text-sm text-gray">800 مورد فایل</div>
+		</div>
+		<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 mt-2 sm:mt-4 gap-3 sm:gap-4">
+
+
+			@foreach (var villa in Model)
+			{
+				var nowPersianYear = new PersianDateTime(DateTime.Now).Year;
+				var builtYear = nowPersianYear - villa.BuildingYear;
+				<div class="bg-white rounded-lg p-2.5">
+					<div class="relative w-full text-white">
+						<img src="@villa.CoverImage"
+							 class="w-full h-100 rounded-md object-cover" />
+
+						<div class="absolute inset-0 rounded-md bg-linear-to-t from-black/80 to-transparent"></div>
+
+						<div class="absolute w-full p-2 bottom-0 z-10">
+							<div class="text-base font-alibaba">
+								@villa.Title کد @villa.Code
+							</div>
+							<div class="flex mt-1 items-center gap-4">
+								<div class="flex items-center gap-1">
+									<img src="public/svg/calendar.svg" alt="" />
+									<div class="text-base">@builtYear</div>
+								</div>
+								<div class="flex items-center gap-1">
+									<img src="public/svg/area-.svg" alt="" />
+									<div class="text-base">@villa.InfrastructureSize</div>
+									<div class="text-base">متر</div>
+								</div>
+								<div class="flex items-center gap-1">
+									<img src="public/svg/bed.svg" alt="" />
+									<div class="text-base">@villa.RoomCount</div>
+									<div class="text-base">خوابه</div>
+								</div>
+							</div>
+							<div class="mt-2 flex justify-between items-center">
+								<div class="bg-white flex items-center gap-1 rounded-sm p-0.5">
+									<div class="text-base text-primary">@villa.ShowPrice.ToString("N0")</div>
+									<div class="text-xs text-primary">تومان</div>
+								</div>
+								<div class="flex items-center gap-0.5">
+									<img src="public/svg/time.svg" alt="" />
+									<div class="text-xs">دقایقی پیش</div>
+								</div>
+							</div>
+						</div>
+						@if (villa.IsImmediate)
+						{
+							<div class="bg-orange text-white flex justify-center items-center font-alibaba px-1 py-2.5 rounded-full absolute left-1 top-1">
+								فوری
+							</div>
+						}
+
+					</div>
+				</div>
+
+			}
+		</div>
+		<button class="btn bg-primary border-0! h-12 rounded-md mx-auto mt-5 lg:mt-10 w-full max-w-60 px-2 flex justify-between">
+			<span class="text-white text-sm font-alibaba">
+				مشاهده فایل های بیشتر
+			</span>
+			<div class="w-8 h-8 rounded-full bg-white flex justify-center items-center">
+				<img src="~/public/svg/arrow-more.svg" alt="arrow-up" />
+			</div>
+		</button>
+	</div>
 </section>
