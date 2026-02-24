@@ -126,7 +126,30 @@
 				</div>
 
 				<div class="sm:col-span-3">
-					<label class="mb-[10px] text-black dark:text-white font-medium block"> Description </label>
+					<label class="mb-[10px] text-black dark:text-white font-medium block">
+						امکانات پیشرفته ویلا
+					</label>
+
+					<div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-[12px]">
+						@foreach (var item in
+												Html.GetEnumSelectList<AriaRealState.Data.Enums.Villa.AdvanceFacilityEnum>())
+						{
+							<label
+								class="flex items-center gap-[5px] p-3 rounded-md  bg-white dark:bg-[#0c1427] cursor-pointer">
+								<input type="checkbox"                       class="h-4 w-4 accent-primary-500"                       name="SelectedFacilities"
+									   value="@item.Value" />
+
+								<span class="text-sm text-black dark:text-white">@item.Text</span>
+							</label>
+						}
+					</div>
+
+					<span asp-validation-for="SelectedAdvanceFacilities"
+						  class="text-danger-400 text-sm mt-[10px] block"></span>
+				</div>
+
+				<div class="sm:col-span-3">
+					<label class="mb-[10px] text-black dark:text-white font-medium block"> توضیحات </label>
 
 					<!-- Visible rich text editor -->
 					<div id="richTextEditor" class="!h-[179px]"></div>
@@ -205,7 +228,7 @@
 									   class="absolute top-0 left-0 right-0 bottom-0 rounded-md z-[1] opacity-0 cursor-pointer"
 									   name="GalleriesFile" multiple accept="image/*" />
 							</div>
-							<ul id="fileList"></ul>
+							<ul id="fileList" class="text-primary-500"></ul>
 						</div>
 						<span asp-validation-for="GalleriesFile" class="text-danger-400 text-sm mt-[10px] block"></span>
 					</div>
@@ -239,39 +262,79 @@
 	<partial name="_ValidationScriptsPartial" />
 
 	<script>
-			// If you are using a rich text editor (Quill/TinyMCE/etc),
-			// make sure Description is synced before submit.
-			(function () {
-			  const form = document.querySelector('form');
-			  const desc = document.getElementById('Description');
-			  const editor = document.getElementById('richTextEditor');
+				(function () {
 
-			  if (!form || !desc || !editor) return;
+					const form = document.querySelector('form');
+					const desc = document.getElementById('Description');
+					const editor = document.getElementById('richTextEditor');
 
-			  // Try to load initial value into editor (simple fallback)
-			  if (desc.value && !editor.innerHTML.trim()) {
-				editor.innerHTML = desc.value;
-			  }
+					// Sync Rich Text Editor
+					if (form && desc && editor) {
 
-			  form.addEventListener('submit', function () {
-				// Basic sync: store HTML
-				desc.value = editor.innerHTML;
-			  });
+						if (desc.value && !editor.innerHTML.trim()) {
+							editor.innerHTML = desc.value;
+						}
 
-			  // Optional: show selected gallery files in the list (keeps your existing UI)
-			  const fileInput = document.getElementById('fileInput');
-			  const fileList = document.getElementById('fileList');
-			  if (fileInput && fileList) {
-				fileInput.addEventListener('change', function () {
-				  fileList.innerHTML = '';
-				  for (const f of fileInput.files) {
-					const li = document.createElement('li');
-					li.className = "text-sm mt-[10px]";
-					li.textContent = f.name;
-					fileList.appendChild(li);
-				  }
-				});
-			  }
-			})();
+						form.addEventListener('submit', function () {
+							desc.value = editor.innerHTML;
+						});
+					}
+
+					// ---------- Gallery Multiple Files ----------
+					const fileInput = document.getElementById('fileInput');
+					const fileList = document.getElementById('fileList');
+
+					if (fileInput && fileList) {
+						fileInput.addEventListener('change', function () {
+							fileList.innerHTML = '';
+
+							for (const f of fileInput.files) {
+								const li = document.createElement('li');
+								li.className = "text-sm mt-[10px] text-primary-500";
+								li.textContent = f.name;
+								fileList.appendChild(li);
+							}
+						});
+					}
+
+					// ---------- Cover Image ----------
+					const coverInput = document.getElementById('coverInput');
+
+					if (coverInput) {
+						const coverContainer = coverInput.closest('#coverUploader');
+						const coverName = document.createElement('div');
+						coverName.className = "text-sm mt-[10px] text-primary-500";
+
+						coverContainer.appendChild(coverName);
+
+						coverInput.addEventListener('change', function () {
+							if (coverInput.files.length > 0) {
+								coverName.textContent = coverInput.files[0].name;
+							} else {
+								coverName.textContent = '';
+							}
+						});
+					}
+
+					// ---------- Video File ----------
+					const videoInput = document.querySelector('input[asp-for="VideoFile"], input[name="VideoFile"]');
+
+					if (videoInput) {
+						const videoContainer = videoInput.closest('#videoUploader');
+						const videoName = document.createElement('div');
+						videoName.className = "text-sm mt-[10px] text-primary-500";
+
+						videoContainer.appendChild(videoName);
+
+						videoInput.addEventListener('change', function () {
+							if (videoInput.files.length > 0) {
+								videoName.textContent = videoInput.files[0].name;
+							} else {
+								videoName.textContent = '';
+							}
+						});
+					}
+
+				})();
 	</script>
 }
