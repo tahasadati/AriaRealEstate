@@ -61,6 +61,14 @@
 					<span asp-validation-for="RoomCount" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
+				<div>
+					<label class="mb-[10px] text-black dark:text-white font-medium block">محله</label>
+					<input type="string"
+						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
+						   placeholder="محله" asp-for="NeighborhoodName" />
+					<span asp-validation-for="NeighborhoodName" class="text-danger-400 text-sm mt-[10px] block"></span>
+				</div>
+
 				<!-- OccupancyStatus -->
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block">وضعیت ویلا</label>
@@ -105,6 +113,17 @@
 					<span asp-validation-for="IsShow" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
+<div>
+					<label class="mb-[10px] text-black dark:text-white font-medium block"> فروش فوری </label>
+					<select
+						class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
+						asp-for="IsImmediate">
+						<option value="true">فروش فوری</option>
+						<option value="false">فروش غیر فوری</option>
+					</select>
+					<span asp-validation-for="IsImmediate" class="text-danger-400 text-sm mt-[10px] block"></span>
+				</div>
+
 				<!-- InfrastructureSize -->
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block">متراژ زیر بنا</label>
@@ -113,6 +132,8 @@
 						   placeholder="۱۸۰۰" />
 					<span asp-validation-for="InfrastructureSize" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
+
+				
 
 				<!-- LandSize -->
 				<div>
@@ -125,7 +146,7 @@
 
 				<!-- BuildingYear -->
 				<div>
-					<label class="mb-[10px] text-black dark:text-white font-medium block">سال ساخت</label>
+					<label class="mb-[10px] text-black dark:text-white font-medium block">چند سال ساخت</label>
 					<input asp-for="BuildingYear" type="number"
 						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
 						   placeholder="مثلاً ۱۳۹۸" />
