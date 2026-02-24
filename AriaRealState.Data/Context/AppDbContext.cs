@@ -22,7 +22,6 @@ public class AppDbContext : IdentityDbContext<iUser>
     public DbSet<CustomerLikedEstate> CustomerLikedEstates { get; set; }
     public DbSet<Land> Lands { get; set; }
     public DbSet<LandGallery> landGalleries { get; set; }
-    public DbSet<Neighborhood> Neighborhoods { get; set; }
     public DbSet<UserActivity> UserActivities { get; set; }
     public DbSet<Villa> Villas { get; set; }
     public DbSet<VillaAdvanceFacility> VillaAdvanceFacilities { get; set; }

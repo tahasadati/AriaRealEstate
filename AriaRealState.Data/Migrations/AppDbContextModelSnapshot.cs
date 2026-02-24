@@ -257,6 +257,9 @@ namespace AriaRealState.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsImmediate")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsShow")
                         .HasColumnType("bit");
 
@@ -271,6 +274,9 @@ namespace AriaRealState.Data.Migrations
 
                     b.Property<decimal>("MinPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("NeighborhoodName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("ShowPrice")
                         .HasColumnType("decimal(18,2)");
@@ -321,30 +327,6 @@ namespace AriaRealState.Data.Migrations
                     b.HasIndex("LandId");
 
                     b.ToTable("landGalleries");
-                });
-
-            modelBuilder.Entity("AriaRealState.Data.Entities.Neighborhood", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("NeighborhoodName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Neighborhoods");
                 });
 
             modelBuilder.Entity("AriaRealState.Data.Entities.UserActivity", b =>
@@ -422,6 +404,9 @@ namespace AriaRealState.Data.Migrations
                     b.Property<int>("InfrastructureSize")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsImmediate")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsShow")
                         .HasColumnType("bit");
 
@@ -433,6 +418,9 @@ namespace AriaRealState.Data.Migrations
 
                     b.Property<decimal>("MinPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("NeighborhoodName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OccupancyStatus")
                         .HasColumnType("int");

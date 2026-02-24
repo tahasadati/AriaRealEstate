@@ -76,7 +76,7 @@ public class LandController : Controller
             LocationType = vm.LocationType,
             VideoLink = videoPath,
             CreateByUserId = userId,
-
+            NeighborhoodName = vm.NeighborhoodName,
             CallRequests = new List<CallRequest>(),
             CustomerLikedEstates = new List<CustomerLikedEstate>(),
             LandGalleries = new List<LandGallery>()
@@ -124,6 +124,7 @@ public class LandController : Controller
             LocationType = land.LocationType,
             CurrentCoverImage = land.CoverImage,
             CurrentVideoLink = land.VideoLink,
+            NeighborhoodName = land.NeighborhoodName,
             ExistingGalleries = land.LandGalleries
                 .OrderByDescending(x => x.Id)
                 .Select(x => new ExistingGalleryItemVm
@@ -216,6 +217,7 @@ public class LandController : Controller
         land.LandOrientation = vm.LandOrientation;
         land.UseType = vm.UseType;
         land.LocationType = vm.LocationType;
+        land.NeighborhoodName = vm.NeighborhoodName;
 
         var success = await _landService.UpdateAsync(land, ct);
         if (!success)

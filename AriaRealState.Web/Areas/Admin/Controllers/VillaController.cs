@@ -84,6 +84,7 @@ public class VillaController : Controller
             LocationType = vm.LocationType,
             VideoLink = videoPath,
             CreateByUserId = userId,
+            NeighborhoodName = vm.NeighborhoodName,
         };
 
         // 4) آپلود گالری‌ها (اختیاری)
@@ -139,7 +140,7 @@ public class VillaController : Controller
             ArchitectureType = villa.ArchitectureType,
             OccupancyStatus = villa.OccupancyStatus,
             LocationType = villa.LocationType,
-
+            NeighborhoodName = villa.NeighborhoodName,
             ExistingVideoPath = villa.VideoLink,
             ExistingCoverPath = villa.CoverImage,
 
@@ -190,12 +191,12 @@ public class VillaController : Controller
         villa.ArchitectureType = vm.ArchitectureType;
         villa.OccupancyStatus = vm.OccupancyStatus;
         villa.LocationType = vm.LocationType;
-
+        villa.NeighborhoodName = vm.NeighborhoodName;
         // کاور: حذف / جایگزینی / حفظ
         if (vm.RemoveCover)
         {
             if (!string.IsNullOrWhiteSpace(villa.CoverImage))
-                 _fileService.DeleteFile(villa.CoverImage);
+                _fileService.DeleteFile(villa.CoverImage);
 
             villa.CoverImage = null; // اگر در DB nullable نیست، باید "" بذاری یا اجباریش کنی
         }
@@ -203,7 +204,7 @@ public class VillaController : Controller
         {
             // اگر قبلا کاور داشت، پاکش کن
             if (!string.IsNullOrWhiteSpace(villa.CoverImage))
-                  _fileService.DeleteFile(villa.CoverImage);
+                _fileService.DeleteFile(villa.CoverImage);
 
             villa.CoverImage = await _fileService.SaveFileAsync(vm.CoverImageFile, "uploads");
         }
@@ -212,14 +213,14 @@ public class VillaController : Controller
         if (vm.RemoveVideo)
         {
             if (!string.IsNullOrWhiteSpace(villa.VideoLink))
-                 _fileService.DeleteFile(villa.VideoLink);
+                _fileService.DeleteFile(villa.VideoLink);
 
             villa.VideoLink = null;
         }
         if (vm.VideoFile != null && vm.VideoFile.Length > 0)
         {
             if (!string.IsNullOrWhiteSpace(villa.VideoLink))
-                 _fileService.DeleteFile(villa.VideoLink);
+                _fileService.DeleteFile(villa.VideoLink);
 
             villa.VideoLink = await _fileService.SaveFileAsync(vm.VideoFile, "uploads");
         }
@@ -262,7 +263,7 @@ public class VillaController : Controller
         var villa = await _villaService.GetByIdAsync(id, ct);
         if (villa == null) return NotFound();
         var isSuccess = await _villaService.RemoveAsync(villa);
-        if(isSuccess)
+        if (isSuccess)
         {
             TempData["Success"] = "ویلا با موفقیت حذف شد.";
             return RedirectToAction(nameof(Index));

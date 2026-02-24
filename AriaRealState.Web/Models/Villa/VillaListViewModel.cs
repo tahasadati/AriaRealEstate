@@ -21,4 +21,5 @@ public class VillaListViewModel
     public PropertyLocationType LocationType { get; set; }
     public string? VideoLink { get; set; }
     public string CreateByUserId { get; set; }
+    public bool IsImmediate { get; set; }
 }

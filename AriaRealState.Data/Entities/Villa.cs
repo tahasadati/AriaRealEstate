@@ -25,6 +25,8 @@ public class Villa : BaseEntity
     public PropertyLocationType LocationType { get; set; }
     public string? VideoLink { get; set; }
     public string CreateByUserId { get; set; }
+    public bool IsImmediate { get; set; } = false;
+    public string? NeighborhoodName { get; set; }
 
 
     public ICollection<CallRequest> CallRequests { get; set; } = new List<CallRequest>();

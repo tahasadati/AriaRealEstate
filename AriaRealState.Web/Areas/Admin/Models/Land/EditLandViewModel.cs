@@ -60,6 +60,10 @@ namespace AriaRealState.Web.Areas.Admin.Models.Land
         public bool RemoveVideo { get; set; }
         public bool RemoveCover { get; set; }
         public List<long> RemoveGalleryIds { get; set; } = new();
+        public bool IsImmediate { get; set; }
+        public string? NeighborhoodName { get; set; }
+
+
     }
 
     public class ExistingGalleryItemVm

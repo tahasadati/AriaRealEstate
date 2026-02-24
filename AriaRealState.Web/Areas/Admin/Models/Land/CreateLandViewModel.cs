@@ -41,4 +41,8 @@ public class CreateLandViewModel
     [Required(ErrorMessage = "مقدار {0} را وارد کنید")]
     public IFormFile CoverImageFile { get; set; }
     public List<IFormFile>? GalleriesFile { get; set; }
+    public bool IsImmediate { get; set; }
+    public string? NeighborhoodName { get; set; }
+
+
 }

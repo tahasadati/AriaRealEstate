@@ -58,4 +58,7 @@ public class CreateVillaViewModel
 
     [Display(Name = "امکانات پیشرفته")]
     public List<AdvanceFacilityEnum> SelectedAdvanceFacilities { get; set; } = new();
+    public bool IsImmediate { get; set; }
+    public string? NeighborhoodName { get; set; }
+
 }

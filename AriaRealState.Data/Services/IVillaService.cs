@@ -1,10 +1,12 @@
 ﻿using AriaRealState.Data.Context;
 using AriaRealState.Data.Entities;
+using AriaRealState.Data.Enums;
 using AriaRealState.Data.Enums.Villa;
 using AriaRealState.Data.Helps.Dtos;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AriaRealState.Data.Services;
@@ -16,7 +18,12 @@ public interface IVillaService
     Task<Villa?> GetByIdAsync(long id, CancellationToken ct = default);
     Task<PaginatedList<Villa>> GetPaginatedAsync(int page, int pageSize, CancellationToken ct = default);
     Task<List<Villa>> GetAllAsync(CancellationToken ct = default);
-    Task<List<Villa>> GetUserList(int size, CancellationToken ct = default);
+    Task<List<Villa>> GetUserList(string? searchTerm,
+    List<VillaArchitectureType> selectedArchitectureTypes,
+    List<PropertyLocationType> selectedLocationTypes,
+    List<VillaOccupancyStatus> selectedOccupancyStatuses,
+    int size = 45,
+    CancellationToken ct = default);
     Task<bool> RemoveAsync(Villa villa, CancellationToken ct = default);
     Task<bool> UpdateAdvanceFacilitiesAsync(long villaId, List<AdvanceFacilityEnum> selected, CancellationToken ct = default);
 
@@ -148,5 +155,53 @@ public class VillaService : IVillaService
         {
             return false;
         }
+    }
+
+    public async Task<List<Villa>> GetUserList(
+    string? searchTerm,
+    List<VillaArchitectureType> selectedArchitectureTypes,
+    List<PropertyLocationType> selectedLocationTypes,
+    List<VillaOccupancyStatus> selectedOccupancyStatuses,
+    int size = 45,
+    CancellationToken ct = default)
+    {
+        selectedArchitectureTypes ??= new();
+        selectedLocationTypes ??= new();
+        selectedOccupancyStatuses ??= new();
+
+        // شروع با query اولیه
+        var query = _db.Villas
+            .Where(o => o.IsShow)
+            .AsQueryable()
+            .AsNoTracking();
+
+        // فیلتر بر اساس کلمه جستجو
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            query = query.Where(v => v.Code.Contains(searchTerm) || v.Title.Contains(searchTerm));
+        }
+
+        // فیلتر بر اساس نوع معماری
+        if (selectedArchitectureTypes.Any())
+        {
+            query = query.Where(v => selectedArchitectureTypes.Contains(v.ArchitectureType));
+        }
+
+        // فیلتر بر اساس موقعیت
+        if (selectedLocationTypes.Any())
+        {
+            query = query.Where(v => selectedLocationTypes.Contains(v.LocationType));
+        }
+
+        // فیلتر بر اساس وضعیت اشغال
+        if (selectedOccupancyStatuses.Any())
+        {
+            query = query.Where(v => selectedOccupancyStatuses.Contains(v.OccupancyStatus));
+        }
+
+        return await query
+         .OrderByDescending(v => v.Id)
+         .Take(size)
+         .ToListAsync(ct);
     }
 }
