@@ -55,6 +55,8 @@ namespace AriaRealState.Web.Areas.Admin.Models.Villa
         public List<AdvanceFacilityEnum> SelectedAdvanceFacilities { get; set; } = new();
         public List<AdvanceFacilityEnum> ExistingAdvanceFacilities { get; set; } = new();
         public bool IsImmediate { get; set; }
+        public string? NeighborhoodName { get; set; }
+
 
     }
 }
