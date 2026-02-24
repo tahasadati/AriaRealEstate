@@ -16,179 +16,177 @@
 
 			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[20px] md:gap-[25px]">
 
+				<!-- Code -->
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block">کد ویلا</label>
-					<input type="text"
+					<input asp-for="Code" type="text"
 						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
-						   placeholder="کد ویلا" asp-for="Code" />
+						   placeholder="کد ویلا" />
 					<span asp-validation-for="Code" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
+				<!-- Title -->
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block">نام ویلا</label>
-					<input type="text"
+					<input asp-for="Title" type="text"
 						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
-						   placeholder="نام ویلا" asp-for="Title" />
+						   placeholder="نام ویلا" />
 					<span asp-validation-for="Title" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
+				<!-- ShowPrice -->
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block">قیمت ویلا</label>
-					<input type="number"
+					<input asp-for="ShowPrice" type="number"
 						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
-						   placeholder="قیمت" asp-for="ShowPrice" />
+						   placeholder="قیمت" />
 					<span asp-validation-for="ShowPrice" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
+				<!-- MinPrice -->
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block">حداقل قیمت</label>
-					<input type="number"
+					<input asp-for="MinPrice" type="number"
 						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
-						   placeholder="حداقل قیمت" asp-for="MinPrice" />
+						   placeholder="حداقل قیمت" />
 					<span asp-validation-for="MinPrice" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
+				<!-- RoomCount -->
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block">تعداد اتاق خواب</label>
-					<input type="number"
+					<input asp-for="RoomCount" type="number"
 						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
-						   placeholder="تعداد اتاق خواب" asp-for="RoomCount" />
+						   placeholder="تعداد اتاق خواب" />
 					<span asp-validation-for="RoomCount" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
+				<!-- OccupancyStatus -->
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block">وضعیت ویلا</label>
-					<select
-						class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
-						asp-for="OccupancyStatus"
-						asp-items="Html.GetEnumSelectList<AriaRealState.Data.Enums.Villa.VillaOccupancyStatus>()">
+					<select asp-for="OccupancyStatus"
+							asp-items="Html.GetEnumSelectList<AriaRealState.Data.Enums.Villa.VillaOccupancyStatus>()"
+							class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500">
 						<option value="">انتخاب کنید</option>
 					</select>
 					<span asp-validation-for="OccupancyStatus" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
+				<!-- ArchitectureType -->
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block">نوع ویلا</label>
-					<select
-						class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
-						asp-for="ArchitectureType"
-						asp-items="Html.GetEnumSelectList<AriaRealState.Data.Enums.Villa.VillaArchitectureType>()">
+					<select asp-for="ArchitectureType"
+							asp-items="Html.GetEnumSelectList<AriaRealState.Data.Enums.Villa.VillaArchitectureType>()"
+							class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500">
 						<option value="">انتخاب کنید</option>
 					</select>
 					<span asp-validation-for="ArchitectureType" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
+				<!-- LocationType -->
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block">نوع موقعیت</label>
-					<select
-						class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
-						asp-for="LocationType"
-						asp-items="Html.GetEnumSelectList<AriaRealState.Data.Enums.PropertyLocationType>()">
+					<select asp-for="LocationType"
+							asp-items="Html.GetEnumSelectList<AriaRealState.Data.Enums.PropertyLocationType>()"
+							class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500">
 						<option value="">انتخاب کنید</option>
 					</select>
 					<span asp-validation-for="LocationType" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
+				<!-- IsShow -->
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block">نمایش در سایت</label>
-					<select
-						class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
-						asp-for="IsShow">
+					<select asp-for="IsShow"
+							class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500">
 						<option value="true">نمایش داده شود</option>
 						<option value="false">نمایش داده نشود</option>
 					</select>
 					<span asp-validation-for="IsShow" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
+				<!-- InfrastructureSize -->
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block">متراژ زیر بنا</label>
-					<input type="number"
+					<input asp-for="InfrastructureSize" type="number"
 						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
-						   placeholder="۱۸۰۰" asp-for="InfrastructureSize" />
-					<span asp-validation-for="InfrastructureSize"
-						  class="text-danger-400 text-sm mt-[10px] block"></span>
+						   placeholder="۱۸۰۰" />
+					<span asp-validation-for="InfrastructureSize" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
+				<!-- LandSize -->
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block">متراژ زمین</label>
-					<input type="number"
+					<input asp-for="LandSize" type="number"
 						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
-						   placeholder="متراژ زمین" asp-for="LandSize" />
+						   placeholder="متراژ زمین" />
 					<span asp-validation-for="LandSize" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
+				<!-- BuildingYear -->
 				<div>
 					<label class="mb-[10px] text-black dark:text-white font-medium block">سال ساخت</label>
-					<input type="number"
+					<input asp-for="BuildingYear" type="number"
 						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
-						   placeholder="مثلاً ۱۳۹۸" asp-for="BuildingYear" />
+						   placeholder="مثلاً ۱۳۹۸" />
 					<span asp-validation-for="BuildingYear" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
+				<!-- Description -->
 				<div class="sm:col-span-3">
 					<label class="mb-[10px] text-black dark:text-white font-medium block">توضیحات</label>
-
 					<div id="richTextEditor" class="!h-[179px]"></div>
 					<textarea asp-for="Description" id="Description" class="hidden"></textarea>
-
 					<span asp-validation-for="Description" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
 				<!-- Advanced Facilities -->
 				<div class="sm:col-span-3">
-					<label class="mb-[10px] text-black dark:text-white font-medium block">
-						امکانات پیشرفته ویلا
-					</label>
+					<label class="mb-[10px] text-black dark:text-white font-medium block">امکانات پیشرفته ویلا</label>
 
 					<div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-[12px]">
-						@foreach (var item in
-																																																																																																																																																												Html.GetEnumSelectList<AriaRealState.Data.Enums.Villa.AdvanceFacilityEnum>())
+						@foreach (var item in Html.GetEnumSelectList<AriaRealState.Data.Enums.Villa.AdvanceFacilityEnum>())
 						{
 							var enumVal = (AriaRealState.Data.Enums.Villa.AdvanceFacilityEnum)int.Parse(item.Value);
 
-							<label
-								class="flex items-center gap-[8px] p-3 rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] cursor-pointer">
-								<input type="checkbox" class="h-4 w-4 accent-primary-500" name="SelectedAdvanceFacilities"
-									   value="@item.Value" @(Model.SelectedAdvanceFacilities != null &&
-																																																																																																																																																																																																																																																																																																																																																																																																																  								Model.SelectedAdvanceFacilities.Contains(enumVal) ? "checked" : "") />
+							<label class="flex items-center gap-[8px]">
+								<input type="checkbox"
+									   class="h-4 w-4 accent-primary-500"
+									   name="SelectedAdvanceFacilities"
+									   value="@item.Value"
+									   @(Model.SelectedAdvanceFacilities != null && Model.SelectedAdvanceFacilities.Contains(enumVal) ? "checked" : "") />
 
 								<span class="text-sm text-black dark:text-white">@item.Text</span>
 							</label>
 						}
 					</div>
 
-					<span asp-validation-for="SelectedAdvanceFacilities"
-						  class="text-danger-400 text-sm mt-[10px] block"></span>
+					<span asp-validation-for="SelectedAdvanceFacilities" class="text-danger-400 text-sm mt-[10px] block"></span>
 				</div>
 
-				<!-- Uploaders (same as Create, but show existing first) -->
+				<!-- Uploaders -->
 				<div class="grid sm:grid-cols-3 sm:col-span-3 gap-[12px]">
 
 					<!-- Video -->
 					<div>
 						<label class="mb-[10px] text-black dark:text-white font-medium block">آپلود ویدئو</label>
 
-						@if (!string.IsNullOrWhiteSpace(Model.ExistingVideoPath))
-						{
-							<div>
-								<div class="rounded-md border border-gray-200 dark:border-[#172036] p-2">
-									<video controls class="w-full rounded h-[225px]">
-										<source src="@Model.ExistingVideoPath" type="video/mp4" />
-									</video>
-								</div>
-								<label class="flex items-center gap-[5px] p-[10px] text-sm text-black dark:text-white">
-									<input type="checkbox" asp-for="RemoveVideo" class="text-sm accent-danger-500" />
-									حذف ویدئوی فعلی
-								</label>
-							</div>
-						}
+						<div id="videoPreviewWrap"
+							 class="rounded-md border border-gray-200 dark:border-[#172036] p-2 @(string.IsNullOrWhiteSpace(Model.ExistingVideoPath) ? "hidden" : "")">
+							<video id="videoPreview" controls class="w-full rounded h-[225px] object-contain">
+								<source id="videoSource" src="@Model.ExistingVideoPath" type="video/mp4" />
+							</video>
 
-						<div id="videoUploader">
-							<div
-								class="relative flex items-center justify-center overflow-hidden rounded-md py-[88px] px-[20px] border border-gray-200 dark:border-[#172036]">
+							<label class="flex items-center gap-[5px] p-[10px] text-sm text-black dark:text-white">
+								<input type="checkbox" asp-for="RemoveVideo" class="text-sm accent-danger-500" />
+								حذف ویدئوی فعلی
+							</label>
+						</div>
+
+						<div id="videoUploader" class="mt-[10px]">
+							<div class="relative flex items-center justify-center overflow-hidden rounded-md h-[220px] px-[20px] border border-gray-200 dark:border-[#172036]">
 								<div class="flex items-center justify-center">
-									<div
-										class="w-[35px] h-[35px] border border-gray-100 dark:border-[#15203c] flex items-center justify-center rounded-md text-primary-500 text-lg ltr:mr-[12px] rtl:ml-[12px]">
+									<div class="w-[35px] h-[35px] border border-gray-100 dark:border-[#15203c] flex items-center justify-center rounded-md text-primary-500 text-lg ltr:mr-[12px] rtl:ml-[12px]">
 										<i class="ri-upload-2-line"></i>
 									</div>
 									<p class="!leading-[1.5]">
@@ -196,10 +194,12 @@
 										فایل خود اینجا کلیک کنید
 									</p>
 								</div>
+
 								<input type="file" id="videoInput"
-									   class="absolute top-0 left-0 right-0 bottom-0 rounded-md z-[1] opacity-0 cursor-pointer"
+									   class="absolute inset-0 rounded-md z-[1] opacity-0 cursor-pointer"
 									   asp-for="VideoFile" accept="video/*" />
 							</div>
+
 							<div id="videoName" class="text-sm mt-[10px] text-primary-500"></div>
 						</div>
 
@@ -208,29 +208,23 @@
 
 					<!-- Cover -->
 					<div>
-						<label class="mb-[10px] text-black dark:text-white font-medium block">
-							عکس اصلی (کاور)
-						</label>
+						<label class="mb-[10px] text-black dark:text-white font-medium block">عکس اصلی (کاور)</label>
 
-						@if (!string.IsNullOrWhiteSpace(Model.ExistingCoverPath))
-						{
-							<div>
-								<div class="rounded-md border border-gray-200 dark:border-[#172036] p-2">
-									<img id="coverPreview" src="@Model.ExistingCoverPath"
-										 class="w-full h-[225px] object-contain" />
-								</div>
-								<span class="text-xs block text-gray-500 p-[10px]">
-									اگر تصویر جدید انتخاب نکنید، همین کاور فعلی حفظ می‌شود.
-								</span>
-							</div>
-						}
+						<div id="coverPreviewWrap"
+							 class="rounded-md border border-gray-200 dark:border-[#172036] p-2 @(string.IsNullOrWhiteSpace(Model.ExistingCoverPath) ? "hidden" : "")">
+							<img id="coverPreview"
+								 src="@Model.ExistingCoverPath"
+								 class="w-full h-[225px] object-contain rounded" />
 
-						<div id="coverUploader">
-							<div
-								class="relative flex items-center justify-center overflow-hidden rounded-md h-[220px] px-[20px] border border-gray-200 dark:border-[#172036]">
+							<span class="text-xs block text-gray-500 p-[10px]">
+								اگر تصویر جدید انتخاب نکنید، همین کاور فعلی حفظ می‌شود.
+							</span>
+						</div>
+
+						<div id="coverUploader" class="mt-[10px]">
+							<div class="relative flex items-center justify-center overflow-hidden rounded-md h-[220px] px-[20px] border border-gray-200 dark:border-[#172036]">
 								<div class="flex items-center justify-center">
-									<div
-										class="w-[35px] h-[35px] border border-gray-100 dark:border-[#15203c] flex items-center justify-center rounded-md text-primary-500 text-lg ltr:mr-[12px] rtl:ml-[12px]">
+									<div class="w-[35px] h-[35px] border border-gray-100 dark:border-[#15203c] flex items-center justify-center rounded-md text-primary-500 text-lg ltr:mr-[12px] rtl:ml-[12px]">
 										<i class="ri-upload-2-line"></i>
 									</div>
 									<p class="!leading-[1.5] text-center">
@@ -239,157 +233,238 @@
 									</p>
 								</div>
 
-								<input type="file" id="coverInput" class="absolute inset-0 opacity-0 cursor-pointer"
+								<input type="file" id="coverInput"
+									   class="absolute inset-0 opacity-0 cursor-pointer"
 									   asp-for="CoverImageFile" accept="image/*" />
 							</div>
 
 							<div id="coverName" class="text-sm mt-[10px] text-primary-500"></div>
 						</div>
 
-						<span asp-validation-for="CoverImageFile"
-							  class="text-danger-400 text-sm mt-[10px] block"></span>
+						<span asp-validation-for="CoverImageFile" class="text-danger-400 text-sm mt-[10px] block"></span>
 					</div>
 
 					<!-- Galleries -->
 					<div>
-						<label class="mb-[10px] text-black dark:text-white gap-[10px] font-medium block">اضافه کردن عکس
-							ویلا</label>
+						<label class="mb-[10px] text-black dark:text-white font-medium block">
+							اضافه کردن عکس ویلا
+						</label>
 
-							@if (Model.ExistingGalleries?.Any() == true)
-							{
-								<div class="mb-3 rounded p-2">
-									<div class="grid grid-cols-3 gap-[10px]">
-										@foreach (var g in Model.ExistingGalleries)
-										{
-											<div class="">
-												<label
-													class="mt-1 flex items-center gap-[5px] py-[5px] text-xs text-black dark:text-white">
-													<input type="checkbox" name="RemoveGalleryIds" value="@g.Id"
-														   class="h-4 w-4 accent-danger-500" />
-													حذف
-												</label>
-												<img src="@g.FilePath"
-													 class="w-full border border-gray-200 dark:border-[#172036] rounded-md p-1 h-[130px] object-contain rounded-md" />
-
-											</div>
-										}
-									</div>
-								</div>
-							}
-
-							<div class="mt-[10px]" id="fileUploader">
-								<div
-									class="relative flex items-center justify-center overflow-hidden rounded-md py-[88px] px-[20px] border border-gray-200 dark:border-[#172036]">
-									<div class="flex items-center justify-center">
-										<div
-											class="w-[35px] h-[35px] border border-gray-100 dark:border-[#15203c] flex items-center justify-center rounded-md text-primary-500 text-lg ltr:mr-[12px] rtl:ml-[12px]">
-											<i class="ri-upload-2-line"></i>
+						@if (Model.ExistingGalleries?.Any() == true)
+						{
+							<div class="mb-3 rounded p-2">
+								<div class="grid sm:grid-cols-3 gap-[10px]">
+									@foreach (var g in Model.ExistingGalleries)
+									{
+										<div>
+											<label class="mt-1 flex items-center gap-[5px] py-[5px] text-xs text-black dark:text-white">
+												<input type="checkbox" name="RemoveGalleryIds" value="@g.Id" class="h-4 w-4 accent-danger-500" />
+												حذف
+											</label>
+											<img src="@g.FilePath"
+												 class="w-full border border-gray-200 dark:border-[#172036] rounded-md p-1 h-[130px] object-contain" />
 										</div>
-										<p class="!leading-[1.5]">
-											<strong class="text-black dark:text-white">برای آپلود</strong><br />
-											فایل خود اینجا کلیک کنید
-										</p>
+									}
+								</div>
+							</div>
+						}
+						<div id="newGalleryPreview" class="mt-[10px] sm:grid grid-cols-3 gap-[10px]"></div>
+
+						<div id="fileUploader" class="mt-[10px]">
+							<div class="relative flex items-center justify-center overflow-hidden rounded-md h-[220px] px-[20px] border border-gray-200 dark:border-[#172036]">
+								<div class="flex items-center justify-center">
+									<div class="w-[35px] h-[35px] border border-gray-100 dark:border-[#15203c] flex items-center justify-center rounded-md text-primary-500 text-lg ltr:mr-[12px] rtl:ml-[12px]">
+										<i class="ri-upload-2-line"></i>
 									</div>
-									<input type="file" id="fileInput"
-										   class="absolute top-0 left-0 right-0 bottom-0 rounded-md z-[1] opacity-0 cursor-pointer"
-										   name="GalleriesFile" multiple accept="image/*" />
+									<p class="!leading-[1.5]">
+										<strong class="text-black dark:text-white">برای آپلود</strong><br />
+										فایل خود اینجا کلیک کنید
+									</p>
 								</div>
 
-								<ul id="fileList" class="mt-2"></ul>
+								<input type="file" id="fileInput"
+									   class="absolute inset-0 rounded-md z-[1] opacity-0 cursor-pointer"
+									   name="GalleriesFile" multiple accept="image/*" />
 							</div>
+
+							@* <ul id="fileList" class="mt-2"></ul> *@
 						</div>
 					</div>
-				</div>
 
-				<div class="mt-[20px] md:mt-[25px]">
-					<button type="button"
-							class="font-medium inline-block transition-all rounded-md md:text-md ltr:mr-[15px] rtl:ml-[15px] py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-danger-500 text-white hover:bg-danger-400"
-							onclick="history.back()">
-						لغو
-					</button>
-
-					<button type="submit"
-							class="font-medium inline-block transition-all rounded-md md:text-md py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-primary-500 text-white hover:bg-primary-400">
-						<span class="inline-block relative ltr:pl-[29px] rtl:pr-[29px]">
-							<i class="material-symbols-outlined ltr:left-0 rtl:right-0 absolute top-1/2 -translate-y-1/2">
-								edit
-							</i>
-							ویرایش ویلا
-						</span>
-					</button>
 				</div>
 
 			</div>
+
+			<div class="mt-[20px] md:mt-[25px]">
+				<button type="button"
+						class="font-medium inline-block transition-all rounded-md md:text-md ltr:mr-[15px] rtl:ml-[15px] py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-danger-500 text-white hover:bg-danger-400"
+						onclick="history.back()">
+					لغو
+				</button>
+
+				<button type="submit"
+						class="font-medium inline-block transition-all rounded-md md:text-md py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-primary-500 text-white hover:bg-primary-400">
+					<span class="inline-block relative ltr:pl-[29px] rtl:pr-[29px]">
+						<i class="material-symbols-outlined ltr:left-0 rtl:right-0 absolute top-1/2 -translate-y-1/2">
+							edit
+						</i>
+						ویرایش ویلا
+					</span>
+				</button>
+			</div>
+
 		</div>
-	</form>
+	</div>
+</form>
 
-	@section Scripts {
-		<partial name="_ValidationScriptsPartial" />
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
 
-		<script>
-																	(function () {
-																		const form = document.querySelector('form');
-																		const desc = document.getElementById('Description');
-																		const editor = document.getElementById('richTextEditor');
+	<script>
+		(function () {
 
-																		if (form && desc && editor) {
-																			if (desc.value && !editor.innerHTML.trim()) {
-																				editor.innerHTML = desc.value;
-																			}
+			// ---- Description sync ----
+			const form = document.querySelector('form');
+			const desc = document.getElementById('Description');
+			const editor = document.getElementById('richTextEditor');
 
-																																																						form.addEventListener('submit', function () {
-																																																							desc.value = editor.innerHTML;
-																																																						});
-																																																					}
+			if (form && desc && editor) {
+				if (desc.value && !editor.innerHTML.trim()) {
+					editor.innerHTML = desc.value;
+				}
 
-																																																					// Gallery list
-																																																					const fileInput = document.getElementById('fileInput');
-																																																					const fileList = document.getElementById('fileList');
+				form.addEventListener('submit', function () {
+					desc.value = editor.innerHTML;
+				});
+			}
 
-																																																					if (fileInput && fileList) {
-																																																						fileInput.addEventListener('change', function () {
-																																																							fileList.innerHTML = '';
-																																																							for (const f of fileInput.files) {
-																																																								const li = document.createElement('li');
-																																																								li.className = "text-sm mt-[10px] text-primary-500";
-																																																								li.textContent = f.name;
-																																																								fileList.appendChild(li);
-																																																							}
-																																																						});
-																																																					}
 
-																																																					// Cover name
-																																																					const coverInput = document.getElementById('coverInput');
-																																																					const coverName = document.getElementById('coverName');
-																																																					if (coverInput && coverName) {
-coverInput.addEventListener('change', function () {
-  if (!coverInput.files || !coverInput.files.length) return;
+			// ---- Gallery selected files preview ----
+			const fileInput = document.getElementById('fileInput');
+			const fileList = document.getElementById('fileList'); // اگر نگه داشتی
+			const newGalleryPreview = document.getElementById('newGalleryPreview');
 
-  const file = coverInput.files[0];
+			if (fileInput) {
+			fileInput.addEventListener('change', function () {
 
-  // اسم فایل (اگر هنوز میخوای)
-  coverName.textContent = file.name;
+				// پاک کردن نمایش قبلی
+				if (newGalleryPreview) newGalleryPreview.innerHTML = '';
 
-  // جایگزینی عکس در UI
-  const coverPreview = document.getElementById('coverPreview');
-  if (coverPreview) {
-    const tempUrl = URL.createObjectURL(file);
-    coverPreview.src = tempUrl;
+				if (!fileInput.files || !fileInput.files.length) return;
 
-    // جلوگیری از memory leak
-    coverPreview.onload = () => URL.revokeObjectURL(tempUrl);
-  }
-});
-																																																					}
+				for (const f of fileInput.files) {
 
-																																																					// Video name
-																																																					const videoInput = document.getElementById('videoInput');
-																																																					const videoName = document.getElementById('videoName');
-																																																					if (videoInput && videoName) {
-																																																						videoInput.addEventListener('change', function () {
-																																																							videoName.textContent = videoInput.files && videoInput.files.length ? videoInput.files[0].name : '';
-																																																						});
-																																																					}
-																																																				})();
-		</script>
-	}
+				// (اختیاری) نمایش اسم فایل‌ها
+				if (fileList) {
+					const li = document.createElement('li');
+					li.className = "text-sm mt-[10px] text-primary-500";
+					li.textContent = f.name;
+					fileList.appendChild(li);
+				}
+
+				// ساخت thumbnail و اضافه شدن به گالری UI
+				if (newGalleryPreview && f.type.startsWith('image/')) {
+					const tempUrl = URL.createObjectURL(f);
+
+					const wrap = document.createElement('div');
+					wrap.className = "border border-gray-200 dark:border-[#172036] rounded-md p-1";
+
+					const img = document.createElement('img');
+					img.className = "w-full h-[130px] object-contain rounded";
+					img.src = tempUrl;
+
+					img.onload = () => URL.revokeObjectURL(tempUrl);
+
+					// (اختیاری) اسم زیر عکس
+					const name = document.createElement('div');
+					name.className = "text-xs mt-1 text-gray-500 truncate";
+					name.textContent = f.name;
+
+					wrap.appendChild(img);
+					wrap.appendChild(name);
+					newGalleryPreview.appendChild(wrap);
+				}
+				}
+			});
+			}
+
+			// ---- Cover preview replace ----
+			const coverInput = document.getElementById('coverInput');
+			const coverName = document.getElementById('coverName');
+			const coverPreview = document.getElementById('coverPreview');
+			const coverPreviewWrap = document.getElementById('coverPreviewWrap');
+
+			if (coverInput) {
+				coverInput.addEventListener('change', function () {
+					if (!coverInput.files || !coverInput.files.length) return;
+
+					const file = coverInput.files[0];
+					if (coverName) coverName.textContent = file.name;
+
+					const tempUrl = URL.createObjectURL(file);
+
+					// اگر قبلاً preview نداشتیم، نمایش بدیم
+					if (coverPreviewWrap) coverPreviewWrap.classList.remove('hidden');
+
+					if (coverPreview) {
+						coverPreview.src = tempUrl;
+						coverPreview.onload = () => URL.revokeObjectURL(tempUrl);
+					} else if (coverPreviewWrap) {
+						// fallback: اگر img نبود (به هر دلیل)، بساز
+						const img = document.createElement('img');
+						img.id = 'coverPreview';
+						img.className = 'w-full h-[225px] object-contain rounded';
+						img.src = tempUrl;
+						img.onload = () => URL.revokeObjectURL(tempUrl);
+						coverPreviewWrap.prepend(img);
+					}
+				});
+			}
+
+			// ---- Video preview replace ----
+			const videoInput = document.getElementById('videoInput');
+			const videoName = document.getElementById('videoName');
+			const videoPreview = document.getElementById('videoPreview');
+			const videoSource = document.getElementById('videoSource');
+			const videoPreviewWrap = document.getElementById('videoPreviewWrap');
+
+			if (videoInput) {
+				videoInput.addEventListener('change', function () {
+					if (!videoInput.files || !videoInput.files.length) return;
+
+					const file = videoInput.files[0];
+					if (videoName) videoName.textContent = file.name;
+
+					const tempUrl = URL.createObjectURL(file);
+
+					// اگر قبلاً preview نداشتیم، نمایش بدیم
+					if (videoPreviewWrap) videoPreviewWrap.classList.remove('hidden');
+
+					if (videoPreview && videoSource) {
+						videoSource.src = tempUrl;
+						videoPreview.load();
+						videoPreview.onloadeddata = () => URL.revokeObjectURL(tempUrl);
+					} else if (videoPreviewWrap) {
+						// fallback: اگر video نبود (به هر دلیل)، بساز
+						const v = document.createElement('video');
+						v.id = 'videoPreview';
+						v.controls = true;
+						v.className = 'w-full rounded h-[225px] object-contain';
+
+						const s = document.createElement('source');
+						s.id = 'videoSource';
+						s.src = tempUrl;
+						s.type = file.type || 'video/mp4';
+
+						v.appendChild(s);
+						videoPreviewWrap.prepend(v);
+
+						v.onloadeddata = () => URL.revokeObjectURL(tempUrl);
+						v.load();
+					}
+				});
+			}
+
+		})();
+	</script>
+}

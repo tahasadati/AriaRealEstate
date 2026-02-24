@@ -16988,7 +16988,7 @@ button {
 
 .main-content {
   padding-inline: 15px;
-  padding-top: 143px;
+  padding-top: 70px;
 
   @media (width >=48rem) {
     padding-top: 95px;
