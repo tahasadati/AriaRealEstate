@@ -22,6 +22,7 @@ public class Land : BaseEntity
     public PropertyLocationType LocationType { get; set; }
     public string? VideoLink { get; set; }
     public string CreateByUserId { get; set; }
+    public bool IsImmediate { get; set; } = false;
 
     public ICollection<CallRequest> CallRequests { get; set; }
     public ICollection<CustomerLikedEstate> CustomerLikedEstates { get; set; }

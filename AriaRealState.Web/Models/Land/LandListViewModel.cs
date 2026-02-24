@@ -1,9 +1,9 @@
 ﻿using AriaRealState.Data.Enums;
-using AriaRealState.Data.Enums.Villa;
+using AriaRealState.Data.Enums.Land;
 
-namespace AriaRealState.Web.Models.Villa;
+namespace AriaRealState.Web.Models.Land;
 
-public class VillaListViewModel
+public class LandListViewModel
 {
     public required string Code { get; set; }
     public required string Title { get; set; }
@@ -11,14 +11,13 @@ public class VillaListViewModel
     public required decimal ShowPrice { get; set; }
     public required decimal MinPrice { get; set; }
     public bool IsShow { get; set; } = true;
-    public required int InfrastructureSize { get; set; }
     public required int LandSize { get; set; }
-    public required int RoomCount { get; set; }
-    public required int BuildingYear { get; set; }
-    public required string Description { get; set; }
-    public VillaArchitectureType ArchitectureType { get; set; }
-    public VillaOccupancyStatus OccupancyStatus { get; set; }
+
+    public AbilityEnum Ability { get; set; }
+    public LandOrientationEnum LandOrientation { get; set; }
+    public LandUseType UseType { get; set; }
     public PropertyLocationType LocationType { get; set; }
+
     public string? VideoLink { get; set; }
     public string CreateByUserId { get; set; }
     public bool IsImmediate { get; set; }

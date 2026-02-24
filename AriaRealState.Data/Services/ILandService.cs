@@ -1,9 +1,13 @@
 ﻿using AriaRealState.Data.Context;
 using AriaRealState.Data.Entities;
+using AriaRealState.Data.Enums;
+using AriaRealState.Data.Enums.Land;
+using AriaRealState.Data.Enums.Villa;
 using AriaRealState.Data.Helps.Dtos;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AriaRealState.Data.Services;
@@ -16,6 +20,13 @@ public interface ILandService
     Task<PaginatedList<Land>> GetPaginatedAsync(int page, int pageSize, CancellationToken ct = default);
     Task<List<Land>> GetAllAsync(CancellationToken ct = default);
     Task<bool> RemoveAsync(Land land, CancellationToken ct = default);
+    Task<List<Land>> GetUserList(
+    string? searchTerm,
+    List<AbilityEnum> selectedAbilities,
+    List<LandOrientationEnum> selectedLandOrientations,
+    List<LandUseType> selectedLandUseTypes,
+    List<PropertyLocationType> selectedPropertyLocationTypes,
+    CancellationToken ct = default);
 }
 
 public class LandService : ILandService
@@ -89,6 +100,45 @@ public class LandService : ILandService
         {
             return false;
         }
+    }
+
+    public async Task<List<Land>> GetUserList(
+    string? searchTerm,
+    List<AbilityEnum> selectedAbilities,
+    List<LandOrientationEnum> selectedLandOrientations,
+    List<LandUseType> selectedLandUseTypes,
+    List<PropertyLocationType> selectedPropertyLocationTypes,
+    CancellationToken ct = default)
+    {
+        // شروع با query اولیه
+        var query = _db.Lands.AsQueryable();
+
+        // فیلتر بر اساس کلمه جستجو
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            query = query.Where(v => v.Code.Contains(searchTerm) || v.Title.Contains(searchTerm));
+        }
+
+        // فیلتر بر اساس نوع معماری
+        if (selectedLandOrientations.Any())
+        {
+            query = query.Where(v => selectedLandOrientations.Contains(v.LandOrientation));
+        }
+
+        // فیلتر بر اساس موقعیت
+        if (selectedLandUseTypes.Any())
+        {
+            query = query.Where(v => selectedLandUseTypes.Contains(v.UseType));
+        }
+
+        // فیلتر بر اساس وضعیت اشغال
+        if (selectedPropertyLocationTypes.Any())
+        {
+            query = query.Where(v => selectedPropertyLocationTypes.Contains(v.LocationType));
+        }
+
+        // اجرای query
+        return await query.ToListAsync(ct);
     }
 
 }
