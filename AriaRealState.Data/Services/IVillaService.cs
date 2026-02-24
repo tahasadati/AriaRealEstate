@@ -22,6 +22,7 @@ public interface IVillaService
     List<VillaArchitectureType> selectedArchitectureTypes,
     List<PropertyLocationType> selectedLocationTypes,
     List<VillaOccupancyStatus> selectedOccupancyStatuses,
+    int size = 45,
     CancellationToken ct = default);
     Task<bool> RemoveAsync(Villa villa, CancellationToken ct = default);
     Task<bool> UpdateAdvanceFacilitiesAsync(long villaId, List<AdvanceFacilityEnum> selected, CancellationToken ct = default);
@@ -161,10 +162,18 @@ public class VillaService : IVillaService
     List<VillaArchitectureType> selectedArchitectureTypes,
     List<PropertyLocationType> selectedLocationTypes,
     List<VillaOccupancyStatus> selectedOccupancyStatuses,
+    int size = 45,
     CancellationToken ct = default)
     {
+        selectedArchitectureTypes ??= new();
+        selectedLocationTypes ??= new();
+        selectedOccupancyStatuses ??= new();
+
         // شروع با query اولیه
-        var query = _db.Villas.AsQueryable();
+        var query = _db.Villas
+            .Where(o => o.IsShow)
+            .AsQueryable()
+            .AsNoTracking();
 
         // فیلتر بر اساس کلمه جستجو
         if (!string.IsNullOrWhiteSpace(searchTerm))
@@ -190,7 +199,9 @@ public class VillaService : IVillaService
             query = query.Where(v => selectedOccupancyStatuses.Contains(v.OccupancyStatus));
         }
 
-        // اجرای query
-        return await query.ToListAsync(ct);
+        return await query
+         .OrderByDescending(v => v.Id)
+         .Take(size)
+         .ToListAsync(ct);
     }
 }

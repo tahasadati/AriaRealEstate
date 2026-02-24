@@ -12,7 +12,7 @@ public class VillaController : Controller
 	private readonly IVillaService _villaService;
 	public VillaController(IVillaService villaService)
 	{
-		_villaService = villaService;
+		_villaService = villaService; 
 	}
 	public async Task<IActionResult> Buy(string searchTerm, List<VillaArchitectureType> selectedArchitectureTypes, List<PropertyLocationType> selectedLocationTypes, List<VillaOccupancyStatus> selectedOccupancyStatuses, int size = 45)
 	{

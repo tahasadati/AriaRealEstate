@@ -7,6 +7,7 @@ using AriaRealState.Data.Helps.Dtos;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -26,6 +27,7 @@ public interface ILandService
     List<LandOrientationEnum> selectedLandOrientations,
     List<LandUseType> selectedLandUseTypes,
     List<PropertyLocationType> selectedPropertyLocationTypes,
+    int size = 45,
     CancellationToken ct = default);
 }
 
@@ -108,10 +110,18 @@ public class LandService : ILandService
     List<LandOrientationEnum> selectedLandOrientations,
     List<LandUseType> selectedLandUseTypes,
     List<PropertyLocationType> selectedPropertyLocationTypes,
+    int size = 45,
     CancellationToken ct = default)
     {
+        selectedAbilities ??= new();
+        selectedLandOrientations ??= new();
+        selectedLandUseTypes ??= new();
+        selectedPropertyLocationTypes ??= new();
+
         // شروع با query اولیه
-        var query = _db.Lands.AsQueryable();
+        var query = _db.Lands.Where(v => v.IsShow)
+            .AsNoTracking()
+            .AsQueryable();
 
         // فیلتر بر اساس کلمه جستجو
         if (!string.IsNullOrWhiteSpace(searchTerm))
@@ -137,8 +147,10 @@ public class LandService : ILandService
             query = query.Where(v => selectedPropertyLocationTypes.Contains(v.LocationType));
         }
 
-        // اجرای query
-        return await query.ToListAsync(ct);
+        return await query
+         .OrderByDescending(l => l.Id)
+         .Take(size)
+         .ToListAsync(ct);
     }
 
 }

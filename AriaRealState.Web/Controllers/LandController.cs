@@ -19,7 +19,8 @@ public class LandController : Controller
         List<AbilityEnum>? selectedAbilities,
         List<LandOrientationEnum>? selectedLandOrientations,
         List<LandUseType>? selectedLandUseTypes,
-        List<PropertyLocationType>? selectedPropertyLocationTypes)
+        List<PropertyLocationType>? selectedPropertyLocationTypes,
+        int size = 45)
 	{
         selectedAbilities ??= new();
         selectedLandOrientations ??= new();
@@ -31,7 +32,8 @@ public class LandController : Controller
            selectedAbilities,
            selectedLandOrientations,
            selectedLandUseTypes,
-           selectedPropertyLocationTypes
+           selectedPropertyLocationTypes,
+           size
        );
         var viewModels = new List<LandListViewModel>();
         if (lands != null && lands.Count != 0)
