@@ -1,5 +1,315 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿
+@model AriaRealState.Web.Areas.Admin.Models.Land.CreateLandViewModel
+
+<!-- Breadcrumb -->
+<div class="mb-[25px] md:flex items-center justify-between">
+	<h5 class="!mb-0">افزودن ملک</h5>
+</div>
+
+<!-- Add Agent -->
+<form method="post" asp-action="Create" asp-area="Admin" enctype="multipart/form-data">
+	@Html.AntiForgeryToken()
+
+	<div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
+		<div class="trezo-card-content">
+
+			<div asp-validation-summary="ModelOnly" class="text-danger-400 text-sm mb-[15px]"></div>
+
+			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[20px] md:gap-[25px]">
+
+				<div>
+					<label class="mb-[10px] text-black dark:text-white font-medium block">کد ویلا</label>
+					<input type="text"
+						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
+						   placeholder="کد ویلا" asp-for="Code" />
+					<span asp-validation-for="Code" class="text-danger-400 text-sm mt-[10px] block"></span>
+				</div>
+
+				<div>
+					<label class="mb-[10px] text-black dark:text-white font-medium block"> نام ویلا </label>
+					<input type="text"
+						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
+						   placeholder="نام ویلا" asp-for="Title" />
+					<span asp-validation-for="Title" class="text-danger-400 text-sm mt-[10px] block"></span>
+				</div>
+
+				<div>
+					<label class="mb-[10px] text-black dark:text-white font-medium block"> قیمت ویلا </label>
+					<input type="number"
+						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
+						   placeholder="قیمت" asp-for="ShowPrice" />
+					<span asp-validation-for="ShowPrice" class="text-danger-400 text-sm mt-[10px] block"></span>
+				</div>
+
+				<div>
+					<label class="mb-[10px] text-black dark:text-white font-medium block"> حداقل قیمت </label>
+					<input type="number"
+						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
+						   placeholder="حداقل قیمت" asp-for="MinPrice" />
+					<span asp-validation-for="MinPrice" class="text-danger-400 text-sm mt-[10px] block"></span>
+				</div>
+
+				
+
+				<div>
+					<label class="mb-[10px] text-black dark:text-white font-medium block">محله</label>
+					<input type="string"
+						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
+						   placeholder="محله" asp-for="NeighborhoodName" />
+					<span asp-validation-for="NeighborhoodName" class="text-danger-400 text-sm mt-[10px] block"></span>
+				</div>
+
+<div>
+					<label class="mb-[10px] text-black dark:text-white font-medium block">نوع موقعیت</label>
+					<select
+						class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
+						asp-for="Ability"
+						asp-items="Html.GetEnumSelectList<AriaRealState.Data.Enums.Land.AbilityEnum>()">
+						<option value="">انتخاب کنید</option>
+					</select>
+					<span asp-validation-for="Ability" class="text-danger-400 text-sm mt-[10px] block"></span>
+				</div>
+
+<div>
+					<label class="mb-[10px] text-black dark:text-white font-medium block">جهت ملک</label>
+					<select
+						class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
+						asp-for="Ability"
+						asp-items="Html.GetEnumSelectList<AriaRealState.Data.Enums.Land.AbilityEnum>()">
+						<option value="">انتخاب کنید</option>
+					</select>
+					<span asp-validation-for="Ability" class="text-danger-400 text-sm mt-[10px] block"></span>
+				</div>
+
+<div>
+					<label class="mb-[10px] text-black dark:text-white font-medium block">موقعیت زمین</label>
+					<select
+						class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
+						asp-for="UseType"
+						asp-items="Html.GetEnumSelectList<AriaRealState.Data.Enums.Land.LandUseType>()">
+						<option value="">انتخاب کنید</option>
+					</select>
+					<span asp-validation-for="UseType" class="text-danger-400 text-sm mt-[10px] block"></span>
+				</div>
+
+				<div>
+					<label class="mb-[10px] text-black dark:text-white font-medium block"> نوع موقعیت </label>
+					<select
+						class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
+						asp-for="LocationType"
+						asp-items="Html.GetEnumSelectList<AriaRealState.Data.Enums.PropertyLocationType>()">
+						<option value="">انتخاب کنید</option>
+					</select>
+					<span asp-validation-for="LocationType" class="text-danger-400 text-sm mt-[10px] block"></span>
+				</div>
+
+				<div>
+					<label class="mb-[10px] text-black dark:text-white font-medium block"> نمایش در سایت </label>
+					<select
+						class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
+						asp-for="IsShow">
+						<option value="true">نمایش داده شود</option>
+						<option value="false">نمایش داده نشود</option>
+					</select>
+					<span asp-validation-for="IsShow" class="text-danger-400 text-sm mt-[10px] block"></span>
+				</div>
+
+				<div>
+					<label class="mb-[10px] text-black dark:text-white font-medium block"> فروش فوری </label>
+					<select
+						class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500"
+						asp-for="IsImmediate">
+						<option value="true">فروش فوری</option>
+						<option value="false">فروش غیر فوری</option>
+					</select>
+					<span asp-validation-for="IsImmediate" class="text-danger-400 text-sm mt-[10px] block"></span>
+				</div>
+
+				
+
+				<div>
+					<label class="mb-[10px] text-black dark:text-white font-medium block"> متراژ زمین </label>
+					<input type="text"
+						   class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
+						   placeholder="متراژ زمین" asp-for="LandSize" />
+					<span asp-validation-for="LandSize" class="text-danger-400 text-sm mt-[10px] block"></span>
+				</div>
+    
+				<div class="grid sm:grid-cols-3 sm:col-span-3 sm:gap-[20px]">
+					<div>
+						<label class="mb-[10px] text-black dark:text-white font-medium block"> آپلود ویدئو </label>
+						<div id="videoUploader">
+							<div
+								class="relative flex items-center justify-center overflow-hidden rounded-md py-[88px] px-[20px] border border-gray-200 dark:border-[#172036]">
+								<div class="flex items-center justify-center">
+									<div
+										class="w-[35px] h-[35px] border border-gray-100 dark:border-[#15203c] flex items-center justify-center rounded-md text-primary-500 text-lg ltr:mr-[12px] rtl:ml-[12px]">
+										<i class="ri-upload-2-line"></i>
+									</div>
+									<p class="!leading-[1.5]">
+										<strong class="text-black dark:text-white">برای آپلود</strong><br />
+										فایل خود اینجا کلیک کنید
+									</p>
+								</div>
+								<input type="file"
+									   class="absolute top-0 left-0 right-0 bottom-0 rounded-md z-[1] opacity-0 cursor-pointer"
+									   asp-for="VideoFile" accept="video/*" />
+							</div>
+						</div>
+						<span asp-validation-for="VideoFile" class="text-danger-400 text-sm mt-[10px] block"></span>
+					</div>
+
+					<div>
+						<label class="mb-[10px] text-black dark:text-white font-medium block"> عکس اصلی (کاور) </label>
+						<div id="coverUploader">
+							<div
+								class="relative flex items-center justify-center overflow-hidden rounded-md py-[88px] px-[20px] border border-gray-200 dark:border-[#172036]">
+								<div class="flex items-center justify-center">
+									<div
+										class="w-[35px] h-[35px] border border-gray-100 dark:border-[#15203c] flex items-center justify-center rounded-md text-primary-500 text-lg ltr:mr-[12px] rtl:ml-[12px]">
+										<i class="ri-upload-2-line"></i>
+									</div>
+									<p class="!leading-[1.5]">
+										<strong class="text-black dark:text-white">برای آپلود</strong><br />
+										فایل خود اینجا کلیک کنید
+									</p>
+								</div>
+								<input type="file" id="coverInput"
+									   class="absolute top-0 left-0 right-0 bottom-0 rounded-md z-[1] opacity-0 cursor-pointer"
+									   asp-for="CoverImageFile" accept="image/*" />
+							</div>
+						</div>
+						<span asp-validation-for="CoverImageFile"
+							  class="text-danger-400 text-sm mt-[10px] block"></span>
+					</div>
+
+					<div>
+						<label class="mb-[10px] text-black dark:text-white font-medium block"> اضافه کردن عکس ویلا
+						</label>
+						<div id="fileUploader">
+							<div
+								class="relative flex items-center justify-center overflow-hidden rounded-md py-[88px] px-[20px] border border-gray-200 dark:border-[#172036]">
+								<div class="flex items-center justify-center">
+									<div
+										class="w-[35px] h-[35px] border border-gray-100 dark:border-[#15203c] flex items-center justify-center rounded-md text-primary-500 text-lg ltr:mr-[12px] rtl:ml-[12px]">
+										<i class="ri-upload-2-line"></i>
+									</div>
+									<p class="!leading-[1.5]">
+										<strong class="text-black dark:text-white">برای آپلود</strong><br />
+										فایل خود اینجا کلیک کنید
+									</p>
+								</div>
+								<input type="file" id="fileInput"
+									   class="absolute top-0 left-0 right-0 bottom-0 rounded-md z-[1] opacity-0 cursor-pointer"
+									   name="GalleriesFile" multiple accept="image/*" />
+							</div>
+							<ul id="fileList" class="text-primary-500"></ul>
+						</div>
+						<span asp-validation-for="GalleriesFile" class="text-danger-400 text-sm mt-[10px] block"></span>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="mt-[20px] md:mt-[25px]">
+				<button type="button"
+						class="font-medium inline-block transition-all rounded-md md:text-md ltr:mr-[15px] rtl:ml-[15px] py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-danger-500 text-white hover:bg-danger-400"
+						onclick="history.back()">
+					لغو
+				</button>
+
+				<button type="submit"
+						class="font-medium inline-block transition-all rounded-md md:text-md py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-primary-500 text-white hover:bg-primary-400">
+					<span class="inline-block relative ltr:pl-[29px] rtl:pr-[29px]">
+						<i class="material-symbols-outlined ltr:left-0 rtl:right-0 absolute top-1/2 -translate-y-1/2">
+							add
+						</i>
+						ایجاد ملک 
+					</span>
+				</button>
+			</div>
+
+		</div>
+	</div>
+</form>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+
+	<script>
+					(function () {
+
+						const form = document.querySelector('form');
+						const desc = document.getElementById('Description');
+						const editor = document.getElementById('richTextEditor');
+
+						// Sync Rich Text Editor
+						if (form && desc && editor) {
+
+							if (desc.value && !editor.innerHTML.trim()) {
+								editor.innerHTML = desc.value;
+							}
+
+							form.addEventListener('submit', function () {
+								desc.value = editor.innerHTML;
+							});
+						}
+
+						// ---------- Gallery Multiple Files ----------
+						const fileInput = document.getElementById('fileInput');
+						const fileList = document.getElementById('fileList');
+
+						if (fileInput && fileList) {
+							fileInput.addEventListener('change', function () {
+								fileList.innerHTML = '';
+
+								for (const f of fileInput.files) {
+									const li = document.createElement('li');
+									li.className = "text-sm mt-[10px] text-primary-500";
+									li.textContent = f.name;
+									fileList.appendChild(li);
+								}
+							});
+						}
+
+						// ---------- Cover Image ----------
+						const coverInput = document.getElementById('coverInput');
+
+						if (coverInput) {
+							const coverContainer = coverInput.closest('#coverUploader');
+							const coverName = document.createElement('div');
+							coverName.className = "text-sm mt-[10px] text-primary-500";
+
+							coverContainer.appendChild(coverName);
+
+							coverInput.addEventListener('change', function () {
+								if (coverInput.files.length > 0) {
+									coverName.textContent = coverInput.files[0].name;
+								} else {
+									coverName.textContent = '';
+								}
+							});
+						}
+
+						// ---------- Video File ----------
+						const videoInput = document.querySelector('input[asp-for="VideoFile"], input[name="VideoFile"]');
+
+						if (videoInput) {
+							const videoContainer = videoInput.closest('#videoUploader');
+							const videoName = document.createElement('div');
+							videoName.className = "text-sm mt-[10px] text-primary-500";
+
+							videoContainer.appendChild(videoName);
+
+							videoInput.addEventListener('change', function () {
+								if (videoInput.files.length > 0) {
+									videoName.textContent = videoInput.files[0].name;
+								} else {
+									videoName.textContent = '';
+								}
+							});
+						}
+
+					})();
+	</script>
 }
